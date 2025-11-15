@@ -14,11 +14,25 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Business {
+  id          Int       @id @default(autoincrement())
+  name        String
+  description String?
+  phone       String
+  logo        String?
+  services    Service[]
+
+  @@map("businesses")
+}
+
 model Service {
   id          Int           @id @default(autoincrement())
   name        String
   description String?
   price       Float
+  image       String?
+  business    Business      @relation(fields: [businessId], references: [id])
+  businessId  Int
   appointment Appointment[]
 
   @@map("services")
@@ -34,14 +48,15 @@ model Client {
 }
 
 model Appointment {
-  id        Int               @id @default(autoincrement())
-  dateTime  DateTime
-  service   Service           @relation(fields: [serviceId], references: [id])
-  serviceId Int
-  client    Client            @relation(fields: [clientId], references: [id])
-  clientId  Int
-  status    AppointmentStatus @default(PENDING)
-  createdAt DateTime          @default(now())
+  id         Int               @id @default(autoincrement())
+  dateTime   DateTime
+  service    Service           @relation(fields: [serviceId], references: [id])
+  serviceId  Int
+  client     Client            @relation(fields: [clientId], references: [id])
+  clientId   Int
+  status     AppointmentStatus @default(PENDING)
+  createdAt  DateTime          @default(now())
+  businessId Int?
 
   @@map("appointments")
 }
