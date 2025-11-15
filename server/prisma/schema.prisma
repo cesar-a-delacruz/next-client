@@ -20,7 +20,9 @@ model Business {
   description String?
   phone       String
   logo        String?
+  password    String
   services    Service[]
+  employees   User[]
 
   @@map("businesses")
 }
@@ -38,13 +40,24 @@ model Service {
   @@map("services")
 }
 
-model Client {
+model User {
   id          Int           @id @default(autoincrement())
   name        String
   phone       String?
+  password    String
+  type        UserType      @default(CLIENT)
+  business    Business      @relation(fields: [businessId], references: [id])
+  businessId  Int
   appointment Appointment[]
 
-  @@map("clients")
+  @@map("users")
+}
+
+enum UserType {
+  CLIENT
+  EMPLOYEE
+
+  @@map("user_types")
 }
 
 model Appointment {
@@ -52,7 +65,7 @@ model Appointment {
   dateTime   DateTime
   service    Service           @relation(fields: [serviceId], references: [id])
   serviceId  Int
-  client     Client            @relation(fields: [clientId], references: [id])
+  client     User              @relation(fields: [clientId], references: [id])
   clientId   Int
   status     AppointmentStatus @default(PENDING)
   createdAt  DateTime          @default(now())

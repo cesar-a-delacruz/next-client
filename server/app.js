@@ -9,7 +9,7 @@ app.use(express.urlencoded({ extended: true }));
 // routes
 app.use("/appointment", routes.appointment);
 app.use("/business", routes.business);
-app.use("/client", routes.client);
+app.use("/user", routes.user);
 app.use("/service", routes.service);
 
 app.listen(process.env.APP_PORT, (error) => {
