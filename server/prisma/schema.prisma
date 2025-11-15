@@ -59,11 +59,11 @@ model Appointment {
   dateTime   DateTime
   service    Service           @relation(fields: [serviceId], references: [id])
   serviceId  Int
-  client     User              @relation(fields: [clientId], references: [id])
-  clientId   Int
+  client     User?             @relation(fields: [clientId], references: [id])
+  clientId   Int?
   status     AppointmentStatus @default(PENDING)
   createdAt  DateTime          @default(now())
-  businessId Int?
+  businessId Int
 
   @@map("appointments")
 }
