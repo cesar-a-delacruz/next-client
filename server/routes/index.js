@@ -1,11 +1,9 @@
-import * as appointment from "./appointmentRouter.js";
-import * as business from "./businessRouter.js";
-import * as user from "./userRouter.js";
-import * as service from "./serviceRouter.js";
+import { controllers } from "../controllers/index.js";
+import { BaseRouter } from "./BaseRouter.js";
 
-export default {
-  appointment: appointment.default,
-  business: business.default,
-  user: user.default,
-  service: service.default,
+export const routes = {
+  appointment: new BaseRouter("appointment", controllers.appointment),
+  business: new BaseRouter("business", controllers.business),
+  service: new BaseRouter("service", controllers.service),
+  user: new BaseRouter("user", controllers.user),
 };

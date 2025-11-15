@@ -1,16 +1,15 @@
 import express from "express";
 import dotenv from "dotenv";
-import { default as routes } from "./routes/index.js";
+import { routes } from "./routes/index.js";
 
 dotenv.config();
 const app = express();
 app.use(express.urlencoded({ extended: true }));
 
 // routes
-app.use("/appointment", routes.appointment);
-app.use("/business", routes.business);
-app.use("/user", routes.user);
-app.use("/service", routes.service);
+for (const route in routes) {
+  app.use("/" + routes[route].baseName, routes[route].router);
+}
 
 app.listen(process.env.APP_PORT, (error) => {
   if (error) throw error;
