@@ -1,7 +1,9 @@
 export class BaseController {
   #model;
-  constructor(model) {
+  #formParser;
+  constructor(model, formParser) {
     this.#model = model;
+    this.#formParser = formParser;
   }
 
   findAll = async (req, res) => {
@@ -23,9 +25,9 @@ export class BaseController {
     }
   };
   create = async (req, res) => {
-    console.log(req.body);
+    const formBody = this.#formParser.run(req.body);
     try {
-      const newRow = await this.#model.create({ data: { ...req.body } });
+      const newRow = await this.#model.create({ data: { ...formBody } });
       res.status(201).json(newRow);
     } catch (error) {
       console.log(error);
@@ -34,10 +36,11 @@ export class BaseController {
   };
   update = async (req, res) => {
     const { id } = req.params;
+    const formBody = this.#formParser.run(req.body);
     try {
       const updatedRow = await this.#model.update({
         where: { id: parseInt(id) },
-        data: { ...req.body },
+        data: { ...formBody },
       });
       res.json(updatedRow);
     } catch (error) {
