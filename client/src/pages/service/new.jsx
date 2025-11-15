@@ -1,12 +1,12 @@
 import { useState } from "react";
 
-function NewUser() {
+function NewService() {
   const [formData, setFormData] = useState({
     name: "",
-    phone: "",
-    password: "",
-    type: "CLIENT",
-    businessId: null,
+    description: null,
+    price: "",
+    image: null,
+    businessId: "",
   });
 
   const handleChange = (e) => {
@@ -15,7 +15,7 @@ function NewUser() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const result = await fetch("http://localhost:3000/user", {
+    const result = await fetch("http://localhost:3000/service", {
       method: "POST",
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
@@ -27,7 +27,7 @@ function NewUser() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <h2>New User</h2>
+      <h2>New Service</h2>
 
       <div>
         <label>Name:</label>
@@ -36,35 +36,41 @@ function NewUser() {
           name="name"
           value={formData.name}
           onChange={handleChange}
+          required
         />
       </div>
 
       <div>
-        <label>Phone:</label>
+        <label>Description:</label>
+        <textarea
+          name="description"
+          value={formData.description}
+          onChange={handleChange}
+        />
+      </div>
+
+      <div>
+        <label>Price:</label>
         <input
           type="number"
-          name="phone"
-          value={formData.phone}
+          step="0.01"
+          name="price"
+          value={formData.price}
           onChange={handleChange}
+          required
         />
       </div>
 
       <div>
-        <label>Password:</label>
+        <label>Image URL:</label>
         <input
-          type="password"
-          name="password"
-          value={formData.password}
+          type="text"
+          name="image"
+          value={formData.image}
           onChange={handleChange}
         />
       </div>
-      <div>
-        <label>Type:</label>
-        <select name="type" value={formData.status} onChange={handleChange}>
-          <option value="CLIENT">Client</option>
-          <option value="EMPLOYEE">Employee</option>
-        </select>
-      </div>
+
       <div>
         <label>Business:</label>
         <input
@@ -81,4 +87,4 @@ function NewUser() {
   );
 }
 
-export default NewUser;
+export default NewService;

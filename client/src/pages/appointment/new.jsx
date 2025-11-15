@@ -1,12 +1,12 @@
 import { useState } from "react";
 
-function NewUser() {
+function NewAppointment() {
   const [formData, setFormData] = useState({
-    name: "",
-    phone: "",
-    password: "",
-    type: "CLIENT",
-    businessId: null,
+    dateTime: "",
+    serviceId: "",
+    clientId: null,
+    status: "PENDING",
+    businessId: "",
   });
 
   const handleChange = (e) => {
@@ -15,7 +15,7 @@ function NewUser() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const result = await fetch("http://localhost:3000/user", {
+    const result = await fetch("http://localhost:3000/appointment", {
       method: "POST",
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
@@ -27,44 +27,50 @@ function NewUser() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <h2>New User</h2>
+      <h2>New Appointment</h2>
 
       <div>
-        <label>Name:</label>
+        <label>Date & Time:</label>
         <input
-          type="text"
-          name="name"
-          value={formData.name}
+          type="datetime-local"
+          name="dateTime"
+          value={formData.dateTime}
           onChange={handleChange}
+          required
         />
       </div>
 
       <div>
-        <label>Phone:</label>
+        <label>Service:</label>
         <input
           type="number"
-          name="phone"
-          value={formData.phone}
+          name="serviceId"
+          value={formData.serviceId}
           onChange={handleChange}
+          required
         />
       </div>
 
       <div>
-        <label>Password:</label>
+        <label>Client:</label>
         <input
-          type="password"
-          name="password"
-          value={formData.password}
+          type="number"
+          name="clientId"
+          value={formData.clientId}
           onChange={handleChange}
+          required
         />
       </div>
+
       <div>
-        <label>Type:</label>
-        <select name="type" value={formData.status} onChange={handleChange}>
-          <option value="CLIENT">Client</option>
-          <option value="EMPLOYEE">Employee</option>
+        <label>Status:</label>
+        <select name="status" value={formData.status} onChange={handleChange}>
+          <option value="PENDING">Pending</option>
+          <option value="CANCELLED">Cancelled</option>
+          <option value="COMPLETED">Completed</option>
         </select>
       </div>
+
       <div>
         <label>Business:</label>
         <input
@@ -72,7 +78,6 @@ function NewUser() {
           name="businessId"
           value={formData.businessId}
           onChange={handleChange}
-          required
         />
       </div>
 
@@ -81,4 +86,4 @@ function NewUser() {
   );
 }
 
-export default NewUser;
+export default NewAppointment;

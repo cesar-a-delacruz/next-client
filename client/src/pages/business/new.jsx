@@ -1,12 +1,12 @@
 import { useState } from "react";
 
-function NewUser() {
+function NewBusiness() {
   const [formData, setFormData] = useState({
     name: "",
+    description: null,
     phone: "",
+    logo: null,
     password: "",
-    type: "CLIENT",
-    businessId: null,
   });
 
   const handleChange = (e) => {
@@ -15,7 +15,7 @@ function NewUser() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const result = await fetch("http://localhost:3000/user", {
+    const result = await fetch("http://localhost:3000/business", {
       method: "POST",
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
@@ -27,7 +27,7 @@ function NewUser() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <h2>New User</h2>
+      <h2>New Business</h2>
 
       <div>
         <label>Name:</label>
@@ -35,6 +35,16 @@ function NewUser() {
           type="text"
           name="name"
           value={formData.name}
+          onChange={handleChange}
+          required
+        />
+      </div>
+
+      <div>
+        <label>Description:</label>
+        <textarea
+          name="description"
+          value={formData.description}
           onChange={handleChange}
         />
       </div>
@@ -46,6 +56,17 @@ function NewUser() {
           name="phone"
           value={formData.phone}
           onChange={handleChange}
+          required
+        />
+      </div>
+
+      <div>
+        <label>Logo URL:</label>
+        <input
+          type="text"
+          name="logo"
+          value={formData.logo}
+          onChange={handleChange}
         />
       </div>
 
@@ -56,22 +77,6 @@ function NewUser() {
           name="password"
           value={formData.password}
           onChange={handleChange}
-        />
-      </div>
-      <div>
-        <label>Type:</label>
-        <select name="type" value={formData.status} onChange={handleChange}>
-          <option value="CLIENT">Client</option>
-          <option value="EMPLOYEE">Employee</option>
-        </select>
-      </div>
-      <div>
-        <label>Business:</label>
-        <input
-          type="number"
-          name="businessId"
-          value={formData.businessId}
-          onChange={handleChange}
           required
         />
       </div>
@@ -81,4 +86,4 @@ function NewUser() {
   );
 }
 
-export default NewUser;
+export default NewBusiness;
