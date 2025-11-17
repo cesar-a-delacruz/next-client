@@ -1,6 +1,6 @@
 import Form from "@/components/Form";
 
-const serviceFields = [
+const fields = [
   { name: "name", label: "Name", type: "text" },
   { name: "description", label: "Description", type: "textarea" },
   { name: "price", label: "Price", type: "number" },
@@ -12,7 +12,7 @@ export default function NewService() {
   return (
     <Form
       title="New Service"
-      fields={serviceFields}
+      fields={fields}
       endpoint="service"
       action="Create"
     />

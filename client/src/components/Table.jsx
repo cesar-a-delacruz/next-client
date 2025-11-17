@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const Table = ({ title, columns, endpoint }) => {
+export default function Table({ title, columns, endpoint }) {
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -49,6 +49,4 @@ const Table = ({ title, columns, endpoint }) => {
       </table>
     </div>
   );
-};
-
-export default Table;
+}

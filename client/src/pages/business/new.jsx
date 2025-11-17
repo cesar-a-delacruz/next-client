@@ -1,6 +1,6 @@
 import Form from "@/components/Form";
 
-const businessFields = [
+const fields = [
   { name: "name", label: "Name", type: "text" },
   { name: "description", label: "Description", type: "textarea" },
   { name: "phone", label: "Phone", type: "text" },
@@ -12,7 +12,7 @@ export default function NewBusiness() {
   return (
     <Form
       title="New Business"
-      fields={businessFields}
+      fields={fields}
       endpoint="business"
       action="Create"
     />

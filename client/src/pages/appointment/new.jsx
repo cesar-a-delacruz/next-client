@@ -1,6 +1,6 @@
 import Form from "@/components/Form";
 
-const appointmentFields = [
+const fields = [
   { name: "dateTime", label: "Date & Time", type: "datetime-local" },
   { name: "serviceId", label: "Service", type: "number" },
   { name: "clientId", label: "Client", type: "number" },
@@ -22,7 +22,7 @@ export default function NewAppointment() {
   return (
     <Form
       title="New Appointment"
-      fields={appointmentFields}
+      fields={fields}
       endpoint="appointment"
       action="Create"
     />

@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function Form({ title, fields, endpoint, action }) {
+export default function Form({ title, fields, endpoint, action }) {
   const initialState = fields.reduce((acc, field) => {
     acc[field.name] = field.default || "";
     return acc;
@@ -85,5 +85,3 @@ function Form({ title, fields, endpoint, action }) {
     </form>
   );
 }
-
-export default Form;

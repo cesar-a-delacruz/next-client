@@ -1,6 +1,6 @@
 import Form from "@/components/Form";
 
-const userFields = [
+const fields = [
   { name: "name", label: "Name", type: "text" },
   { name: "phone", label: "Phone", type: "number" },
   { name: "password", label: "Password", type: "password" },
@@ -19,11 +19,6 @@ const userFields = [
 
 export default function NewUser() {
   return (
-    <Form
-      title="New User"
-      fields={userFields}
-      endpoint="user"
-      action="Create"
-    />
+    <Form title="New User" fields={fields} endpoint="user" action="Create" />
   );
 }
