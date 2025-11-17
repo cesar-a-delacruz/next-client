@@ -1,84 +1,29 @@
-import { useState } from "react";
+import Form from "@/components/Form";
 
-function NewUser() {
-  const [formData, setFormData] = useState({
-    name: "",
-    phone: "",
-    password: "",
-    type: "CLIENT",
-    businessId: null,
-  });
+const userFields = [
+  { name: "name", label: "Name", type: "text" },
+  { name: "phone", label: "Phone", type: "number" },
+  { name: "password", label: "Password", type: "password" },
+  {
+    name: "type",
+    label: "Type",
+    type: "select",
+    options: [
+      { value: "CLIENT", label: "Client" },
+      { value: "EMPLOYEE", label: "Employee" },
+    ],
+    default: "CLIENT",
+  },
+  { name: "businessId", label: "Business", type: "number" },
+];
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const result = await fetch("http://localhost:3000/user", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-      body: new URLSearchParams(formData),
-    });
-    console.log("Response:", result);
-  };
-
+export default function NewUser() {
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>New User</h2>
-
-      <div>
-        <label>Name:</label>
-        <input
-          type="text"
-          name="name"
-          value={formData.name}
-          onChange={handleChange}
-        />
-      </div>
-
-      <div>
-        <label>Phone:</label>
-        <input
-          type="number"
-          name="phone"
-          value={formData.phone}
-          onChange={handleChange}
-        />
-      </div>
-
-      <div>
-        <label>Password:</label>
-        <input
-          type="password"
-          name="password"
-          value={formData.password}
-          onChange={handleChange}
-        />
-      </div>
-      <div>
-        <label>Type:</label>
-        <select name="type" value={formData.status} onChange={handleChange}>
-          <option value="CLIENT">Client</option>
-          <option value="EMPLOYEE">Employee</option>
-        </select>
-      </div>
-      <div>
-        <label>Business:</label>
-        <input
-          type="number"
-          name="businessId"
-          value={formData.businessId}
-          onChange={handleChange}
-          required
-        />
-      </div>
-
-      <button type="submit">Create</button>
-    </form>
+    <Form
+      title="New User"
+      fields={userFields}
+      endpoint="user"
+      action="Create"
+    />
   );
 }
-
-export default NewUser;
