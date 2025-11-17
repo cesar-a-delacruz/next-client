@@ -1,20 +1,37 @@
 import { useState, useEffect } from "react";
+import ViewDialog from "@/components/ViewDialog";
 
 export default function Table({ title, columns, endpoint }) {
-  const [data, setData] = useState([]);
+  const [tableData, setTableData] = useState([]);
+  const [viewDialog, setViewDialog] = useState(false);
+  const [selectedRow, setSelectedRow] = useState(null);
 
   useEffect(() => {
     (async () => {
-      const result = await fetch(`http://localhost:3000/${endpoint}`, {
-        method: "GET",
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          setData([...data]);
-        });
-      console.log("Response:", result);
+      const result = await fetch(`http://localhost:3000/${endpoint}`);
+      const json = await result.json();
+      setTableData([...json]);
     })();
   }, []);
+
+  const handleView = (row) => {
+    setSelectedRow(row);
+    setViewDialog(true);
+  };
+
+  const handleSave = async (updatedRow) => {
+    await fetch(`http://localhost:3000/${endpoint}/${updatedRow.id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: new URLSearchParams(updatedRow),
+    });
+    setTableData((prev) =>
+      prev.map((item) => (item.id === updatedRow.id ? updatedRow : item)),
+    );
+    setViewDialog(false);
+  };
 
   return (
     <div>
@@ -25,11 +42,12 @@ export default function Table({ title, columns, endpoint }) {
             {columns.map((col) => (
               <th key={col.key}>{col.label}</th>
             ))}
+            <th>Options</th>
           </tr>
         </thead>
         <tbody>
-          {data.length !== 0 ? (
-            data.map((item, idx) => (
+          {tableData.length !== 0 ? (
+            tableData.map((item, idx) => (
               <tr key={idx}>
                 {columns.map((col) => (
                   <td key={col.key}>
@@ -38,15 +56,25 @@ export default function Table({ title, columns, endpoint }) {
                       : item[col.key]}
                   </td>
                 ))}
+                <td>
+                  <button onClick={() => handleView(item)}>View</button>
+                </td>
               </tr>
             ))
           ) : (
             <tr>
-              <td colSpan={columns.length}>No {title} data available.</td>
+              <td colSpan={columns.length + 1}>No data available.</td>
             </tr>
           )}
         </tbody>
       </table>
+
+      <ViewDialog
+        open={viewDialog}
+        onClose={() => setViewDialog(false)}
+        data={selectedRow}
+        onSave={handleSave}
+      />
     </div>
   );
 }
