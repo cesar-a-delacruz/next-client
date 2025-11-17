@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Input from "@/components/Input";
 
 export default function Form({ title, fields, endpoint, action }) {
   const initialState = fields.reduce((acc, field) => {
@@ -24,61 +25,17 @@ export default function Form({ title, fields, endpoint, action }) {
     console.log("Response:", result);
   };
 
-  const getFieldElement = (field) => {
-    switch (field.type) {
-      case "textarea":
-        return (
-          <textarea
-            name={field.name}
-            value={formData[field.name]}
-            onChange={handleChange}
-          />
-        );
-      case "select":
-        return (
-          <select
-            name={field.name}
-            value={formData[field.name]}
-            onChange={handleChange}
-          >
-            {field.options.map((opt) => (
-              <option key={opt.value} value={opt.value}>
-                {opt.label}
-              </option>
-            ))}
-          </select>
-        );
-      case "radio":
-        return field.options.map((opt) => (
-          <span key={opt.value}>
-            <input
-              type="radio"
-              name={field.name}
-              value={opt.value}
-              checked={formData[field.name] === opt.value}
-              onChange={handleChange}
-            />
-            {opt.label}
-          </span>
-        ));
-      default:
-        return (
-          <input
-            type={field.type}
-            name={field.name}
-            value={formData[field.name]}
-            onChange={handleChange}
-          />
-        );
-    }
-  };
   return (
     <form onSubmit={handleSubmit}>
       <h2>{title}</h2>
       {fields.map((field) => (
         <div key={field.name}>
           <label>{field.label}:</label>
-          {getFieldElement(field)}
+          <Input
+            field={field}
+            value={formData[field.name]}
+            handleChange={handleChange}
+          />
         </div>
       ))}
       <button type="submit">{action}</button>
