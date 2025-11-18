@@ -27,6 +27,19 @@ export default function Input({ field, value, handleChange }) {
           {opt.label}
         </span>
       ));
+    case "datetime-local":
+      value = (function formatLocalDateTime(date) {
+        const pad = (n) => n.toString().padStart(2, "0");
+        return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}T${pad(date.getHours())}:${pad(date.getMinutes())}`;
+      })(new Date(value));
+      return (
+        <input
+          type={field.type}
+          name={field.name}
+          value={value}
+          onChange={handleChange}
+        />
+      );
     default:
       return (
         <input
