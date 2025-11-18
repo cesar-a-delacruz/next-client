@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import ViewDialog from "@/components/ViewDialog";
 
-export default function Table({ title, columns, endpoint }) {
+export default function Table({ title, fields, endpoint }) {
   const [tableData, setTableData] = useState([]);
   const [viewDialog, setViewDialog] = useState(false);
   const [selectedRow, setSelectedRow] = useState(null);
@@ -39,21 +39,21 @@ export default function Table({ title, columns, endpoint }) {
       <table>
         <thead>
           <tr>
-            {columns.map((col) => (
-              <th key={col.key}>{col.label}</th>
+            {fields.map((field) => (
+              <th key={field.name}>{field.label}</th>
             ))}
             <th>Options</th>
           </tr>
         </thead>
         <tbody>
           {tableData.length !== 0 ? (
-            tableData.map((item, idx) => (
-              <tr key={idx}>
-                {columns.map((col) => (
-                  <td key={col.key}>
-                    {col.render
-                      ? col.render(item[col.key], item)
-                      : item[col.key]}
+            tableData.map((item) => (
+              <tr key={item.id}>
+                {fields.map((field) => (
+                  <td key={field.name}>
+                    {field.render
+                      ? field.render(item[field.name])
+                      : item[field.name]}
                   </td>
                 ))}
                 <td>
@@ -63,7 +63,7 @@ export default function Table({ title, columns, endpoint }) {
             ))
           ) : (
             <tr>
-              <td colSpan={columns.length + 1}>No data available.</td>
+              <td colSpan={fields.length + 1}>No data available.</td>
             </tr>
           )}
         </tbody>
@@ -74,6 +74,7 @@ export default function Table({ title, columns, endpoint }) {
         onClose={() => setViewDialog(false)}
         data={selectedRow}
         onSave={handleSave}
+        fields={fields}
       />
     </div>
   );

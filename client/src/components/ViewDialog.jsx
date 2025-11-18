@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
+import Input from "@/components/Input";
 
-export default function ViewDialog({ open, onClose, data, onSave }) {
+export default function ViewDialog({ open, onClose, data, onSave, fields }) {
   const [editMode, setEditMode] = useState(false);
   const [formData, setFormData] = useState(data || {});
 
@@ -9,8 +10,9 @@ export default function ViewDialog({ open, onClose, data, onSave }) {
     setEditMode(false);
   }, [data]);
 
-  const handleChange = (key, value) => {
-    setFormData((prev) => ({ ...prev, [key]: value }));
+  const handleChange = (e) => {
+    const value = e.target.value;
+    setFormData({ ...formData, [e.target.name]: value });
   };
 
   const handleSave = () => {
@@ -29,17 +31,21 @@ export default function ViewDialog({ open, onClose, data, onSave }) {
         <form method="dialog">
           <h3>{editMode ? "Edit" : "View"}</h3>
           <div className="dialog-content">
-            {Object.entries(data).map(([key, value]) => (
-              <div key={key} className="dialog-field">
-                <label>{key}</label>
+            {fields.map((field) => (
+              <div key={field.name} className="dialog-field">
+                <label>{field.label}</label>
                 {editMode ? (
-                  <input
-                    type="text"
-                    value={formData[key]}
-                    onChange={(e) => handleChange(key, e.target.value)}
+                  <Input
+                    field={field}
+                    value={formData[field.name]}
+                    handleChange={handleChange}
                   />
                 ) : (
-                  <p>{value?.toString()}</p>
+                  <p>
+                    {field.render
+                      ? field.render(formData[field.name])
+                      : formData[field.name]}
+                  </p>
                 )}
               </div>
             ))}
@@ -50,7 +56,13 @@ export default function ViewDialog({ open, onClose, data, onSave }) {
                 <button type="button" onClick={handleSave}>
                   Save
                 </button>
-                <button type="button" onClick={() => setEditMode(false)}>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setFormData({ ...data });
+                    setEditMode(false);
+                  }}
+                >
                   Cancel
                 </button>
               </>
