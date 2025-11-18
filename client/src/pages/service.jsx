@@ -1,6 +1,6 @@
 import BasePageData from "@/utils/BasePageData";
-import Form from "@/components/Form";
-import Table from "@/components/Table";
+import NewForm from "@/components/NewForm";
+import AllTable from "@/components/AllTable";
 
 export default {
   pageData: new BasePageData(
@@ -15,7 +15,7 @@ export default {
   ),
   New() {
     return (
-      <Form
+      <NewForm
         title="New Service"
         fields={this.pageData.fields}
         endpoint={this.pageData.endpoint}
@@ -25,7 +25,7 @@ export default {
   },
   All() {
     return (
-      <Table
+      <AllTable
         title="All Services"
         fields={this.pageData.fields}
         endpoint={this.pageData.endpoint}

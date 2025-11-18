@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Input from "@/components/Input";
+import FormField from "@/components/FormField";
 
 export default function Form({ title, fields, endpoint, action }) {
   const initialState = fields.reduce((acc, field) => {
@@ -30,8 +30,7 @@ export default function Form({ title, fields, endpoint, action }) {
       <h2>{title}</h2>
       {fields.map((field) => (
         <div key={field.name}>
-          <label>{field.label}:</label>
-          <Input
+          <FormField
             field={field}
             value={formData[field.name]}
             handleChange={handleChange}

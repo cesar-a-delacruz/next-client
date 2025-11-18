@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Input from "@/components/Input";
+import FormField from "@/components/FormField";
 
 export default function ViewDialog({ open, onClose, data, onSave, fields }) {
   const [editMode, setEditMode] = useState(false);
@@ -33,18 +33,20 @@ export default function ViewDialog({ open, onClose, data, onSave, fields }) {
           <div className="dialog-content">
             {fields.map((field) => (
               <div key={field.name} className="dialog-field">
-                <label>{field.label}</label>
                 {editMode ? (
-                  <Input
+                  <FormField
                     field={field}
                     value={formData[field.name]}
                     handleChange={handleChange}
                   />
                 ) : (
                   <p>
-                    {field.render
-                      ? field.render(formData[field.name])
-                      : formData[field.name]}
+                    {field.label}:
+                    <span>
+                      {field.render
+                        ? field.render(formData[field.name])
+                        : formData[field.name]}
+                    </span>
                   </p>
                 )}
               </div>
