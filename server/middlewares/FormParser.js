@@ -4,12 +4,13 @@ export class FormParser {
   }
 
   run = (formBody) => {
-    for (const field in this.schema) {
-      if (formBody.hasOwnProperty(field)) {
-        formBody[field] = this.#convert(field, formBody[field]);
+    let parsedBody = {};
+    for (const field in formBody) {
+      if (this.schema.hasOwnProperty(field)) {
+        parsedBody[field] = this.#convert(field, formBody[field]);
       }
     }
-    return formBody;
+    return parsedBody;
   };
 
   #convert = (field, value) => {
@@ -22,7 +23,7 @@ export class FormParser {
       case "date":
         return new Date(value);
       default:
-        return value;
+        return null;
     }
   };
 }
