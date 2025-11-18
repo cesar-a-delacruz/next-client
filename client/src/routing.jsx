@@ -1,42 +1,37 @@
-import NewUser from "@/pages/user/new";
-import NewBusiness from "@/pages/business/new";
-import NewService from "@/pages/service/new";
-import NewAppointment from "@/pages/appointment/new";
-
-import AllUsers from "@/pages/user/all";
-import AllBusinesses from "@/pages/business/all";
-import AllServices from "@/pages/service/all";
-import AllAppointments from "@/pages/appointment/all";
-
 import { createBrowserRouter } from "react-router-dom";
+
+import appointment from "@/pages/appointment";
+import business from "@/pages/business";
+import service from "@/pages/service";
+import user from "@/pages/user";
 
 const routes = [
   {
-    path: "/user",
+    path: user.pageData.endpoint,
     children: [
-      { path: "new", element: <NewUser /> },
-      { path: "all", element: <AllUsers /> },
+      { path: "new", element: user.New() },
+      { path: "all", element: user.All() },
     ],
   },
   {
-    path: "/business",
+    path: business.pageData.endpoint,
     children: [
-      { path: "new", element: <NewBusiness /> },
-      { path: "all", element: <AllBusinesses /> },
+      { path: "new", element: business.New() },
+      { path: "all", element: business.All() },
     ],
   },
   {
-    path: "/service",
+    path: service.pageData.endpoint,
     children: [
-      { path: "new", element: <NewService /> },
-      { path: "all", element: <AllServices /> },
+      { path: "new", element: service.New() },
+      { path: "all", element: service.All() },
     ],
   },
   {
-    path: "/appointment",
+    path: appointment.pageData.endpoint,
     children: [
-      { path: "new", element: <NewAppointment /> },
-      { path: "all", element: <AllAppointments /> },
+      { path: "new", element: appointment.New() },
+      { path: "all", element: appointment.All() },
     ],
   },
 ];
