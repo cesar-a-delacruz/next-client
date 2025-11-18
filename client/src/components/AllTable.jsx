@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import ViewDialog from "@/components/ViewDialog";
+import DeleteDialog from "@/components/DeleteDialog";
 
 export default function Table({ title, fields, endpoint }) {
   const [tableData, setTableData] = useState([]);
-  const [viewDialog, setViewDialog] = useState(false);
   const [selectedRow, setSelectedRow] = useState(null);
+  const [viewDialog, setViewDialog] = useState(false);
+  const [deleteDialog, setDeleteDialog] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -14,12 +16,16 @@ export default function Table({ title, fields, endpoint }) {
     })();
   }, []);
 
-  const handleView = (row) => {
+  const handleViewDialog = (row) => {
     setSelectedRow(row);
     setViewDialog(true);
   };
+  const handleDeleteDialog = (row) => {
+    setSelectedRow(row);
+    setDeleteDialog(true);
+  };
 
-  const handleSave = async (updatedRow) => {
+  const handleUpdate = async (updatedRow) => {
     await fetch(`http://localhost:3000/${endpoint}/${updatedRow.id}`, {
       method: "PUT",
       headers: {
@@ -31,6 +37,13 @@ export default function Table({ title, fields, endpoint }) {
       prev.map((item) => (item.id === updatedRow.id ? updatedRow : item)),
     );
     setViewDialog(false);
+  };
+  const handleDelete = async (deletedRow) => {
+    await fetch(`http://localhost:3000/${endpoint}/${deletedRow.id}`, {
+      method: "DELETE",
+    });
+    setTableData((prev) => prev.filter((item) => item.id !== deletedRow.id));
+    setDeleteDialog(false);
   };
 
   return (
@@ -57,7 +70,10 @@ export default function Table({ title, fields, endpoint }) {
                   </td>
                 ))}
                 <td>
-                  <button onClick={() => handleView(item)}>View</button>
+                  <button onClick={() => handleViewDialog(item)}>View</button>
+                  <button onClick={() => handleDeleteDialog(item)}>
+                    Delete
+                  </button>
                 </td>
               </tr>
             ))
@@ -73,7 +89,14 @@ export default function Table({ title, fields, endpoint }) {
         open={viewDialog}
         onClose={() => setViewDialog(false)}
         data={selectedRow}
-        onSave={handleSave}
+        onUpdate={handleUpdate}
+        fields={fields}
+      />
+      <DeleteDialog
+        open={deleteDialog}
+        onClose={() => setDeleteDialog(false)}
+        data={selectedRow}
+        onDelete={handleDelete}
         fields={fields}
       />
     </div>

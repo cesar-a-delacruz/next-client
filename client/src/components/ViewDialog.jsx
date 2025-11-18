@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import FormField from "@/components/FormField";
 
-export default function ViewDialog({ open, onClose, data, onSave, fields }) {
+export default function ViewDialog({ open, onClose, data, onUpdate, fields }) {
   const [editMode, setEditMode] = useState(false);
   const [formData, setFormData] = useState(data || {});
 
@@ -15,8 +15,8 @@ export default function ViewDialog({ open, onClose, data, onSave, fields }) {
     setFormData({ ...formData, [e.target.name]: value });
   };
 
-  const handleSave = () => {
-    onSave(formData);
+  const handleUpdate = () => {
+    onUpdate(formData);
     setEditMode(false);
   };
 
@@ -55,8 +55,8 @@ export default function ViewDialog({ open, onClose, data, onSave, fields }) {
           <div className="dialog-actions">
             {editMode ? (
               <>
-                <button type="button" onClick={handleSave}>
-                  Save
+                <button type="button" onClick={handleUpdate}>
+                  Update
                 </button>
                 <button
                   type="button"
