@@ -12,7 +12,7 @@ model Business {
   id          Int       @id @default(autoincrement())
   name        String
   description String?
-  phone       String
+  phone       Int
   logo        String?
   password    String
   services    Service[]
@@ -28,7 +28,7 @@ model Service {
   price       Float
   image       String?
   business    Business      @relation(fields: [businessId], references: [id])
-  businessId  Int
+  businessId  Int           @map("business_id")
   appointment Appointment[]
 
   @@map("services")
@@ -41,7 +41,7 @@ model User {
   password    String
   type        UserType      @default(CLIENT)
   business    Business?     @relation(fields: [businessId], references: [id])
-  businessId  Int?
+  businessId  Int?          @map("business_id")
   appointment Appointment[]
 
   @@map("users")
@@ -56,14 +56,14 @@ enum UserType {
 
 model Appointment {
   id         Int               @id @default(autoincrement())
-  dateTime   DateTime
+  dateTime   DateTime          @map("date_time")
   service    Service           @relation(fields: [serviceId], references: [id])
-  serviceId  Int
+  serviceId  Int               @map("service_id")
   client     User?             @relation(fields: [clientId], references: [id])
-  clientId   Int?
+  clientId   Int?              @map("client_id")
   status     AppointmentStatus @default(PENDING)
-  createdAt  DateTime          @default(now())
-  businessId Int
+  createdAt  DateTime          @default(now()) @map("created_at")
+  businessId Int               @map("business_id")
 
   @@map("appointments")
 }

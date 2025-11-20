@@ -20,7 +20,7 @@ export const controllers = {
     new FormParser({
       name: "string",
       description: "string",
-      phone: "string",
+      phone: "number",
       logo: "string",
       password: "string",
     }),
