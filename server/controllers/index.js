@@ -1,6 +1,6 @@
 import { PrismaClient } from "../generated/prisma/index.js";
 import { BaseController } from "./BaseController.js";
-import { FormParser } from "../middlewares/FormParser.js";
+import { FormParser } from "../utils/FormParser.js";
 
 const prisma = new PrismaClient();
 
