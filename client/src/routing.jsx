@@ -12,6 +12,7 @@ const routes = [
     children: [
       { path: "new", element: user.New() },
       { path: "all", element: user.All() },
+      { path: "auth", element: user.Auth() },
     ],
   },
   {
