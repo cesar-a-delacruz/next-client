@@ -1,3 +1,5 @@
+import { startOfDay, endOfDay, startOfWeek, endOfWeek } from "date-fns";
+
 import BaseController from "./BaseController.js";
 
 export default class AppointmentController extends BaseController {
@@ -5,28 +7,18 @@ export default class AppointmentController extends BaseController {
     super(model, formParser);
   }
   findByDay = async (req, res) => {
-    let { dateTime } = req.params;
-    const currentDay = new Date(dateTime).getDate();
-    let nextDateTime = new Date(dateTime);
-    nextDateTime.setDate(currentDay + 1);
-    nextDateTime = nextDateTime.toISOString();
-    dateTime = new Date(dateTime).toISOString();
+    const dateTime = new Date(req.params.dateTime);
+    dateTime.setDate(dateTime.getDate() + 1);
+    const dayStart = startOfDay(dateTime);
+    const dayEnd = endOfDay(dateTime);
 
     try {
       const row = await this.model.findMany({
         where: {
-          AND: [
-            {
-              dateTime: {
-                gte: dateTime,
-              },
-            },
-            {
-              dateTime: {
-                lt: nextDateTime,
-              },
-            },
-          ],
+          dateTime: {
+            gte: dayStart,
+            lte: dayEnd,
+          },
         },
         include: {
           service: true,
@@ -39,29 +31,18 @@ export default class AppointmentController extends BaseController {
     }
   };
   findByWeek = async (req, res) => {
-    let { dateTime } = req.params;
-    const currentDay = new Date(dateTime).getDate();
-
-    let priorDateTime = new Date(dateTime);
-    priorDateTime.setDate(currentDay - 7);
-    priorDateTime = priorDateTime.toISOString();
-    let nextDateTime = new Date(dateTime);
-    nextDateTime.setDate(currentDay + 1);
-    nextDateTime = nextDateTime.toISOString();
+    const dateTime = new Date(req.params.dateTime);
+    dateTime.setDate(dateTime.getDate() + 1);
+    const weekStart = startOfWeek(dateTime, { weekStartsOn: 1 });
+    const weekEnd = endOfWeek(dateTime, { weekStartsOn: 1 });
 
     try {
       const rows = await this.model.findMany({
         where: {
-          AND: [
-            {
-              dateTime: {
-                gte: priorDateTime,
-              },
-              dateTime: {
-                lt: nextDateTime,
-              },
-            },
-          ],
+          dateTime: {
+            gte: weekStart,
+            lte: weekEnd,
+          },
         },
         include: {
           service: true,
