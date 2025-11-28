@@ -4,6 +4,7 @@ import appointment from "@/pages/appointment";
 import business from "@/pages/business";
 import service from "@/pages/service";
 import user from "@/pages/user";
+import auth from "@/pages/auth";
 import Stats from "@/pages/stats";
 import DefaultLayout from "./layouts/default";
 
@@ -14,7 +15,6 @@ const routes = [
     children: [
       { path: "new", element: user.New() },
       { path: "all", element: user.All() },
-      { path: "auth", element: user.Auth() },
     ],
   },
   {
@@ -40,6 +40,11 @@ const routes = [
       { path: "new", element: appointment.New() },
       { path: "all", element: appointment.All() },
     ],
+  },
+  {
+    path: auth.pageData.endpoint,
+    element: <DefaultLayout />,
+    children: [{ index: true, element: auth.Login() }],
   },
   {
     path: "stats/:date",
