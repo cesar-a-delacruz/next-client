@@ -1,11 +1,12 @@
 import { PrismaClient } from "../generated/prisma/index.js";
 import { BaseController } from "./BaseController.js";
 import { FormParser } from "../utils/FormParser.js";
+import { AppointmentController } from "./AppointmentController.js";
 
 const prisma = new PrismaClient();
 
 export const controllers = {
-  appointment: new BaseController(
+  appointment: new AppointmentController(
     prisma.appointment,
     new FormParser({
       dateTime: "date",
