@@ -47,7 +47,7 @@ export default function Table({ title, fields, endpoint }) {
   };
 
   return (
-    <div>
+    <>
       <h2>{title}</h2>
       <table>
         <thead>
@@ -99,6 +99,6 @@ export default function Table({ title, fields, endpoint }) {
         onDelete={handleDelete}
         fields={fields}
       />
-    </div>
+    </>
   );
 }

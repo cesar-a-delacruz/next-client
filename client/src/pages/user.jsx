@@ -45,8 +45,10 @@ export default {
     return (
       <NewForm
         title="Login"
-        fields={this.pageData.fields.filter((field) => (field.name === "phone" || field.name === "password"))}
-        endpoint={this.pageData.endpoint + '/auth'}
+        fields={this.pageData.fields.filter(
+          (field) => field.name === "phone" || field.name === "password",
+        )}
+        endpoint={this.pageData.endpoint + "/auth"}
         action="Enter"
       />
     );
