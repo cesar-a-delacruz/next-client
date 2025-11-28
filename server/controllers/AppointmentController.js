@@ -29,8 +29,8 @@ export class AppointmentController extends BaseController {
           ],
         },
         include: {
-          service: true
-        }
+          service: true,
+        },
       });
       if (!row) return res.status(404).json({ error: "rows not founded" });
       res.json(row);
