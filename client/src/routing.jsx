@@ -4,6 +4,7 @@ import appointment from "@/pages/appointment";
 import business from "@/pages/business";
 import service from "@/pages/service";
 import user from "@/pages/user";
+import Stats from "@/pages/stats";
 
 const routes = [
   {
@@ -33,6 +34,10 @@ const routes = [
       { path: "new", element: appointment.New() },
       { path: "all", element: appointment.All() },
     ],
+  },
+  {
+    path: 'stats',
+    element: <Stats />,
   },
 ];
 
