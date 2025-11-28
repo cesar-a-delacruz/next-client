@@ -6,7 +6,7 @@ export class FormParser {
   run = (formBody) => {
     let parsedBody = {};
     for (const field in formBody) {
-      if (this.schema.hasOwnProperty(field)) {
+      if (this.schema.hasOwnProperty(field) && formBody[field]) {
         parsedBody[field] = this.#convert(field, formBody[field]);
       }
     }
