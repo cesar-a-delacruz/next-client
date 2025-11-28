@@ -1,6 +1,6 @@
 import Chart from "@/components/Chart";
 
-export default function CustomLineChart() {
+export default function CustomLineChart({ date }) {
   const parser = (json) => {
     const dateTimes = json.map((appointment) => {
       let dateTime = new Date(appointment.dateTime.substring(0, 10));
@@ -17,5 +17,5 @@ export default function CustomLineChart() {
     });
     return days;
   };
-  return <Chart type="linechart" date="2025-11-08" parser={parser} />;
+  return <Chart type="linechart" date={date} parser={parser} />;
 }

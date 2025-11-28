@@ -1,6 +1,6 @@
 import Chart from "@/components/Chart";
 
-export default function CustomPieChart() {
+export default function CustomPieChart({ date }) {
   const parser = (json) => {
     const appointments = {
       completed: 0,
@@ -26,5 +26,5 @@ export default function CustomPieChart() {
     }
     return statuses;
   };
-  return <Chart type="piechart" date="2025-11-08" parser={parser} />;
+  return <Chart type="piechart" date={date} parser={parser} />;
 }

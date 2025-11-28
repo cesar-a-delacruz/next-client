@@ -1,6 +1,6 @@
 import Chart from "@/components/Chart";
 
-export default function CustomBarChart() {
+export default function CustomBarChart({ date }) {
   const parser = (json) => {
     const dateTimes = json.map((appointment) => {
       return { name: appointment.service.name, value: 1 };
@@ -15,5 +15,5 @@ export default function CustomBarChart() {
     });
     return days;
   };
-  return <Chart type="barchart" date="2025-11-08" parser={parser} />;
+  return <Chart type="barchart" date={date} parser={parser} />;
 }
