@@ -75,3 +75,12 @@ enum AppointmentStatus {
 
   @@map("appointments_status")
 }
+
+model Session {
+  id        String   @id
+  sid       String   @unique
+  data      String
+  expiresAt DateTime
+
+  @@map("sessions")
+}
