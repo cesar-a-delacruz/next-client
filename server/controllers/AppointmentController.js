@@ -28,6 +28,9 @@ export class AppointmentController extends BaseController {
             },
           ],
         },
+        include: {
+          service: true
+        }
       });
       if (!row) return res.status(404).json({ error: "rows not founded" });
       res.json(row);
@@ -47,7 +50,7 @@ export class AppointmentController extends BaseController {
     nextDateTime = nextDateTime.toISOString();
 
     try {
-      const row = await this.model.findMany({
+      const rows = await this.model.findMany({
         where: {
           AND: [
             {
@@ -61,8 +64,8 @@ export class AppointmentController extends BaseController {
           ],
         },
       });
-      if (!row) return res.status(404).json({ error: "rows not founded" });
-      res.json(row);
+      if (!rows) return res.status(404).json({ error: "rows not founded" });
+      res.json(rows);
     } catch (error) {
       res.status(500).json({ error: "Failed to find by Week" });
     }

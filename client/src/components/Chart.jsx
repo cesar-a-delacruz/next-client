@@ -65,5 +65,14 @@ export default function Chart({ type, date, parser }) {
                     <Line type="monotone" name='appointments' dataKey="value" stroke="#8884d8" isAnimationActive={true} />
                 </LineChart>
             );
+        case "numberchart":
+            return <>
+                <div>
+                    {data.name}
+                    <p>
+                        {data.value}
+                    </p>
+                </div>
+            </>
     };
 }

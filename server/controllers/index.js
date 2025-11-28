@@ -4,6 +4,7 @@ import { FormParser } from "../utils/FormParser.js";
 import { AppointmentController } from "./AppointmentController.js";
 
 const prisma = new PrismaClient();
+// const a = await prisma.appointment.findFirst({include:{ service: true}});
 
 export const controllers = {
   appointment: new AppointmentController(
