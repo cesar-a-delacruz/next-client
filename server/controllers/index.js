@@ -1,6 +1,7 @@
 import { PrismaClient } from "../generated/prisma/index.js";
 import BaseController from "./BaseController.js";
 import AppointmentController from "./AppointmentController.js";
+import UserController from "./UserController.js";
 import { FormParser } from "../utils/FormParser.js";
 
 const prisma = new PrismaClient();
@@ -36,7 +37,7 @@ export const controllers = {
       businessId: "number",
     }),
   ),
-  user: new BaseController(
+  user: new UserController(
     prisma.user,
     new FormParser({
       name: "string",
