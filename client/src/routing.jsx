@@ -36,7 +36,7 @@ const routes = [
     ],
   },
   {
-    path: "stats",
+    path: "stats/:date",
     element: <Stats />,
   },
 ];

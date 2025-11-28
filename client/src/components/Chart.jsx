@@ -10,8 +10,9 @@ import {
   Cell,
   Tooltip,
   Legend,
+  BarChart,
+  Bar,
 } from "recharts";
-import CustomTooltip from "@/components/charts/CustomTooltip";
 
 export default function Chart({ type, date, parser }) {
   const [data, setData] = useState(null);
@@ -50,7 +51,7 @@ export default function Chart({ type, date, parser }) {
             ))}
           </Pie>
           <Legend />
-          <Tooltip content={CustomTooltip}></Tooltip>
+          <Tooltip></Tooltip>
         </PieChart>
       );
     case "linechart":
@@ -75,7 +76,7 @@ export default function Chart({ type, date, parser }) {
           <XAxis dataKey="name" />
           <YAxis />
           <Legend />
-          <Tooltip content={CustomTooltip} />
+          <Tooltip />
           <Line
             type="monotone"
             name="appointments"
@@ -90,9 +91,34 @@ export default function Chart({ type, date, parser }) {
         <>
           <div>
             {data.name}
-            <p>{data.value}</p>
+            <p>{data.value} $</p>
           </div>
         </>
+      );
+    case "barchart":
+      return (
+        <BarChart
+          style={{
+            width: "100%",
+            maxWidth: "700px",
+            maxHeight: "70vh",
+            aspectRatio: 1.618,
+          }}
+          responsive
+          data={data}
+        >
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="name" />
+          <YAxis />
+          <Tooltip />
+          <Legend />
+          <Bar
+            dataKey="value"
+            name="services"
+            fill="#82ca9d"
+            isAnimationActive={true}
+          />
+        </BarChart>
       );
   }
 }
