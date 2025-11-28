@@ -2,7 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import passport from "passport";
-import auth from "./utils/auth.js"
+import auth from "./utils/auth.js";
 import { routes } from "./routes/index.js";
 
 dotenv.config();
@@ -34,7 +34,6 @@ app.get("/auth", (req, res) => {
 for (const route in routes) {
   app.use("/" + routes[route].baseName, routes[route].router);
 }
-
 
 app.listen(process.env.APP_PORT, (error) => {
   if (error) throw error;
