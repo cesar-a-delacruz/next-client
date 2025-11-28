@@ -1,4 +1,4 @@
-export class BaseController {
+export default class BaseController {
   constructor(model, formParser) {
     this.model = model;
     this.formParser = formParser;

@@ -1,6 +1,6 @@
-import { BaseRouter } from "./BaseRouter.js";
+import BaseRouter from "./BaseRouter.js";
 
-export class AppointmentRouter extends BaseRouter {
+export default class AppointmentRouter extends BaseRouter {
   constructor(baseName, controller) {
     super(baseName, controller);
     this.router.get("/piechart/:dateTime", this.controller.findByDay);

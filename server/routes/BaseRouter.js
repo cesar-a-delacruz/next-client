@@ -1,6 +1,6 @@
 import { Router } from "express";
 
-export class BaseRouter {
+export default class BaseRouter {
   constructor(baseName, controller) {
     this.baseName = baseName;
     this.controller = controller;

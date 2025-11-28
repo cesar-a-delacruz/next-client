@@ -1,6 +1,6 @@
 import { controllers } from "../controllers/index.js";
-import { AppointmentRouter } from "./AppointmentRouter.js";
-import { BaseRouter } from "./BaseRouter.js";
+import AppointmentRouter from "./AppointmentRouter.js";
+import BaseRouter from "./BaseRouter.js";
 
 export const routes = {
   appointment: new AppointmentRouter("appointment", controllers.appointment),

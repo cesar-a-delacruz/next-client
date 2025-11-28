@@ -1,6 +1,6 @@
-import { BaseController } from "./BaseController.js";
+import BaseController from "./BaseController.js";
 
-export class AppointmentController extends BaseController {
+export default class AppointmentController extends BaseController {
   constructor(model, formParser) {
     super(model, formParser);
   }

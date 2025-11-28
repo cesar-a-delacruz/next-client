@@ -1,7 +1,7 @@
 import { PrismaClient } from "../generated/prisma/index.js";
-import { BaseController } from "./BaseController.js";
+import BaseController from "./BaseController.js";
+import AppointmentController from "./AppointmentController.js";
 import { FormParser } from "../utils/FormParser.js";
-import { AppointmentController } from "./AppointmentController.js";
 
 const prisma = new PrismaClient();
 
