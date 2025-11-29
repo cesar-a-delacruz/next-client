@@ -94,6 +94,8 @@ function CalendarApp({ title, fields, endpoint }) {
     (async () => {
       const result = await fetch(`http://localhost:3000/${endpoint}`);
       const json = await result.json();
+      console.log(json);
+
       const events = json.map((appointment) => {
         let dateTime = new Date(appointment.dateTime)
           .toISOString()

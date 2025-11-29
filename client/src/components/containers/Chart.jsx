@@ -16,6 +16,7 @@ import {
 
 export default function Chart({ type, date, parser }) {
   const [data, setData] = useState(null);
+
   useEffect(() => {
     (async () => {
       const token = localStorage.getItem("jwtToken");
@@ -28,6 +29,8 @@ export default function Chart({ type, date, parser }) {
         },
       );
       const json = await result.json();
+      console.log(json);
+
       const parsedData = parser(json);
       setData(parsedData);
     })();
