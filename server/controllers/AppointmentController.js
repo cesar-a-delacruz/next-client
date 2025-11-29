@@ -6,6 +6,15 @@ export default class AppointmentController extends BaseController {
   constructor(model, formParser) {
     super(model, formParser);
   }
+  findAll = async (req, res) => {
+    try {
+      const rows = await this.model.findMany({ include: { service: true, client: true } });
+      res.json(rows);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to find all" });
+    }
+  };
+
   findByDay = async (req, res) => {
     const dateTime = new Date(req.params.dateTime);
     dateTime.setDate(dateTime.getDate() + 1);
