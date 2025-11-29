@@ -1,6 +1,5 @@
 import BasePageData from "@/utils/BasePageData";
 import NewForm from "@/components/NewForm";
-import AllTable from "@/components/AllTable";
 import CalendarApp from "@/components/Calendar";
 
 export default {
@@ -48,11 +47,6 @@ export default {
   All() {
     return (
       <>
-        <AllTable
-          title="All Appointments"
-          fields={this.pageData.fields}
-          endpoint={this.pageData.endpoint}
-        />
         <CalendarApp
           title="All Appointments"
           fields={this.pageData.fields}

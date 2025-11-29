@@ -9,6 +9,7 @@ export default function DeleteDialog({ open, onClose, data, onDelete }) {
 
   const handleDelete = () => {
     onDelete(formData);
+    onClose();
   };
 
   if (data !== null)

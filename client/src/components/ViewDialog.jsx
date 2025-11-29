@@ -1,7 +1,14 @@
 import { useEffect, useState } from "react";
 import FormField from "@/components/FormField";
 
-export default function ViewDialog({ open, onClose, data, onUpdate, fields }) {
+export default function ViewDialog({
+  open,
+  onClose,
+  data,
+  onUpdate,
+  fields,
+  viewMode,
+}) {
   const [editMode, setEditMode] = useState(false);
   const [formData, setFormData] = useState(data || {});
 
@@ -18,6 +25,7 @@ export default function ViewDialog({ open, onClose, data, onUpdate, fields }) {
   const handleUpdate = () => {
     onUpdate(formData);
     setEditMode(false);
+    onClose();
   };
 
   const handleClose = () => {
@@ -33,7 +41,7 @@ export default function ViewDialog({ open, onClose, data, onUpdate, fields }) {
           <div className="dialog-content">
             {fields.map((field) => (
               <div key={field.name} className="dialog-field">
-                {editMode ? (
+                {editMode || viewMode === false ? (
                   <FormField
                     field={field}
                     value={formData[field.name]}
@@ -53,20 +61,22 @@ export default function ViewDialog({ open, onClose, data, onUpdate, fields }) {
             ))}
           </div>
           <div className="dialog-actions">
-            {editMode ? (
+            {editMode || viewMode === false ? (
               <>
                 <button type="button" onClick={handleUpdate}>
                   Update
                 </button>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setFormData({ ...data });
-                    setEditMode(false);
-                  }}
-                >
-                  Cancel
-                </button>
+                {viewMode !== false && (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setFormData({ ...data });
+                      setEditMode(false);
+                    }}
+                  >
+                    Cancel
+                  </button>
+                )}
               </>
             ) : (
               <button type="button" onClick={() => setEditMode(true)}>
