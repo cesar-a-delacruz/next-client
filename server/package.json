@@ -10,15 +10,13 @@
   },
   "dependencies": {
     "@prisma/client": "^6.17.1",
-    "@quixo3/prisma-session-store": "^3.1.13",
     "bcryptjs": "^3.0.2",
     "cors": "^2.8.5",
     "date-fns": "^4.1.0",
     "dotenv": "^17.2.1",
     "express": "^5.1.0",
     "express-validator": "^7.2.1",
-    "passport": "^0.7.0",
-    "passport-local": "^1.0.0"
+    "jsonwebtoken": "^9.0.2"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.6",
@@ -27,8 +25,7 @@
     "@types/express": "^5.0.3",
     "@types/express-session": "^1.18.2",
     "@types/express-validator": "^2.20.33",
-    "@types/passport": "^1.0.17",
-    "@types/passport-local": "^1.0.38",
+    "@types/jsonwebtoken": "^9.0.10",
     "prettier": "^3.6.2",
     "prisma": "^6.19.0"
   }

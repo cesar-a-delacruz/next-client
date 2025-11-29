@@ -11,7 +11,7 @@ export default class UserController extends BaseController {
     try {
       const row = await this.model.findUnique({
         where: {
-          phone,
+          phone: parseInt(phone),
         },
       });
       if (!row) return res.status(404).json({ error: "row not found" });
