@@ -55,13 +55,11 @@ export default {
       return <Navigate to="/auth" replace />;
     }
     return (
-      <>
-        <CalendarApp
-          title="All Appointments"
-          fields={this.pageData.fields}
-          endpoint={this.pageData.endpoint}
-        />
-      </>
+      <CalendarApp
+        title="All Appointments"
+        fields={this.pageData.fields}
+        endpoint={this.pageData.endpoint}
+      />
     );
   },
 };

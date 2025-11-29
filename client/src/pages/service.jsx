@@ -1,7 +1,7 @@
 import { Navigate } from "react-router-dom";
 import BasePageData from "@/utils/BasePageData";
 import NewForm from "@/components/NewForm";
-import AllTable from "@/components/AllTable";
+import CardGrid from "@/components/CardGrid";
 
 export default {
   pageData: new BasePageData(
@@ -30,7 +30,7 @@ export default {
   },
   All() {
     return (
-      <AllTable
+      <CardGrid
         title="All Services"
         fields={this.pageData.fields}
         endpoint={this.pageData.endpoint}
