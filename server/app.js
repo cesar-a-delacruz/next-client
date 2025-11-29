@@ -14,7 +14,7 @@ app.use(express.urlencoded({ extended: true }));
 for (const route in routes) {
   app.use(
     "/" + routes[route].baseName,
-    autorizationMiddleware,
+    // autorizationMiddleware,
     routes[route].router,
   );
 }

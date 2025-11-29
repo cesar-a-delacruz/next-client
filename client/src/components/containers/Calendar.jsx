@@ -4,7 +4,6 @@ import {
   createViewDay,
   createViewMonthGrid,
   createViewWeek,
-  viewMonthGrid,
   viewWeek,
 } from "@schedule-x/calendar";
 import { createEventsServicePlugin } from "@schedule-x/events-service";
@@ -14,9 +13,10 @@ import "temporal-polyfill/global";
 import "@schedule-x/theme-default/dist/index.css";
 import ViewDialog from "@/components/containers/dialogs/ViewDialog";
 import DeleteDialog from "@/components/containers/dialogs/DeleteDialog";
+import requestHandlers from "@/utils/requestHandlers";
 
 function CalendarApp({ title, fields, endpoint }) {
-  const [selectedRow, setSelectedRow] = useState(null);
+  const [selected, setSelected] = useState(null);
   const [viewDialog, setViewDialog] = useState(false);
   const [deleteDialog, setDeleteDialog] = useState(false);
   const eventsService = useState(() => createEventsServicePlugin())[0];
@@ -127,39 +127,38 @@ function CalendarApp({ title, fields, endpoint }) {
   }, []);
 
   const handleViewDialog = (row) => {
-    setSelectedRow(row);
+    setSelected(row);
     setViewDialog(true);
   };
   const handleDeleteDialog = (row) => {
-    setSelectedRow(row);
+    setSelected(row);
     setDeleteDialog(true);
   };
 
   const handleUpdate = async (updatedRow) => {
-    await fetch(`http://localhost:3000/${endpoint}/${updatedRow.id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-      body: new URLSearchParams(updatedRow),
-    });
-    eventsService.update({
-      id: updatedRow.id,
-      title: updatedRow.service.name,
-      description: updatedRow.service.description,
-      people: [updatedRow.client.name],
-      start: startEnd,
-      end: startEnd.add({ minutes: 60 }),
-      item: updatedRow,
-    });
-    setViewDialog(false);
+    const eventHandler = () =>
+      eventsService.update({
+        id: updatedRow.id,
+        title: updatedRow.service.name,
+        description: updatedRow.service.description,
+        people: [updatedRow.client.name],
+        start: startEnd,
+        end: startEnd.add({ minutes: 60 }),
+        item: updatedRow,
+      });
+    const viewDialogHandler = () => setViewDialog(false);
+    await requestHandlers.update(updatedRow, endpoint, [
+      eventHandler,
+      viewDialogHandler,
+    ]);
   };
   const handleDelete = async (deletedRow) => {
-    await fetch(`http://localhost:3000/${endpoint}/${deletedRow.id}`, {
-      method: "DELETE",
-    });
-    eventsService.remove(deletedRow.id);
-    setDeleteDialog(false);
+    const eventHandler = () => eventsService.remove(deletedRow.id);
+    const deleteDialogHandler = () => setDeleteDialog(false);
+    await requestHandlers.delete(deletedRow, endpoint, [
+      eventHandler,
+      deleteDialogHandler,
+    ]);
   };
 
   return (
@@ -173,7 +172,7 @@ function CalendarApp({ title, fields, endpoint }) {
       <ViewDialog
         open={viewDialog}
         onClose={() => setViewDialog(false)}
-        data={selectedRow}
+        data={selected}
         onUpdate={handleUpdate}
         fields={fields}
         viewMode={false}
@@ -181,7 +180,7 @@ function CalendarApp({ title, fields, endpoint }) {
       <DeleteDialog
         open={deleteDialog}
         onClose={() => setDeleteDialog(false)}
-        data={selectedRow}
+        data={selected}
         onDelete={handleDelete}
         fields={fields}
       />

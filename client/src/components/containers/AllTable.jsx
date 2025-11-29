@@ -1,58 +1,49 @@
 import { useState, useEffect } from "react";
 import ViewDialog from "@/components/containers/dialogs/ViewDialog";
 import DeleteDialog from "@/components/containers/dialogs/DeleteDialog";
+import requestHandlers from "@/utils/requestHandlers";
 
 export default function Table({ title, fields, endpoint }) {
-  const [tableData, setTableData] = useState([]);
-  const [selectedRow, setSelectedRow] = useState(null);
+  const [data, setData] = useState([]);
+  const [selected, setSelected] = useState(null);
   const [viewDialog, setViewDialog] = useState(false);
   const [deleteDialog, setDeleteDialog] = useState(false);
 
   useEffect(() => {
     (async () => {
-      const token = localStorage.getItem("jwtToken");
-      const result = await fetch(`http://localhost:3000/${endpoint}`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      const json = await result.json();
-      setTableData([...json]);
+      const dataHandler = (json) => setData([...json]);
+      await requestHandlers.findAll(endpoint, [dataHandler]);
     })();
   }, []);
 
   const handleViewDialog = (row) => {
-    setSelectedRow(row);
+    setSelected(row);
     setViewDialog(true);
   };
   const handleDeleteDialog = (row) => {
-    setSelectedRow(row);
+    setSelected(row);
     setDeleteDialog(true);
   };
 
   const handleUpdate = async (updatedRow) => {
-    const token = localStorage.getItem("jwtToken");
-    await fetch(`http://localhost:3000/${endpoint}/${updatedRow.id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-        Authorization: `Bearer ${token}`,
-      },
-      body: new URLSearchParams(updatedRow),
-    });
-    setTableData((prev) =>
-      prev.map((item) => (item.id === updatedRow.id ? updatedRow : item)),
-    );
-    setViewDialog(false);
+    const dataHandler = () =>
+      setData((prev) =>
+        prev.map((item) => (item.id === updatedRow.id ? updatedRow : item)),
+      );
+    const viewDialogHandler = () => setViewDialog(false);
+    await requestHandlers.update(updatedRow, endpoint, [
+      dataHandler,
+      viewDialogHandler,
+    ]);
   };
   const handleDelete = async (deletedRow) => {
-    const token = localStorage.getItem("jwtToken");
-    await fetch(`http://localhost:3000/${endpoint}/${deletedRow.id}`, {
-      method: "DELETE",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    setTableData((prev) => prev.filter((item) => item.id !== deletedRow.id));
-    setDeleteDialog(false);
+    const dataHandler = () =>
+      setData((prev) => prev.filter((item) => item.id !== deletedRow.id));
+    const deleteDialogHandler = () => setDeleteDialog(false);
+    await requestHandlers.delete(deletedRow, endpoint, [
+      dataHandler,
+      deleteDialogHandler,
+    ]);
   };
 
   return (
@@ -68,8 +59,8 @@ export default function Table({ title, fields, endpoint }) {
           </tr>
         </thead>
         <tbody>
-          {tableData.length !== 0 ? (
-            tableData.map((item) => (
+          {data.length !== 0 ? (
+            data.map((item) => (
               <tr key={item.id}>
                 {fields.map((field) => (
                   <td key={field.name}>
@@ -97,14 +88,14 @@ export default function Table({ title, fields, endpoint }) {
       <ViewDialog
         open={viewDialog}
         onClose={() => setViewDialog(false)}
-        data={selectedRow}
+        data={selected}
         onUpdate={handleUpdate}
         fields={fields}
       />
       <DeleteDialog
         open={deleteDialog}
         onClose={() => setDeleteDialog(false)}
-        data={selectedRow}
+        data={selected}
         onDelete={handleDelete}
         fields={fields}
       />

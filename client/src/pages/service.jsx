@@ -29,6 +29,10 @@ export default {
     );
   },
   All() {
+    const token = localStorage.getItem("jwtToken");
+    if (!token) {
+      return <Navigate to="/auth" replace />;
+    }
     return (
       <CardGrid
         title="All Services"
