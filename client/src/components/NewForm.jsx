@@ -1,7 +1,7 @@
 import { useState } from "react";
 import FormField from "@/components/FormField";
 
-export default function Form({ title, fields, endpoint, action }) {
+export default function NewForm({ title, fields, endpoint, action, tokenSetter }) {
   const initialState = fields.reduce((acc, field) => {
     acc[field.name] = field.default || "";
     return acc;
@@ -15,13 +15,19 @@ export default function Form({ title, fields, endpoint, action }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const token = localStorage.getItem('jwtToken');
     const result = await fetch(`http://localhost:3000/${endpoint}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
+        'Authorization': `Bearer ${token}`
       },
       body: new URLSearchParams(formData),
     });
+    if (tokenSetter) {
+      const data = await result.json()
+      localStorage.setItem('jwtToken', data.token);
+    }
     console.log("Response:", result);
   };
 

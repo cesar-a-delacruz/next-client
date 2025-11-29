@@ -1,3 +1,4 @@
+import { Navigate } from "react-router-dom";
 import BasePageData from "@/utils/BasePageData";
 import NewForm from "@/components/NewForm";
 import AllTable from "@/components/AllTable";
@@ -14,6 +15,10 @@ export default {
     "business",
   ),
   New() {
+    const token = localStorage.getItem('jwtToken');
+    if (!token) {
+      return <Navigate to="/auth" replace />;
+    }
     return (
       <NewForm
         title="New Business"
@@ -24,6 +29,10 @@ export default {
     );
   },
   All() {
+    const token = localStorage.getItem('jwtToken');
+    if (!token) {
+      return <Navigate to="/auth" replace />;
+    }
     return (
       <AllTable
         title="All Businesses"

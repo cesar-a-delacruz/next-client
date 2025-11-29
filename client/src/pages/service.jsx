@@ -1,3 +1,4 @@
+import { Navigate } from "react-router-dom";
 import BasePageData from "@/utils/BasePageData";
 import NewForm from "@/components/NewForm";
 import AllTable from "@/components/AllTable";
@@ -14,6 +15,10 @@ export default {
     "service",
   ),
   New() {
+    const token = localStorage.getItem('jwtToken');
+    if (!token) {
+      return <Navigate to="/auth" replace />;
+    }
     return (
       <NewForm
         title="New Service"

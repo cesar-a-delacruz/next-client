@@ -18,8 +18,14 @@ export default function Chart({ type, date, parser }) {
   const [data, setData] = useState(null);
   useEffect(() => {
     (async () => {
+      const token = localStorage.getItem('jwtToken');
       const result = await fetch(
         `http://localhost:3000/appointment/${type}/${date}`,
+        {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        }
       );
       const json = await result.json();
       const parsedData = parser(json);

@@ -8,15 +8,17 @@ export default function DefaultLayout() {
           <button
             onClick={() => {
               localStorage.clear();
-              location.replace("/user/auth");
+              location.replace("/auth");
             }}
           >
             Login
           </button>
           <button
             on
-            onClick={async () => {
-              await fetch("http://localhost:3000/user/auth");
+            onClick={() => {
+              localStorage.removeItem('jwtToken')
+              localStorage.clear();
+              location.replace("/auth");
             }}
           >
             Logout
