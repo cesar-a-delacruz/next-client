@@ -1,5 +1,5 @@
 import BasePageData from "@/utils/BasePageData";
-import NewForm from "@/components/NewForm";
+import NewForm from "@/components/containers/NewForm";
 
 export default {
   pageData: new BasePageData(

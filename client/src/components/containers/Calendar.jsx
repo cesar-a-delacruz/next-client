@@ -12,8 +12,8 @@ import { createEventModalPlugin } from "@schedule-x/event-modal";
 
 import "temporal-polyfill/global";
 import "@schedule-x/theme-default/dist/index.css";
-import ViewDialog from "./ViewDialog";
-import DeleteDialog from "./DeleteDialog";
+import ViewDialog from "@/components/containers/dialogs/ViewDialog";
+import DeleteDialog from "@/components/containers/dialogs/DeleteDialog";
 
 function CalendarApp({ title, fields, endpoint }) {
   const [selectedRow, setSelectedRow] = useState(null);
@@ -143,7 +143,6 @@ function CalendarApp({ title, fields, endpoint }) {
       },
       body: new URLSearchParams(updatedRow),
     });
-    // eventsService.remove(updatedRow.id);
     eventsService.update({
       id: updatedRow.id,
       title: updatedRow.service.name,

@@ -1,7 +1,7 @@
 import { Navigate } from "react-router-dom";
 import BasePageData from "@/utils/BasePageData";
-import NewForm from "@/components/NewForm";
-import CardGrid from "@/components/CardGrid";
+import NewForm from "@/components/containers/NewForm";
+import CardGrid from "@/components/containers/CardGrid";
 
 export default {
   pageData: new BasePageData(
@@ -15,7 +15,7 @@ export default {
     "service",
   ),
   New() {
-    const token = localStorage.getItem('jwtToken');
+    const token = localStorage.getItem("jwtToken");
     if (!token) {
       return <Navigate to="/auth" replace />;
     }

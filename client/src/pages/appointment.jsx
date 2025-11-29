@@ -1,7 +1,7 @@
 import { Navigate } from "react-router-dom";
 import BasePageData from "@/utils/BasePageData";
-import NewForm from "@/components/NewForm";
-import CalendarApp from "@/components/Calendar";
+import NewForm from "@/components/containers/NewForm";
+import CalendarApp from "@/components/containers/Calendar";
 
 export default {
   pageData: new BasePageData(
@@ -36,7 +36,7 @@ export default {
     "appointment",
   ),
   New() {
-    const token = localStorage.getItem('jwtToken');
+    const token = localStorage.getItem("jwtToken");
     if (!token) {
       return <Navigate to="/auth" replace />;
     }
@@ -50,7 +50,7 @@ export default {
     );
   },
   All() {
-    const token = localStorage.getItem('jwtToken');
+    const token = localStorage.getItem("jwtToken");
     if (!token) {
       return <Navigate to="/auth" replace />;
     }

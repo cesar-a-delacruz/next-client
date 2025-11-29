@@ -1,7 +1,7 @@
 import { Navigate } from "react-router-dom";
 import BasePageData from "@/utils/BasePageData";
-import NewForm from "@/components/NewForm";
-import AllTable from "@/components/AllTable";
+import NewForm from "@/components/containers/NewForm";
+import AllTable from "@/components/containers/AllTable";
 
 export default {
   pageData: new BasePageData(
@@ -34,7 +34,7 @@ export default {
     );
   },
   All() {
-    const token = localStorage.getItem('jwtToken');
+    const token = localStorage.getItem("jwtToken");
     if (!token) {
       return <Navigate to="/auth" replace />;
     }

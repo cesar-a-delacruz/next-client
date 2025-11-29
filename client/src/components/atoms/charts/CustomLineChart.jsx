@@ -1,9 +1,11 @@
-import Chart from "@/components/Chart";
+import Chart from "@/components/containers/Chart";
 
-export default function CustomBarChart({ date }) {
+export default function CustomLineChart({ date }) {
   const parser = (json) => {
     const dateTimes = json.map((appointment) => {
-      return { name: appointment.service.name, value: 1 };
+      let dateTime = new Date(appointment.dateTime.substring(0, 10));
+      dateTime.setDate(dateTime.getDate() + 1);
+      return { name: dateTime.toDateString(), value: 1 };
     });
     const appointments = dateTimes.reduce((acc, { name, value }) => {
       acc[name] = (acc[name] || 0) + value;
@@ -15,5 +17,5 @@ export default function CustomBarChart({ date }) {
     });
     return days;
   };
-  return <Chart type="barchart" date={date} parser={parser} />;
+  return <Chart type="linechart" date={date} parser={parser} />;
 }

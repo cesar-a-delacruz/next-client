@@ -16,7 +16,7 @@ export default function DefaultLayout() {
           <button
             on
             onClick={() => {
-              localStorage.removeItem('jwtToken')
+              localStorage.removeItem("jwtToken");
               localStorage.clear();
               location.replace("/auth");
             }}

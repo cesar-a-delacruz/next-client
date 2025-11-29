@@ -1,12 +1,12 @@
 import { useParams, Navigate } from "react-router-dom";
-import CustomBarChart from "@/components/charts/CustomBarChart";
-import CustomLineChart from "@/components/charts/CustomLineChart";
-import CustomPieChart from "@/components/charts/CustomPieChart";
-import NumberChart from "@/components/charts/NumberChart";
+import CustomBarChart from "@/components/atoms/charts/CustomBarChart";
+import CustomLineChart from "@/components/atoms/charts/CustomLineChart";
+import CustomPieChart from "@/components/atoms/charts/CustomPieChart";
+import NumberChart from "@/components/atoms/charts/NumberChart";
 
 export default function Stats() {
   const { date } = useParams();
-  const token = localStorage.getItem('jwtToken');
+  const token = localStorage.getItem("jwtToken");
   if (!token) {
     return <Navigate to="/auth" replace />;
   }

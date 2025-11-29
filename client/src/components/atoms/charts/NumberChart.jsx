@@ -1,4 +1,4 @@
-import Chart from "@/components/Chart";
+import Chart from "@/components/containers/Chart";
 
 export default function NumberChart({ date }) {
   const parser = (json) => {
