@@ -1,4 +1,4 @@
-import { PrismaClient } from "../generated/prisma/index.js"; // adjust path if needed
+import { PrismaClient } from "../generated/prisma/index.js";
 import bcrypt from "bcryptjs";
 
 const prisma = new PrismaClient();
@@ -32,7 +32,7 @@ async function main() {
         description: "Corte clásico",
         price: 10.0,
         image: "corte.png",
-        businessId: 1, // references the first business
+        businessId: 1,
       },
       {
         name: "Afeitado",
@@ -47,6 +47,27 @@ async function main() {
         price: 25.0,
         image: "masaje.png",
         businessId: 2,
+      },
+      {
+        name: "Coloración",
+        description: "Aplicación de tintes profesionales",
+        price: 15.0,
+        image: "coloracion.png",
+        businessId: 1,
+      },
+      {
+        name: "Peinado",
+        description: "Peinados modernos y elegantes",
+        price: 12.0,
+        image: "peinado.png",
+        businessId: 1,
+      },
+      {
+        name: "Tratamiento Capilar",
+        description: "Reparación y nutrición del cabello",
+        price: 18.0,
+        image: "tratamiento.png",
+        businessId: 1,
       },
       {
         name: "Facial Hidratante",
@@ -72,6 +93,27 @@ async function main() {
         name: "Carlos Gómez",
         phone: 6002001,
         password: bcrypt.hashSync("cli1", 10),
+        type: "CLIENT",
+        businessId: 1,
+      },
+      {
+        name: "Sofía Herrera",
+        phone: 6005001,
+        password: bcrypt.hashSync("cli5"),
+        type: "CLIENT",
+        businessId: 1,
+      },
+      {
+        name: "Diego Ramírez",
+        phone: 6005002,
+        password: bcrypt.hashSync("cli6"),
+        type: "CLIENT",
+        businessId: 1,
+      },
+      {
+        name: "Valentina Cruz",
+        phone: 6005003,
+        password: bcrypt.hashSync("cli7"),
         type: "CLIENT",
         businessId: 1,
       },
@@ -107,20 +149,107 @@ async function main() {
   // Appointments
   await prisma.appointment.createMany({
     data: [
+      // Existing ones (already adjusted)
       {
-        dateTime: new Date("2025-11-05T10:00:00"),
+        dateTime: new Date("2025-12-01T10:00:00"),
         serviceId: 1,
         clientId: 2,
         status: "COMPLETED",
         businessId: 1,
       },
       {
-        dateTime: new Date("2025-11-06T14:00:00"),
+        dateTime: new Date("2025-12-02T14:00:00"),
         serviceId: 2,
         clientId: 3,
         status: "PENDING",
         businessId: 1,
       },
+      {
+        dateTime: new Date("2025-12-03T09:30:00"),
+        serviceId: 5,
+        clientId: 7,
+        status: "CANCELLED",
+        businessId: 1,
+      },
+      {
+        dateTime: new Date("2025-12-04T15:00:00"),
+        serviceId: 6,
+        clientId: 8,
+        status: "COMPLETED",
+        businessId: 1,
+      },
+      {
+        dateTime: new Date("2025-12-05T11:00:00"),
+        serviceId: 7,
+        clientId: 9,
+        status: "PENDING",
+        businessId: 1,
+      },
+      {
+        dateTime: new Date("2025-12-06T13:00:00"),
+        serviceId: 1,
+        clientId: 7,
+        status: "COMPLETED",
+        businessId: 1,
+      },
+      {
+        dateTime: new Date("2025-12-07T10:00:00"),
+        serviceId: 2,
+        clientId: 8,
+        status: "CANCELLED",
+        businessId: 1,
+      },
+      // ➕ New appointments for the same week
+      {
+        dateTime: new Date("2025-12-01T12:00:00"), // same day as first
+        serviceId: 6, // Peinado
+        clientId: 9, // Valentina Cruz
+        status: "PENDING",
+        businessId: 1,
+      },
+      {
+        dateTime: new Date("2025-12-02T16:00:00"), // same day as second
+        serviceId: 7, // Tratamiento Capilar
+        clientId: 7, // Sofía Herrera
+        status: "COMPLETED",
+        businessId: 1,
+      },
+      {
+        dateTime: new Date("2025-12-03T11:00:00"), // same day as third
+        serviceId: 1, // Corte de Cabello
+        clientId: 8, // Diego Ramírez
+        status: "PENDING",
+        businessId: 1,
+      },
+      {
+        dateTime: new Date("2025-12-04T17:00:00"), // same day as fourth
+        serviceId: 5, // Coloración
+        clientId: 2, // Carlos Gómez
+        status: "CANCELLED",
+        businessId: 1,
+      },
+      {
+        dateTime: new Date("2025-12-05T09:00:00"), // same day as fifth
+        serviceId: 2, // Afeitado
+        clientId: 3, // Ana Torres
+        status: "COMPLETED",
+        businessId: 1,
+      },
+      {
+        dateTime: new Date("2025-12-06T15:30:00"), // same day as sixth
+        serviceId: 7, // Tratamiento Capilar
+        clientId: 9, // Valentina Cruz
+        status: "PENDING",
+        businessId: 1,
+      },
+      {
+        dateTime: new Date("2025-12-07T12:00:00"), // same day as seventh
+        serviceId: 6, // Peinado
+        clientId: 7, // Sofía Herrera
+        status: "COMPLETED",
+        businessId: 1,
+      },
+
       {
         dateTime: new Date("2025-11-07T09:00:00"),
         serviceId: 3,
