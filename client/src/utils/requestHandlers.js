@@ -5,7 +5,7 @@ export default {
       headers: { Authorization: `Bearer ${token}` },
     });
     const json = await result.json();
-    console.log(json);
+    console.log(result);
 
     stateHandlers.forEach((handler) => handler(json));
   },
@@ -19,7 +19,7 @@ export default {
       },
       body: new URLSearchParams(row),
     });
-    console.log(await result.json());
+    console.log(result);
 
     stateHandlers.forEach((handler) => handler());
   },
@@ -31,7 +31,7 @@ export default {
         Authorization: `Bearer ${token}`,
       },
     });
-    console.log(await result.json());
+    console.log(result);
 
     stateHandlers.forEach((handler) => handler());
   },

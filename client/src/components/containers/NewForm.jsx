@@ -32,7 +32,7 @@ export default function NewForm({
     });
     if (tokenSetter) {
       const data = await result.json();
-      localStorage.setItem("jwtToken", data.token);
+      if (data.token) localStorage.setItem("jwtToken", data.token);
     }
     console.log("Response:", result);
   };

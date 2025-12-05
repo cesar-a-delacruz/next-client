@@ -14,7 +14,6 @@ export default function DefaultLayout() {
             Login
           </button>
           <button
-            on
             onClick={() => {
               localStorage.removeItem("jwtToken");
               localStorage.clear();
