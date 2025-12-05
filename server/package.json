@@ -8,6 +8,9 @@
     "prettier": "npx prettier . --write",
     "app": "node --watch app.js"
   },
+  "prisma": {
+    "seed": "node prisma/seed.js"
+  },
   "dependencies": {
     "@prisma/client": "^6.17.1",
     "bcryptjs": "^3.0.2",
