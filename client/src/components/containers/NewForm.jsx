@@ -33,6 +33,7 @@ export default function NewForm({
     if (tokenSetter) {
       const data = await result.json();
       if (data.token) localStorage.setItem("jwtToken", data.token);
+      location.replace("/appointment/all");
     }
     console.log("Response:", result);
   };

@@ -16,6 +16,7 @@
     "@schedule-x/events-service": "^3.4.2",
     "@schedule-x/react": "^3.4.0",
     "@schedule-x/theme-default": "^3.4.2",
+    "jwt-decode": "^4.0.0",
     "normalize.css": "^8.0.1",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",

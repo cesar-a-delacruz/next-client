@@ -29,10 +29,10 @@ export default function Chart({ type, date, parser }) {
         },
       );
       const json = await result.json();
-      console.log(json);
 
       const parsedData = parser(json);
       setData(parsedData);
+      console.log(result);
     })();
   }, []);
 
@@ -53,7 +53,7 @@ export default function Chart({ type, date, parser }) {
             labelLine={false}
             outerRadius={150}
             dataKey="value"
-            name="appointments status"
+            name="status"
           >
             {data.map((entry, index) => (
               <Cell key={`cell-${index}`} fill={colors[entry.name]} />

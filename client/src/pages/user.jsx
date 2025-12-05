@@ -2,6 +2,7 @@ import { Navigate } from "react-router-dom";
 import BasePageData from "@/utils/BasePageData";
 import NewForm from "@/components/containers/NewForm";
 import AllTable from "@/components/containers/AllTable";
+import { jwtDecode } from "jwt-decode";
 
 export default {
   pageData: new BasePageData(
@@ -39,9 +40,11 @@ export default {
   },
   All() {
     const token = localStorage.getItem("jwtToken");
-    if (!token) {
-      return <Navigate to="/auth" replace />;
-    }
+    let userData;
+    if (!token) return <Navigate to="/auth" replace />;
+    else userData = jwtDecode(token);
+
+    if (userData.type !== "EMPLOYEE") return;
     return (
       <AllTable
         title="All Users"
