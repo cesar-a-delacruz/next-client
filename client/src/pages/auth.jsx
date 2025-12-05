@@ -1,3 +1,4 @@
+import { Navigate } from "react-router-dom";
 import BasePageData from "@/utils/BasePageData";
 import NewForm from "@/components/containers/NewForm";
 
@@ -10,6 +11,10 @@ export default {
     "auth",
   ),
   Login() {
+    const token = localStorage.getItem("jwtToken");
+    if (token) {
+      return <Navigate to="/appointments/all" replace />;
+    }
     return (
       <NewForm
         title="Login"

@@ -24,6 +24,10 @@ export default {
     "user",
   ),
   New() {
+    const token = localStorage.getItem("jwtToken");
+    if (token) {
+      return <Navigate to="/appointments/all" replace />;
+    }
     return (
       <NewForm
         title="New User"
