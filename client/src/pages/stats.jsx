@@ -1,8 +1,5 @@
 import { useParams, Navigate } from "react-router-dom";
-import CustomBarChart from "@/components/atoms/charts/CustomBarChart";
-import CustomLineChart from "@/components/atoms/charts/CustomLineChart";
-import CustomPieChart from "@/components/atoms/charts/CustomPieChart";
-import NumberChart from "@/components/atoms/charts/NumberChart";
+import Chart from "@/components/containers/Chart";
 
 export default function Stats() {
   const { date } = useParams();
@@ -12,10 +9,10 @@ export default function Stats() {
   }
   return (
     <>
-      <CustomPieChart date={date} />
-      <CustomLineChart date={date} />
-      <CustomBarChart date={date} />
-      <NumberChart date={date} />
+      <Chart type={"piechart"} date={date} />
+      <Chart type={"linechart"} date={date} />
+      <Chart type={"barchart"} date={date} />
+      <Chart type={"numberchart"} date={date} />
     </>
   );
 }
