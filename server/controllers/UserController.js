@@ -20,6 +20,18 @@ export default class UserController extends BaseController {
       res.status(500).json({ error: "Failed to find by Phone" });
     }
   };
+
+  findAll = async (req, res) => {
+    const businessId = Number(req.params.businessId);
+    try {
+      const rows = await this.model.findMany({
+        where: { businessId: businessId },
+      });
+      res.json(rows);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to find all" });
+    }
+  };
   create = async (req, res) => {
     const formBody = this.formParser.run(req.body);
     formBody.password = await hash(formBody.password, 10);

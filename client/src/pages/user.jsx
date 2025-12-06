@@ -48,8 +48,10 @@ export default {
     return (
       <AllTable
         title="All Users"
-        fields={this.pageData.fields}
-        endpoint={this.pageData.endpoint}
+        fields={this.pageData.fields.filter(
+          (field) => field.name !== "password" && field.name !== "businessId",
+        )}
+        endpoint={this.pageData.endpoint + `/business/${userData.businessId}`}
       />
     );
   },

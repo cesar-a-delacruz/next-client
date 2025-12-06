@@ -17,7 +17,7 @@ export default function DeleteDialog({ open, onClose, data, onDelete }) {
       <dialog open={open} className="model-dialog">
         <form method="dialog">
           <h3>Delete</h3>
-          <p>This operation can't be undone. Do you want ot continue?</p>
+          <p>This operation can't be undone. Do you want to continue?</p>
           <div className="dialog-actions">
             <button type="button" onClick={handleDelete}>
               Delete
