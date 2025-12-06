@@ -11,7 +11,6 @@ export default {
       { name: "description", label: "Description", type: "textarea" },
       { name: "price", label: "Price", type: "number" },
       { name: "image", label: "Image URL", type: "text" },
-      { name: "businessId", label: "Business", type: "number" },
     ],
     "service",
   ),
