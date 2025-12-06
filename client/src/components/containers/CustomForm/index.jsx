@@ -1,5 +1,6 @@
 import { useState } from "react";
 import FormField from "@/components/atoms/FormField";
+import requestHandlers from "@/utils/requestHandlers";
 import "./index.css";
 
 export default function CustomForm({
@@ -7,7 +8,7 @@ export default function CustomForm({
   fields,
   endpoint,
   action,
-  tokenSetter,
+  submitActions,
 }) {
   const initialState = fields.reduce((acc, field) => {
     acc[field.name] = field.default || "";
@@ -22,21 +23,7 @@ export default function CustomForm({
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const token = localStorage.getItem("jwtToken");
-    const result = await fetch(`http://localhost:3000/${endpoint}`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-        Authorization: `Bearer ${token}`,
-      },
-      body: new URLSearchParams(formData),
-    });
-    if (tokenSetter) {
-      const data = await result.json();
-      if (data.token) localStorage.setItem("jwtToken", data.token);
-      location.replace("/appointment/all");
-    }
-    console.log("Response:", result);
+    requestHandlers.send(formData, endpoint, submitActions);
   };
 
   return (

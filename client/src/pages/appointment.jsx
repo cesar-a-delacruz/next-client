@@ -41,6 +41,7 @@ export default {
         fields={this.pageData.fields}
         endpoint={this.pageData.endpoint}
         action="Create"
+        submitActions={[]}
       />
     );
   },

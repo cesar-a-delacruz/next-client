@@ -1,4 +1,19 @@
 export default {
+  send: async (formData, endpoint, handlers) => {
+    const token = localStorage.getItem("jwtToken");
+    const result = await fetch(`http://localhost:3000/${endpoint}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        Authorization: `Bearer ${token}`,
+      },
+      body: new URLSearchParams(formData),
+    });
+    const json = await result.json();
+    console.log(result);
+
+    handlers.forEach((handler) => handler(json));
+  },
   findAll: async (endpoint, stateHandlers) => {
     const token = localStorage.getItem("jwtToken");
     const result = await fetch(`http://localhost:3000/${endpoint}`, {

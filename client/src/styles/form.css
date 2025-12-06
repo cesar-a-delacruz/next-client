@@ -1,34 +1,35 @@
 @import url("./base.css");
 
 form {
-    background-color: var(--color-gray);
-    border-radius: var(--border-radius);
-    padding: var(--padding-container);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 80%;
-    gap: var(--gap-flex);
+  background-color: var(--color-gray);
+  border-radius: var(--border-radius);
+  padding: var(--padding-container);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  gap: var(--gap-flex);
 }
 
-form>div {
-    display: flex;
-    flex-direction: column;
-    width: 80%;
+form > div {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
 }
 
-form input, form select {
-    background-color: var(--color-gray-light);
-    border-radius: var(--border-radius);
-    border-color: var(--color-white);
-    color: var(--color-white);
-    outline-style: none;
-    height: 20px;
+form input,
+form select {
+  background-color: var(--color-gray-light);
+  border-radius: var(--border-radius);
+  border-color: var(--color-white);
+  color: var(--color-white);
+  outline-style: none;
+  height: 20px;
 }
 
 @media (orientation: landscape) {
-    form  {
-        width: 30%;
-    }
+  form {
+    width: 30%;
+  }
 }
