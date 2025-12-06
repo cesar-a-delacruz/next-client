@@ -7,13 +7,29 @@ export default class AppointmentController extends BaseController {
     super(model, formParser);
   }
   findAll = async (req, res) => {
+    const businessId = Number(req.params.businessId);
     try {
       const rows = await this.model.findMany({
         include: { service: true, client: true },
+        where: { businessId: businessId },
       });
       res.json(rows);
     } catch (error) {
       res.status(500).json({ error: "Failed to find all" });
+    }
+  };
+
+  create = async (req, res) => {
+    const formBody = this.formParser.run(req.body);
+    formBody.businessId = Number(req.params.businessId);
+    formBody.clientId = Number(req.params.userId);
+
+    try {
+      const newRow = await this.model.create({ data: { ...formBody } });
+      res.status(201).json(newRow);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: "Failed to create" });
     }
   };
 

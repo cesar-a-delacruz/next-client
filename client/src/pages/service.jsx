@@ -2,6 +2,7 @@ import { Navigate } from "react-router-dom";
 import BasePageData from "@/utils/BasePageData";
 import NewForm from "@/components/containers/NewForm";
 import CardGrid from "@/components/containers/CardGrid";
+import { jwtDecode } from "jwt-decode";
 
 export default {
   pageData: new BasePageData(
@@ -16,9 +17,12 @@ export default {
   ),
   New() {
     const token = localStorage.getItem("jwtToken");
-    if (!token) {
-      return <Navigate to="/auth" replace />;
-    }
+    let userData;
+    if (!token) return <Navigate to="/auth" replace />;
+    else userData = jwtDecode(token);
+
+    if (userData.type !== "EMPLOYEE") return;
+
     return (
       <NewForm
         title="New Service"

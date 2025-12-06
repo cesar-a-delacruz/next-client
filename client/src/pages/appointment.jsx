@@ -2,6 +2,7 @@ import { Navigate } from "react-router-dom";
 import BasePageData from "@/utils/BasePageData";
 import NewForm from "@/components/containers/NewForm";
 import Calendar from "@/components/containers/Calendar";
+import { jwtDecode } from "jwt-decode";
 
 export default {
   pageData: new BasePageData(
@@ -13,7 +14,6 @@ export default {
         render: (val) => new Date(val).toLocaleString(),
       },
       { name: "serviceId", label: "Service", type: "number" },
-      { name: "clientId", label: "Client", type: "number" },
       {
         name: "status",
         label: "Status",
@@ -25,40 +25,41 @@ export default {
         ],
         default: "PENDING",
       },
-      {
-        name: "createdAt",
-        label: "Created At",
-        type: "datetime-local",
-        render: (val) => new Date(val).toLocaleString(),
-      },
-      { name: "businessId", label: "Business", type: "number" },
     ],
     "appointment",
   ),
   New() {
     const token = localStorage.getItem("jwtToken");
-    if (!token) {
-      return <Navigate to="/auth" replace />;
-    }
+    let userData;
+    if (!token) return <Navigate to="/auth" replace />;
+    else userData = jwtDecode(token);
+
+    if (userData.type !== "CLIENT") return;
     return (
       <NewForm
         title="New Appointment"
         fields={this.pageData.fields}
-        endpoint={this.pageData.endpoint}
+        endpoint={
+          this.pageData.endpoint +
+          `/business/${userData.businessId}/user/${userData.userId}`
+        }
         action="Create"
+        userData={userData}
       />
     );
   },
   All() {
     const token = localStorage.getItem("jwtToken");
-    if (!token) {
-      return <Navigate to="/auth" replace />;
-    }
+    let userData;
+    if (!token) return <Navigate to="/auth" replace />;
+    else userData = jwtDecode(token);
+
     return (
       <Calendar
         title="All Appointments"
         fields={this.pageData.fields}
-        endpoint={this.pageData.endpoint}
+        endpoint={this.pageData.endpoint + `/business/${userData.businessId}`}
+        userData={userData}
       />
     );
   },
