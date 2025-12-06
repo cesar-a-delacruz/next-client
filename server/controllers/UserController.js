@@ -22,7 +22,7 @@ export default class UserController extends BaseController {
   };
 
   findAll = async (req, res) => {
-    const businessId = Number(req.params.businessId);
+    const businessId = Number(req.user.businessId);
 
     try {
       const rows = await this.model.findMany({

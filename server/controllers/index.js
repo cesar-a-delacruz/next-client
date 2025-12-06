@@ -3,6 +3,7 @@ import BaseController from "./BaseController.js";
 import AppointmentController from "./AppointmentController.js";
 import UserController from "./UserController.js";
 import { FormParser } from "../utils/FormParser.js";
+import ServiceController from "./ServiceController.js";
 
 const prisma = new PrismaClient();
 
@@ -27,7 +28,7 @@ export const controllers = {
       password: "string",
     }),
   ),
-  service: new BaseController(
+  service: new ServiceController(
     prisma.service,
     new FormParser({
       name: "string",

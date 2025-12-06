@@ -51,7 +51,7 @@ export default {
         fields={this.pageData.fields.filter(
           (field) => field.name !== "password" && field.name !== "businessId",
         )}
-        endpoint={this.pageData.endpoint + `/business/${userData.businessId}`}
+        endpoint={this.pageData.endpoint}
       />
     );
   },

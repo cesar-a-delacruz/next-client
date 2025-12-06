@@ -65,7 +65,12 @@ export default function Calendar({ title, fields, endpoint, userData }) {
 
   useEffect(() => {
     (async () => {
-      const result = await fetch(`http://localhost:3000/${endpoint}`);
+      const token = localStorage.getItem("jwtToken");
+      const result = await fetch(`http://localhost:3000/${endpoint}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       console.log(result);
 
       const json = await result.json();

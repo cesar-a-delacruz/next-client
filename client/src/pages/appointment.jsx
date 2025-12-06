@@ -39,10 +39,7 @@ export default {
       <NewForm
         title="New Appointment"
         fields={this.pageData.fields}
-        endpoint={
-          this.pageData.endpoint +
-          `/business/${userData.businessId}/user/${userData.userId}`
-        }
+        endpoint={this.pageData.endpoint}
         action="Create"
         userData={userData}
       />
@@ -58,11 +55,7 @@ export default {
       <Calendar
         title="All Appointments"
         fields={this.pageData.fields}
-        endpoint={
-          this.pageData.endpoint +
-          `/business/${userData.businessId}/user/` +
-          (userData.type === "CLIENT" ? userData.userId : 0)
-        }
+        endpoint={this.pageData.endpoint}
         userData={userData}
       />
     );

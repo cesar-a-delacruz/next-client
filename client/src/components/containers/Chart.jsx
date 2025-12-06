@@ -11,7 +11,7 @@ export default function Chart({ type, userData }) {
     (async () => {
       const token = localStorage.getItem("jwtToken");
       const result = await fetch(
-        `http://localhost:3000/appointment/business/${userData.businessId}/${type}/${new Date()}`,
+        `http://localhost:3000/appointment/${type}/${new Date()}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
