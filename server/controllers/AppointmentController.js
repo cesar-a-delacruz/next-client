@@ -8,10 +8,13 @@ export default class AppointmentController extends BaseController {
   }
   findAll = async (req, res) => {
     const businessId = Number(req.params.businessId);
+    const userId = Number(req.params.userId);
+    const whereClause = { businessId: businessId };
+    if (userId !== 0) whereClause.clientId = userId;
     try {
       const rows = await this.model.findMany({
         include: { service: true, client: true },
-        where: { businessId: businessId },
+        where: whereClause,
       });
       res.json(rows);
     } catch (error) {
@@ -38,6 +41,7 @@ export default class AppointmentController extends BaseController {
     dateTime.setDate(dateTime.getDate() + 1);
     const dayStart = startOfDay(dateTime);
     const dayEnd = endOfDay(dateTime);
+    const businessId = Number(req.params.businessId);
 
     try {
       const row = await this.model.findMany({
@@ -46,6 +50,7 @@ export default class AppointmentController extends BaseController {
             gte: dayStart,
             lte: dayEnd,
           },
+          businessId: businessId,
         },
         include: {
           service: true,
@@ -62,6 +67,7 @@ export default class AppointmentController extends BaseController {
     dateTime.setDate(dateTime.getDate() + 1);
     const weekStart = startOfWeek(dateTime, { weekStartsOn: 1 });
     const weekEnd = endOfWeek(dateTime, { weekStartsOn: 1 });
+    const businessId = Number(req.params.businessId);
 
     try {
       const rows = await this.model.findMany({
@@ -70,6 +76,7 @@ export default class AppointmentController extends BaseController {
             gte: weekStart,
             lte: weekEnd,
           },
+          businessId: businessId,
         },
         include: {
           service: true,

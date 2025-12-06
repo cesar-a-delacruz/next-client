@@ -23,6 +23,7 @@ export default class UserController extends BaseController {
 
   findAll = async (req, res) => {
     const businessId = Number(req.params.businessId);
+
     try {
       const rows = await this.model.findMany({
         where: { businessId: businessId },
@@ -35,7 +36,7 @@ export default class UserController extends BaseController {
   create = async (req, res) => {
     const formBody = this.formParser.run(req.body);
     formBody.password = await hash(formBody.password, 10);
-    console.log(formBody);
+
     try {
       const newRow = await this.model.create({ data: { ...formBody } });
       res.status(201).json(newRow);

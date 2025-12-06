@@ -11,10 +11,10 @@ export default function Stats() {
   if (userData.type !== "EMPLOYEE") return;
   return (
     <>
-      <Chart type={"piechart"} />
-      <Chart type={"linechart"} />
-      <Chart type={"barchart"} />
-      <Chart type={"numberchart"} />
+      <Chart type={"piechart"} userData={userData} />
+      <Chart type={"linechart"} userData={userData} />
+      <Chart type={"barchart"} userData={userData} />
+      <Chart type={"numberchart"} userData={userData} />
     </>
   );
 }

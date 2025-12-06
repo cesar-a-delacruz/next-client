@@ -58,7 +58,11 @@ export default {
       <Calendar
         title="All Appointments"
         fields={this.pageData.fields}
-        endpoint={this.pageData.endpoint + `/business/${userData.businessId}`}
+        endpoint={
+          this.pageData.endpoint +
+          `/business/${userData.businessId}/user/` +
+          (userData.type === "CLIENT" ? userData.userId : 0)
+        }
         userData={userData}
       />
     );

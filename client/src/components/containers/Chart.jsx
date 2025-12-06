@@ -4,14 +4,14 @@ import CustomLineChart from "@/components/atoms/charts/CustomLineChart";
 import CustomBarChart from "@/components/atoms/charts/CustomBarChart";
 import NumberChart from "@/components/atoms/charts/NumberChart";
 
-export default function Chart({ type }) {
+export default function Chart({ type, userData }) {
   const [data, setData] = useState(null);
 
   useEffect(() => {
     (async () => {
       const token = localStorage.getItem("jwtToken");
       const result = await fetch(
-        `http://localhost:3000/appointment/${type}/${new Date()}`,
+        `http://localhost:3000/appointment/business/${userData.businessId}/${type}/${new Date()}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
