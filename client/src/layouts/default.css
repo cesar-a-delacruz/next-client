@@ -1,0 +1,86 @@
+@import url("../styles/base.css");
+
+header {
+  background-image: var(--color-silver);
+  color: var(--color-white);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: var(--gap-flex);
+  min-height: fit-content;
+  padding: var(--padding-container) 0;
+}
+
+/* header img {
+    width: auto;
+    height: 100px;
+} */
+
+nav {
+  display: flex;
+  background-color: var(--color-gray-dark);
+  min-height: 50px;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  border-radius: var(--border-radius);
+}
+
+nav > * {
+  display: flex;
+  align-items: center;
+  padding: var(--padding-button);
+  height: 50px;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+nav a {
+  color: var(--color-white);
+}
+
+nav > *:hover {
+  background-image: none;
+  background-color: var(--color-gray-light);
+}
+
+main {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: var(--gap-flex);
+  background-color: var(--color-black);
+  color: var(--color-white);
+  padding: var(--padding-container);
+}
+
+footer {
+  background-image: var(--color-silver);
+  color: var(--color-white);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 7vh;
+  text-align: center;
+  padding: 10px;
+}
+
+@media (orientation: landscape) {
+  header {
+    flex-direction: row;
+    justify-content: flex-start;
+    max-height: fit-content;
+    padding: 10px;
+  }
+
+  nav {
+    max-width: fit-content;
+  }
+
+  header div.options {
+    margin-left: auto;
+  }
+}

@@ -1,35 +1,63 @@
+import { jwtDecode } from "jwt-decode";
 import { Outlet } from "react-router-dom";
+import "./default.css";
+
 export default function DefaultLayout() {
+  const token = localStorage.getItem("jwtToken");
+  const userData = token ? jwtDecode(token) : null;
   return (
     <>
       <header>
         <h1>Next Client</h1>
         <nav>
-          <button
-            onClick={() => {
-              localStorage.clear();
-              location.replace("/auth");
-            }}
-          >
-            Login
-          </button>
-          <button
-            onClick={() => {
-              localStorage.removeItem("jwtToken");
-              localStorage.clear();
-              location.replace("/auth");
-            }}
-          >
-            Logout
-          </button>
+          <div>
+            <a href="/appointment/all">Citas</a>
+          </div>
+          <div>
+            <a href="/service/all">Servicios</a>
+          </div>
+          {userData && userData.type === "EMPLOYEE" ? (
+            <>
+              <div>
+                <a href="/user/all">Clientes</a>
+              </div>
+              <div>
+                <a href="/stats">Estadísticas</a>
+              </div>
+            </>
+          ) : (
+            <></>
+          )}
         </nav>
+        <div className="options">
+          {!token ? (
+            <button
+              onClick={() => {
+                localStorage.clear();
+                location.replace("/auth");
+              }}
+            >
+              Iniciar Sesión
+            </button>
+          ) : (
+            <button
+              onClick={() => {
+                localStorage.removeItem("jwtToken");
+                localStorage.clear();
+                location.replace("/auth");
+              }}
+            >
+              Cerrar Sesión
+            </button>
+          )}
+        </div>
       </header>
       <main>
         <Outlet />
       </main>
       <footer>
-        Developed By César De La Cruz at Universidad Tecnológica de Panamá ©{" "}
-        {new Date().getFullYear()}
+        Desarrollado por César De La Cruz en la Universidad Tecnológica de
+        Panamá © {new Date().getFullYear()}
       </footer>
     </>
   );

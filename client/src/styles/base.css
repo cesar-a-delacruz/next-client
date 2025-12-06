@@ -1,0 +1,43 @@
+:root {
+  /* colors */
+  --color-gold: linear-gradient(to bottom, #71561c, #b9a544);
+  --color-silver: linear-gradient(to bottom, #414141, #575757);
+  --color-gray: #494949;
+  --color-gray-dark: #343434;
+  --color-gray-light: #717171;
+  --color-black: #1f1f1f;
+  --color-white: #ffffff;
+  /* shapes */
+  --border-radius: 7px;
+  --gap-flex: 15px;
+  --padding-container: 20px;
+  --padding-button: 5px 15px;
+}
+
+* {
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h2 {
+  font-size: 33px;
+}
+
+h3 {
+  font-size: 25px;
+}
+
+button {
+  padding: var(--padding-button);
+  font-weight: bold;
+  font-size: 15px;
+  color: var(--color-white);
+  background-image: var(--color-gold);
+  border-style: none;
+  border-radius: var(--border-radius);
+  width: fit-content;
+}
+
+button:active {
+  transform: scale(1.1);
+}
