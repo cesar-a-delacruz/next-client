@@ -47,7 +47,7 @@ const routes = [
     children: [{ index: true, element: auth.Login() }],
   },
   {
-    path: "stats/:date",
+    path: "stats",
     element: <DefaultLayout />,
     children: [{ index: true, element: <Stats /> }],
   },
