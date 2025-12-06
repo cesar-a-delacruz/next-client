@@ -8,13 +8,13 @@ export default function Stats() {
   if (!token) return <Navigate to="/auth" replace />;
   else userData = jwtDecode(token);
 
-  if (userData.type !== "EMPLOYEE") return;
+  if (userData.type !== "EMPLOYEE") return <Navigate to="/auth" replace />;
   return (
     <>
-      <Chart type={"piechart"} userData={userData} />
-      <Chart type={"linechart"} userData={userData} />
-      <Chart type={"barchart"} userData={userData} />
-      <Chart type={"numberchart"} userData={userData} />
+      <Chart type={"piechart"} />
+      <Chart type={"linechart"} />
+      <Chart type={"barchart"} />
+      <Chart type={"numberchart"} />
     </>
   );
 }

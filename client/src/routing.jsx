@@ -1,4 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 import appointment from "@/pages/appointment";
 import business from "@/pages/business";
@@ -42,14 +43,18 @@ const routes = [
     ],
   },
   {
+    path: "stats",
+    element: <DefaultLayout />,
+    children: [{ index: true, element: <Stats /> }],
+  },
+  {
     path: auth.pageData.endpoint,
     element: <DefaultLayout />,
     children: [{ index: true, element: auth.Login() }],
   },
   {
-    path: "stats",
-    element: <DefaultLayout />,
-    children: [{ index: true, element: <Stats /> }],
+    path: "*",
+    element: <Navigate to={"/" + auth.pageData.endpoint} />,
   },
 ];
 

@@ -4,7 +4,7 @@ import CustomLineChart from "@/components/atoms/charts/CustomLineChart";
 import CustomBarChart from "@/components/atoms/charts/CustomBarChart";
 import NumberChart from "@/components/atoms/charts/NumberChart";
 
-export default function Chart({ type, userData }) {
+export default function Chart({ type }) {
   const [data, setData] = useState(null);
 
   useEffect(() => {

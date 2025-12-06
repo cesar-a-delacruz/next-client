@@ -34,14 +34,13 @@ export default {
     if (!token) return <Navigate to="/auth" replace />;
     else userData = jwtDecode(token);
 
-    if (userData.type !== "CLIENT") return;
+    if (userData.type !== "CLIENT") return <Navigate to="/auth" replace />;
     return (
       <NewForm
         title="New Appointment"
         fields={this.pageData.fields}
         endpoint={this.pageData.endpoint}
         action="Create"
-        userData={userData}
       />
     );
   },
@@ -56,7 +55,6 @@ export default {
         title="All Appointments"
         fields={this.pageData.fields}
         endpoint={this.pageData.endpoint}
-        userData={userData}
       />
     );
   },

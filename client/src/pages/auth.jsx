@@ -13,7 +13,7 @@ export default {
   Login() {
     const token = localStorage.getItem("jwtToken");
     if (token) {
-      return <Navigate to="/appointments/all" replace />;
+      return <Navigate to="/appointment/all" replace />;
     }
     return (
       <NewForm

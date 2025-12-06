@@ -16,7 +16,7 @@ import DeleteDialog from "@/components/containers/dialogs/DeleteDialog";
 import requestHandlers from "@/utils/requestHandlers";
 import EventModal from "@/components/atoms/EventModal";
 
-export default function Calendar({ title, fields, endpoint, userData }) {
+export default function Calendar({ title, fields, endpoint }) {
   const [selected, setSelected] = useState(null);
   const [viewDialog, setViewDialog] = useState(false);
   const [deleteDialog, setDeleteDialog] = useState(false);

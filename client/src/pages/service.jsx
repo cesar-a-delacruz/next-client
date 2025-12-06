@@ -20,7 +20,7 @@ export default {
     if (!token) return <Navigate to="/auth" replace />;
     else userData = jwtDecode(token);
 
-    if (userData.type !== "EMPLOYEE") return;
+    if (userData.type !== "EMPLOYEE") return <Navigate to="/auth" replace />;
 
     return (
       <NewForm
