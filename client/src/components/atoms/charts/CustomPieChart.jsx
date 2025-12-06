@@ -1,35 +1,25 @@
 import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
 
 export default function CustomPieChart({ data }) {
-  const appointments = {
-    completed: 0,
-    pending: 0,
-    cancelled: 0,
-  };
+  const statuses = [
+    { name: "completed", value: 0, color: "#00C49F" },
+    { name: "pending", value: 0, color: "#FFBB28" },
+    { name: "cancelled", value: 0, color: "#FF8042" },
+  ];
+
   data.forEach((item) => {
     switch (item.status) {
-      case "PENDING":
-        appointments.pending++;
-        break;
       case "COMPLETED":
-        appointments.completed++;
+        statuses[0].value++;
+        break;
+      case "PENDING":
+        statuses[1].value++;
         break;
       case "CANCELLED":
-        appointments.cancelled++;
+        statuses[2].value++;
         break;
     }
   });
-
-  let statuses = [];
-  for (const status in appointments) {
-    statuses.push({ name: status, value: appointments[status] });
-  }
-
-  const colors = {
-    completed: "#00C49F",
-    pending: "#FFBB28",
-    cancelled: "#FF8042",
-  };
 
   return (
     <PieChart width={400} height={400}>
@@ -42,8 +32,8 @@ export default function CustomPieChart({ data }) {
         dataKey="value"
         name="status"
       >
-        {statuses.map((entry, index) => (
-          <Cell key={`cell-${index}`} fill={colors[entry.name]} />
+        {statuses.map((status, index) => (
+          <Cell key={`cell-${index}`} fill={status.color} />
         ))}
       </Pie>
       <Legend />
