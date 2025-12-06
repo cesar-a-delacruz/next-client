@@ -9,36 +9,48 @@ export default function DefaultLayout() {
     <>
       <header>
         <h1>Next Client</h1>
-        <nav>
-          <div>
-            <a href="/appointment/all">Citas</a>
-          </div>
-          <div>
-            <a href="/service/all">Servicios</a>
-          </div>
-          {userData && userData.type === "EMPLOYEE" ? (
-            <>
-              <div>
-                <a href="/user/all">Clientes</a>
-              </div>
-              <div>
-                <a href="/stats">Estadísticas</a>
-              </div>
-            </>
-          ) : (
-            <></>
-          )}
-        </nav>
+        {token && (
+          <nav>
+            <div>
+              <a href="/appointment/all">Citas</a>
+            </div>
+            <div>
+              <a href="/service/all">Servicios</a>
+            </div>
+            {userData && userData.type === "EMPLOYEE" ? (
+              <>
+                <div>
+                  <a href="/user/all">Clientes</a>
+                </div>
+                <div>
+                  <a href="/stats">Estadísticas</a>
+                </div>
+              </>
+            ) : (
+              <></>
+            )}
+          </nav>
+        )}
         <div className="options">
           {!token ? (
-            <button
-              onClick={() => {
-                localStorage.clear();
-                location.replace("/auth");
-              }}
-            >
-              Iniciar Sesión
-            </button>
+            <>
+              <button
+                onClick={() => {
+                  localStorage.clear();
+                  location.replace("/auth");
+                }}
+              >
+                Iniciar Sesión
+              </button>
+              <button
+                onClick={() => {
+                  localStorage.clear();
+                  location.replace("/user/new");
+                }}
+              >
+                Registrarse
+              </button>
+            </>
           ) : (
             <button
               onClick={() => {

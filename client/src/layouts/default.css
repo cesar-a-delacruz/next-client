@@ -57,6 +57,13 @@ main {
   padding: var(--padding-container);
 }
 
+div.options {
+  display: flex;
+  gap: var(--gap-flex);
+  justify-content: center;
+  align-items: center;
+}
+
 footer {
   background-image: var(--color-silver);
   color: var(--color-white);
