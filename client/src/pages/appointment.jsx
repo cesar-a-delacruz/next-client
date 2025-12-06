@@ -1,7 +1,7 @@
 import { Navigate } from "react-router-dom";
 import BasePageData from "@/utils/BasePageData";
 import NewForm from "@/components/containers/NewForm";
-import CalendarApp from "@/components/containers/Calendar";
+import Calendar from "@/components/containers/Calendar";
 
 export default {
   pageData: new BasePageData(
@@ -55,7 +55,7 @@ export default {
       return <Navigate to="/auth" replace />;
     }
     return (
-      <CalendarApp
+      <Calendar
         title="All Appointments"
         fields={this.pageData.fields}
         endpoint={this.pageData.endpoint}

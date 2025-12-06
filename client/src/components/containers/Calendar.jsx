@@ -14,60 +14,33 @@ import "@schedule-x/theme-default/dist/index.css";
 import ViewDialog from "@/components/containers/dialogs/ViewDialog";
 import DeleteDialog from "@/components/containers/dialogs/DeleteDialog";
 import requestHandlers from "@/utils/requestHandlers";
+import EventModal from "@/components/atoms/EventModal";
 
-function CalendarApp({ title, fields, endpoint }) {
+export default function Calendar({ title, fields, endpoint }) {
   const [selected, setSelected] = useState(null);
   const [viewDialog, setViewDialog] = useState(false);
   const [deleteDialog, setDeleteDialog] = useState(false);
   const eventsService = useState(() => createEventsServicePlugin())[0];
   const eventModal = useState(() => createEventModalPlugin())[0];
 
-  const customComponents = {
-    eventModal: ({ calendarEvent }) => {
-      return (
-        <div
-          style={{
-            padding: "15px",
-            background: "#cadfd2ff",
-            color: "black",
-            borderRadius: "10px",
-            borderRight: "4px solid #439f66ff",
-            fontSize: "15px",
-          }}
-        >
-          <button
-            onClick={() => {
-              handleViewDialog(calendarEvent.item);
-              eventModal.close();
-            }}
-          >
-            Edit
-          </button>
-          <button
-            onClick={() => {
-              handleDeleteDialog(calendarEvent.item);
-              eventModal.close();
-            }}
-          >
-            Delete
-          </button>
-          <button onClick={() => eventModal.close()}>Close</button>
+  const handleViewDialog = (row) => {
+    setSelected(row);
+    setViewDialog(true);
+  };
+  const handleDeleteDialog = (row) => {
+    setSelected(row);
+    setDeleteDialog(true);
+  };
 
-          <p>
-            Service: <span>{calendarEvent.title}</span>
-          </p>
-          <p>
-            Description: <span>{calendarEvent.description}</span>
-          </p>
-          <p>
-            Client: <span>{calendarEvent.people[0]}</span>
-          </p>
-          <p>
-            Date & Time: <span>{calendarEvent.start.toLocaleString()}</span>
-          </p>
-        </div>
-      );
-    },
+  const customComponents = {
+    eventModal: ({ calendarEvent }) => (
+      <EventModal
+        calendarEvent={calendarEvent}
+        plugin={eventModal}
+        handleViewDialog={handleViewDialog}
+        handleDeleteDialog={handleDeleteDialog}
+      />
+    ),
   };
 
   const calendar = useCalendarApp({
@@ -93,8 +66,9 @@ function CalendarApp({ title, fields, endpoint }) {
   useEffect(() => {
     (async () => {
       const result = await fetch(`http://localhost:3000/${endpoint}`);
+      console.log(result);
+
       const json = await result.json();
-      console.log(json);
 
       const events = json.map((appointment) => {
         let dateTime = new Date(appointment.dateTime)
@@ -127,15 +101,6 @@ function CalendarApp({ title, fields, endpoint }) {
     })();
     eventsService.getAll();
   }, []);
-
-  const handleViewDialog = (row) => {
-    setSelected(row);
-    setViewDialog(true);
-  };
-  const handleDeleteDialog = (row) => {
-    setSelected(row);
-    setDeleteDialog(true);
-  };
 
   const handleUpdate = async (updatedRow) => {
     const eventHandler = () =>
@@ -189,5 +154,3 @@ function CalendarApp({ title, fields, endpoint }) {
     </>
   );
 }
-
-export default CalendarApp;
