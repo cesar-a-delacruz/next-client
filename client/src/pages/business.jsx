@@ -1,6 +1,6 @@
 import { Navigate } from "react-router-dom";
 import BasePageData from "@/utils/BasePageData";
-import NewForm from "@/components/containers/NewForm";
+import CustomForm from "@/components/containers/CustomForm";
 import AllTable from "@/components/containers/AllTable";
 
 export default {
@@ -20,7 +20,7 @@ export default {
       return <Navigate to="/auth" replace />;
     }
     return (
-      <NewForm
+      <CustomForm
         title="New Business"
         fields={this.pageData.fields}
         endpoint={this.pageData.endpoint}

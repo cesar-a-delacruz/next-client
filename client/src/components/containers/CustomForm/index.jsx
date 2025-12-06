@@ -1,7 +1,8 @@
 import { useState } from "react";
 import FormField from "@/components/atoms/FormField";
+import "./index.css";
 
-export default function NewForm({
+export default function CustomForm({
   title,
   fields,
   endpoint,

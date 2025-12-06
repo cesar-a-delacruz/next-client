@@ -1,12 +1,12 @@
 import { Navigate } from "react-router-dom";
 import BasePageData from "@/utils/BasePageData";
-import NewForm from "@/components/containers/NewForm";
+import CustomForm from "@/components/containers/CustomForm";
 
 export default {
   pageData: new BasePageData(
     [
-      { name: "phone", label: "Phone", type: "number" },
-      { name: "password", label: "Password", type: "password" },
+      { name: "phone", label: "Teléfono", type: "number" },
+      { name: "password", label: "Contraseña", type: "password" },
     ],
     "auth",
   ),
@@ -16,11 +16,11 @@ export default {
       return <Navigate to="/appointment/all" replace />;
     }
     return (
-      <NewForm
-        title="Login"
+      <CustomForm
+        title="Iniciar Sesión"
         fields={this.pageData.fields}
         endpoint={this.pageData.endpoint}
-        action="Enter"
+        action="Entrar"
         tokenSetter={true}
       />
     );

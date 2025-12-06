@@ -1,6 +1,6 @@
 import { Navigate } from "react-router-dom";
 import BasePageData from "@/utils/BasePageData";
-import NewForm from "@/components/containers/NewForm";
+import CustomForm from "@/components/containers/CustomForm";
 import AllTable from "@/components/containers/AllTable";
 import { jwtDecode } from "jwt-decode";
 
@@ -30,7 +30,7 @@ export default {
       return <Navigate to="/appointments/all" replace />;
     }
     return (
-      <NewForm
+      <CustomForm
         title="New User"
         fields={this.pageData.fields}
         endpoint={this.pageData.endpoint}

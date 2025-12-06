@@ -1,6 +1,6 @@
 import { Navigate } from "react-router-dom";
 import BasePageData from "@/utils/BasePageData";
-import NewForm from "@/components/containers/NewForm";
+import CustomForm from "@/components/containers/CustomForm";
 import Calendar from "@/components/containers/Calendar";
 import { jwtDecode } from "jwt-decode";
 
@@ -36,7 +36,7 @@ export default {
 
     if (userData.type !== "CLIENT") return <Navigate to="/auth" replace />;
     return (
-      <NewForm
+      <CustomForm
         title="New Appointment"
         fields={this.pageData.fields}
         endpoint={this.pageData.endpoint}
@@ -46,9 +46,7 @@ export default {
   },
   All() {
     const token = localStorage.getItem("jwtToken");
-    let userData;
     if (!token) return <Navigate to="/auth" replace />;
-    else userData = jwtDecode(token);
 
     return (
       <Calendar
