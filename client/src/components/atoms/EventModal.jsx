@@ -21,7 +21,7 @@ export default function EventModal({
           plugin.close();
         }}
       >
-        Edit
+        Editar
       </button>
       <button
         onClick={() => {
@@ -29,21 +29,21 @@ export default function EventModal({
           plugin.close();
         }}
       >
-        Delete
+        Eliminar
       </button>
-      <button onClick={() => plugin.close()}>Close</button>
+      <button onClick={() => plugin.close()}>Cerrar</button>
 
       <p>
-        Service: <span>{calendarEvent.title}</span>
+        Servicio: <span>{calendarEvent.title}</span>
       </p>
       <p>
-        Description: <span>{calendarEvent.description}</span>
+        Descripción: <span>{calendarEvent.description}</span>
       </p>
       <p>
-        Client: <span>{calendarEvent.people[0]}</span>
+        Cliente: <span>{calendarEvent.people[0]}</span>
       </p>
       <p>
-        Date & Time: <span>{calendarEvent.start.toLocaleString()}</span>
+        Fecha y Hora: <span>{calendarEvent.start.toLocaleString()}</span>
       </p>
     </div>
   );

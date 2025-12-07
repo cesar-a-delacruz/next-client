@@ -55,7 +55,7 @@ export default function Table({ title, fields, endpoint }) {
             {fields.map((field) => (
               <th key={field.name}>{field.label}</th>
             ))}
-            <th>Options</th>
+            <th>Opciones</th>
           </tr>
         </thead>
         <tbody>
@@ -70,9 +70,9 @@ export default function Table({ title, fields, endpoint }) {
                   </td>
                 ))}
                 <td>
-                  <button onClick={() => handleViewDialog(item)}>View</button>
+                  <button onClick={() => handleViewDialog(item)}>Ver</button>
                   <button onClick={() => handleDeleteDialog(item)}>
-                    Delete
+                    Eliminar
                   </button>
                 </td>
               </tr>

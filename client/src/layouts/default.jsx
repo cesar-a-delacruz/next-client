@@ -20,7 +20,7 @@ export default function DefaultLayout() {
             {userData && userData.type === "EMPLOYEE" ? (
               <>
                 <div>
-                  <a href="/user/all">Clientes</a>
+                  <a href="/user/all">Usuarios</a>
                 </div>
                 <div>
                   <a href="/stats">Estadísticas</a>

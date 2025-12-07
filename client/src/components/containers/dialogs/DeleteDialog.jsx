@@ -16,14 +16,14 @@ export default function DeleteDialog({ open, onClose, data, onDelete }) {
     return (
       <dialog open={open} className="model-dialog">
         <form method="dialog">
-          <h3>Delete</h3>
-          <p>This operation can't be undone. Do you want to continue?</p>
+          <h3>Eliminar</h3>
+          <p>Esta operación no se puede deshacer. ¿Desar continuar?</p>
           <div className="dialog-actions">
             <button type="button" onClick={handleDelete}>
-              Delete
+              Eliminar
             </button>
             <button type="button" onClick={onClose}>
-              Close
+              Cerrar
             </button>
           </div>
         </form>

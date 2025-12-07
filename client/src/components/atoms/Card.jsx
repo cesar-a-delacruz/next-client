@@ -1,4 +1,3 @@
-// import { Link } from "react-router-dom";
 export default function Card({
   id,
   name,
@@ -20,14 +19,14 @@ export default function Card({
           handleView(item);
         }}
       >
-        Edit
+        Editar
       </button>
       <button
         onClick={() => {
           handleDelete(item);
         }}
       >
-        Delete
+        Eliminar
       </button>
     </div>
   );

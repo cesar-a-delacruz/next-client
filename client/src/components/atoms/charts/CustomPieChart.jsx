@@ -2,9 +2,9 @@ import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
 
 export default function CustomPieChart({ data }) {
   const statuses = [
-    { name: "completed", value: 0, color: "#00C49F" },
-    { name: "pending", value: 0, color: "#FFBB28" },
-    { name: "cancelled", value: 0, color: "#FF8042" },
+    { name: "Completadas", value: 0, color: "#00C49F" },
+    { name: "Pendientes", value: 0, color: "#FFBB28" },
+    { name: "Canceladas", value: 0, color: "#FF8042" },
   ];
 
   data.forEach((item) => {

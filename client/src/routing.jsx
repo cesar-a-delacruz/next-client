@@ -1,46 +1,23 @@
 import { createBrowserRouter } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 
-import appointment from "@/pages/appointment";
-import business from "@/pages/business";
-import service from "@/pages/service";
-import user from "@/pages/user";
-import auth from "@/pages/auth";
-import Stats from "@/pages/stats";
+import user from "@/routes/user";
+import appointment from "@/routes/appointment";
+import service from "@/routes/service";
+import business from "@/routes/business";
+import Auth from "@/pages/Auth";
+import Stats from "@/pages/Stats";
 import DefaultLayout from "./layouts/default";
 
 const routes = [
+  user,
+  appointment,
+  service,
+  business,
   {
-    path: user.pageData.endpoint,
+    path: "auth",
     element: <DefaultLayout />,
-    children: [
-      { path: "new", element: user.New() },
-      { path: "all", element: user.All() },
-    ],
-  },
-  {
-    path: business.pageData.endpoint,
-    element: <DefaultLayout />,
-    children: [
-      { path: "new", element: business.New() },
-      { path: "all", element: business.All() },
-    ],
-  },
-  {
-    path: service.pageData.endpoint,
-    element: <DefaultLayout />,
-    children: [
-      { path: "new", element: service.New() },
-      { path: "all", element: service.All() },
-    ],
-  },
-  {
-    path: appointment.pageData.endpoint,
-    element: <DefaultLayout />,
-    children: [
-      { path: "new", element: appointment.New() },
-      { path: "all", element: appointment.All() },
-    ],
+    children: [{ index: true, element: <Auth /> }],
   },
   {
     path: "stats",
@@ -48,13 +25,8 @@ const routes = [
     children: [{ index: true, element: <Stats /> }],
   },
   {
-    path: auth.pageData.endpoint,
-    element: <DefaultLayout />,
-    children: [{ index: true, element: auth.Login() }],
-  },
-  {
     path: "*",
-    element: <Navigate to={"/" + auth.pageData.endpoint} />,
+    element: <Navigate to={"/auth"} />,
   },
 ];
 

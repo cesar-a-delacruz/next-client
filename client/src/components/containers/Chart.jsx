@@ -4,7 +4,7 @@ import CustomLineChart from "@/components/atoms/charts/CustomLineChart";
 import CustomBarChart from "@/components/atoms/charts/CustomBarChart";
 import NumberChart from "@/components/atoms/charts/NumberChart";
 
-export default function Chart({ type }) {
+export default function Chart({ type, title }) {
   const [data, setData] = useState(null);
 
   useEffect(() => {
@@ -25,14 +25,21 @@ export default function Chart({ type }) {
   }, []);
 
   if (data === null) return;
-  switch (type) {
-    case "piechart":
-      return <CustomPieChart data={data} />;
-    case "linechart":
-      return <CustomLineChart data={data} />;
-    case "barchart":
-      return <CustomBarChart data={data} />;
-    case "numberchart":
-      return <NumberChart data={data} />;
-  }
+  return (
+    <div>
+      <h3>{title}</h3>
+      {(() => {
+        switch (type) {
+          case "piechart":
+            return <CustomPieChart data={data} />;
+          case "linechart":
+            return <CustomLineChart data={data} />;
+          case "barchart":
+            return <CustomBarChart data={data} />;
+          case "numberchart":
+            return <NumberChart data={data} />;
+        }
+      })()}
+    </div>
+  );
 }

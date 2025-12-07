@@ -46,7 +46,7 @@ export default function CustomLineChart({ data }) {
       <Tooltip />
       <Line
         type="monotone"
-        name="appointments"
+        name="Citas"
         dataKey="value"
         stroke="#8884d8"
         isAnimationActive={true}

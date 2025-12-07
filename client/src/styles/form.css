@@ -19,7 +19,8 @@ form > div {
 }
 
 form input,
-form select {
+form select,
+form textarea {
   background-color: var(--color-gray-light);
   border-radius: var(--border-radius);
   border-color: var(--color-white);
@@ -30,6 +31,11 @@ form select {
 
 form select {
   height: 25px;
+}
+
+form textarea {
+  height: 50px;
+  max-width: 100%;
 }
 
 @media (orientation: landscape) {

@@ -39,7 +39,7 @@ export default function CustomBarChart({ data }) {
       <Legend />
       <Bar
         dataKey="value"
-        name="services"
+        name="Servicios"
         fill="#82ca9d"
         isAnimationActive={true}
       />

@@ -37,7 +37,7 @@ export default function ViewDialog({
     return (
       <dialog open={open} className="model-dialog">
         <form method="dialog">
-          <h3>{editMode ? "Edit" : "View"}</h3>
+          <h3>{editMode ? "Editar" : "Ver"}</h3>
           <div className="dialog-content">
             {fields.map((field) => (
               <div key={field.name} className="dialog-field">
@@ -64,7 +64,7 @@ export default function ViewDialog({
             {editMode || viewMode === false ? (
               <>
                 <button type="button" onClick={handleUpdate}>
-                  Update
+                  Guardar
                 </button>
                 {viewMode !== false && (
                   <button
@@ -74,17 +74,17 @@ export default function ViewDialog({
                       setEditMode(false);
                     }}
                   >
-                    Cancel
+                    Cancelar
                   </button>
                 )}
               </>
             ) : (
               <button type="button" onClick={() => setEditMode(true)}>
-                Edit
+                Editar
               </button>
             )}
             <button type="button" onClick={handleClose}>
-              Close
+              Cerrar
             </button>
           </div>
         </form>
