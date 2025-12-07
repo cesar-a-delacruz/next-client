@@ -13,7 +13,7 @@ export default function Card({
       <img src={image} alt={name} className="card-image" />
       <h3>{name}</h3>
       <p className="description">{description}</p>
-      <p className="price">{price}</p>
+      <p className="price">${price}</p>
       <button
         onClick={() => {
           handleView(item);

@@ -3,6 +3,7 @@ import Card from "@/components/atoms/Card";
 import ViewDialog from "@/components/containers/dialogs/ViewDialog";
 import DeleteDialog from "@/components/containers/dialogs/DeleteDialog";
 import requestHandlers from "@/utils/requestHandlers";
+import "./index.css"
 
 export default function CardGrid({ title, fields, endpoint }) {
   const [data, setData] = useState([]);

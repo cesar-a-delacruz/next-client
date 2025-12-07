@@ -1,0 +1,57 @@
+@import url("../../../styles/vars.css");
+
+div.card-container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  justify-items: center;
+  align-items: center;
+  gap: var(--gap-flex);
+  padding: var(--padding-container);
+  color: white;
+  overflow-anchor: none;
+}
+
+div.card {
+  background: var(--color-gray);
+  color: white;
+  border-radius: var(--border-radius);
+  width: 250px;
+  width: 250px;
+  min-height: 250px;
+  height: 450px;
+  padding: var(--padding-container);
+  text-align: center;
+  box-shadow: 2px 2px 6px rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--gap-flex);
+}
+
+img.card-image {
+  align-self: flex-start;
+  width: 100%;
+  height: auto;
+  border-radius: var(--border-radius);
+}
+
+div.card h3 {
+  font-size: 22px;
+}
+
+div.card .price {
+  font-weight: bold;
+}
+
+div.card button {
+  padding: var(--padding-button);
+  font-weight: bold;
+  font-size: 15px;
+  border-style: none;
+  border-radius: var(--border-radius);
+  width: fit-content;
+  background-image: var(--color-turq);
+  color: var(--color-white);
+}

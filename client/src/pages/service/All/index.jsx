@@ -10,7 +10,7 @@ export default function All() {
   document.title = "Next Client: Servicios";
   return (
     <CardGrid
-      title="All Services"
+      title="Servicios"
       fields={pageData.fields}
       endpoint={pageData.endpoint}
     />
