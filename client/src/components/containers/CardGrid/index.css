@@ -55,3 +55,7 @@ div.card button {
   background-image: var(--color-turq);
   color: var(--color-white);
 }
+
+div.card button:active {
+  transform: scale(1.1);
+}

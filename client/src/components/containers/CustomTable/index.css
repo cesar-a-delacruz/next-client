@@ -1,0 +1,54 @@
+@import url("../../../styles/vars.css");
+
+table {
+  background-color: var(--color-gray);
+  border-radius: var(--border-radius);
+}
+
+table button {
+  padding: var(--padding-button);
+  font-weight: bold;
+  font-size: 15px;
+  border-style: none;
+  border-radius: var(--border-radius);
+  width: fit-content;
+  background-image: var(--color-turq);
+  color: var(--color-white);
+}
+
+table button:active {
+  transform: scale(1.1);
+}
+
+th,
+td {
+  padding: calc(var(--padding-container) - 5px);
+}
+
+th {
+  background: var(--color-silver);
+}
+
+td {
+  background-color: var(--color-gray-light);
+}
+
+td.options {
+  display: flex;
+  gap: var(--gap-flex);
+}
+
+@media (orientation: portrait) {
+  div#root {
+    max-width: fit-content;
+    width: fit-content;
+  }
+
+  main table td.options {
+    display: table-cell;
+  }
+
+  main table td.options > *:not(:last-child) {
+    margin-bottom: var(--gap-flex);
+  }
+}

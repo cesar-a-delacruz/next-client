@@ -3,6 +3,7 @@ import CustomPieChart from "@/components/atoms/charts/CustomPieChart";
 import CustomLineChart from "@/components/atoms/charts/CustomLineChart";
 import CustomBarChart from "@/components/atoms/charts/CustomBarChart";
 import NumberChart from "@/components/atoms/charts/NumberChart";
+import "./index.css";
 
 export default function Chart({ type, title }) {
   const [data, setData] = useState(null);
@@ -11,7 +12,8 @@ export default function Chart({ type, title }) {
     (async () => {
       const token = localStorage.getItem("jwtToken");
       const result = await fetch(
-        `http://localhost:3000/appointment/${type}/${new Date()}`,
+        // `http://localhost:3000/appointment/${type}/${new Date()}`,
+        `http://localhost:3000/appointment/${type}/${"2025-12-06"}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -26,7 +28,7 @@ export default function Chart({ type, title }) {
 
   if (data === null) return;
   return (
-    <div>
+    <div className={`chart ${type}`}>
       <h3>{title}</h3>
       {(() => {
         switch (type) {

@@ -8,9 +8,7 @@ export default function NumberChart({ data }) {
   );
   return (
     <>
-      <div>
-        <p>{amount.value} $</p>
-      </div>
+      <p>{amount.value} $</p>
     </>
   );
 }

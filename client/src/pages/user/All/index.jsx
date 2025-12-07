@@ -1,6 +1,6 @@
 import { Navigate } from "react-router-dom";
 import pageData from "../pageData.js";
-import CustomTable from "@/components/containers/CustomTable.jsx";
+import CustomTable from "@/components/containers/CustomTable";
 import { jwtDecode } from "jwt-decode";
 
 export default function All() {

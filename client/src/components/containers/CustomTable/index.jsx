@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import ViewDialog from "@/components/containers/dialogs/ViewDialog";
 import DeleteDialog from "@/components/containers/dialogs/DeleteDialog";
 import requestHandlers from "@/utils/requestHandlers";
+import "./index.css";
 
 export default function CustomTable({ title, fields, endpoint }) {
   const [data, setData] = useState([]);
@@ -69,7 +70,7 @@ export default function CustomTable({ title, fields, endpoint }) {
                       : item[field.name]}
                   </td>
                 ))}
-                <td>
+                <td className="options">
                   <button onClick={() => handleViewDialog(item)}>Ver</button>
                   <button onClick={() => handleDeleteDialog(item)}>
                     Eliminar
