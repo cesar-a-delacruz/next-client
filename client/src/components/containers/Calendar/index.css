@@ -1,0 +1,51 @@
+@import url("../../../styles/vars.css");
+
+div.sx-react-calendar-wrapper {
+  width: 90vw;
+}
+
+div.sx__forward-backward-navigation {
+  display: flex;
+  gap: calc(var(--gap-flex) - 10px);
+}
+
+/* modal */
+
+div.sx__event-modal {
+  background-color: initial;
+  width: max-content;
+}
+
+div.sx__event-modal > div {
+  color: var(---color-white) !important;
+}
+
+div.sx__event-modal > div > div.options {
+  display: flex;
+  justify-content: center;
+  gap: var(--gap-flex);
+  margin-bottom: var(--gap-flex);
+}
+
+div.sx__event-modal div.options button {
+  padding: var(--padding-button);
+  font-weight: bold;
+  font-size: 15px;
+  border-style: none;
+  border-radius: var(--border-radius);
+  width: fit-content;
+  background-image: var(--color-turq);
+  color: var(--color-white);
+}
+
+div.sx__event-modal div.options button:active {
+  transform: scale(1.1);
+}
+
+div.sx__event-modal > div p {
+  font-weight: bold;
+}
+
+div.sx__event-modal > div span {
+  font-weight: normal;
+}

@@ -15,6 +15,7 @@ import ViewDialog from "@/components/containers/dialogs/ViewDialog";
 import DeleteDialog from "@/components/containers/dialogs/DeleteDialog";
 import requestHandlers from "@/utils/requestHandlers";
 import EventModal from "@/components/atoms/EventModal";
+import "./index.css";
 
 export default function Calendar({ title, fields, endpoint }) {
   const [selected, setSelected] = useState(null);
@@ -61,6 +62,7 @@ export default function Calendar({ title, fields, endpoint }) {
     defaultView: viewWeek.name,
     showWeekNumbers: true,
     isResponsive: true,
+    isDark: true,
   });
 
   useEffect(() => {

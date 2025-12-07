@@ -8,30 +8,32 @@ export default function EventModal({
     <div
       style={{
         padding: "15px",
-        background: "#cadfd2ff",
+        background: "#439f9bff",
         color: "black",
         borderRadius: "10px",
-        borderRight: "4px solid #439f66ff",
+        borderRight: "4px solid #a5d5d0ff",
         fontSize: "15px",
       }}
     >
-      <button
-        onClick={() => {
-          handleViewDialog(calendarEvent.item);
-          plugin.close();
-        }}
-      >
-        Editar
-      </button>
-      <button
-        onClick={() => {
-          handleDeleteDialog(calendarEvent.item);
-          plugin.close();
-        }}
-      >
-        Eliminar
-      </button>
-      <button onClick={() => plugin.close()}>Cerrar</button>
+      <div className="options">
+        <button
+          onClick={() => {
+            handleViewDialog(calendarEvent.item);
+            plugin.close();
+          }}
+        >
+          Editar
+        </button>
+        <button
+          onClick={() => {
+            handleDeleteDialog(calendarEvent.item);
+            plugin.close();
+          }}
+        >
+          Eliminar
+        </button>
+        <button onClick={() => plugin.close()}>Cerrar</button>
+      </div>
 
       <p>
         Servicio: <span>{calendarEvent.title}</span>

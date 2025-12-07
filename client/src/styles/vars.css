@@ -1,0 +1,21 @@
+:root {
+  /* colors */
+  /* --color-gold: linear-gradient(to bottom, #71561c, #b9a544); */
+  --color-gold: linear-gradient(to bottom, #21005e, #6750a4);
+  --color-silver: linear-gradient(to bottom, #414141, #575757);
+  --color-turq: linear-gradient(
+    to bottom,
+    rgb(95, 164, 158),
+    rgb(46, 109, 106)
+  );
+  --color-gray: #494949;
+  --color-gray-dark: #343434;
+  --color-gray-light: #717171;
+  --color-black: #1f1f1f;
+  --color-white: #ffffff;
+  /* shapes */
+  --border-radius: 7px;
+  --gap-flex: 15px;
+  --padding-container: 20px;
+  --padding-button: 5px 15px;
+}
