@@ -1,6 +1,6 @@
 import { Navigate } from "react-router-dom";
 import pageData from "../pageData.js";
-import AllTable from "@/components/containers/AllTable";
+import CustomTable from "@/components/containers/CustomTable.jsx";
 import { jwtDecode } from "jwt-decode";
 
 export default function All() {
@@ -13,7 +13,7 @@ export default function All() {
   document.title = "Next Client: Usuarios";
 
   return (
-    <AllTable
+    <CustomTable
       title="Usuarios"
       fields={pageData.fields.filter(
         (field) => field.name !== "password" && field.name !== "businessId",

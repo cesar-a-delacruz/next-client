@@ -3,7 +3,7 @@ import ViewDialog from "@/components/containers/dialogs/ViewDialog";
 import DeleteDialog from "@/components/containers/dialogs/DeleteDialog";
 import requestHandlers from "@/utils/requestHandlers";
 
-export default function Table({ title, fields, endpoint }) {
+export default function CustomTable({ title, fields, endpoint }) {
   const [data, setData] = useState([]);
   const [selected, setSelected] = useState(null);
   const [viewDialog, setViewDialog] = useState(false);

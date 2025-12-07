@@ -1,6 +1,6 @@
 import { Navigate } from "react-router-dom";
 import pageData from "../pageData.js";
-import AllTable from "@/components/containers/AllTable";
+import CustomTable from "@/components/containers/CustomTable.jsx";
 
 export default function All() {
   const token = localStorage.getItem("jwtToken");
@@ -10,7 +10,7 @@ export default function All() {
   document.title = "Next Client: Negocios";
 
   return (
-    <AllTable
+    <CustomTable
       title="Negocios"
       fields={pageData.fields}
       endpoint={pageData.endpoint}
