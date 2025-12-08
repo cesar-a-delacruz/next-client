@@ -2,6 +2,7 @@
 
 div.sx-react-calendar-wrapper {
   width: 90vw;
+  min-width: 700px;
 }
 
 div.sx__forward-backward-navigation {
@@ -16,11 +17,11 @@ div.sx__event-modal {
   width: max-content;
 }
 
-div.sx__event-modal > div {
+div.sx__event-modal>div {
   color: var(---color-white) !important;
 }
 
-div.sx__event-modal > div > div.options {
+div.sx__event-modal>div>div.options {
   display: flex;
   justify-content: center;
   gap: var(--gap-flex);
@@ -42,10 +43,26 @@ div.sx__event-modal div.options button:active {
   transform: scale(1.1);
 }
 
-div.sx__event-modal > div p {
+div.sx__event-modal>div p {
   font-weight: bold;
 }
 
-div.sx__event-modal > div span {
+div.sx__event-modal>div span {
   font-weight: normal;
+}
+
+@media (orientation: portrait) {
+  div#root {
+    max-width: fit-content;
+    width: fit-content;
+  }
+
+  /* 
+  main table td.options {
+    display: table-cell;
+  }
+
+  main table td.options > *:not(:last-child) {
+    margin-bottom: var(--gap-flex);
+  } */
 }
