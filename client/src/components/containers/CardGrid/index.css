@@ -59,3 +59,10 @@ div.card button {
 div.card button:active {
   transform: scale(1.1);
 }
+
+div.card div.actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--gap-flex);
+}

@@ -14,20 +14,22 @@ export default function Card({
       <h3>{name}</h3>
       <p className="description">{description}</p>
       <p className="price">${price}</p>
-      <button
-        onClick={() => {
-          handleView(item);
-        }}
-      >
-        Editar
-      </button>
-      <button
-        onClick={() => {
-          handleDelete(item);
-        }}
-      >
-        Eliminar
-      </button>
+      <div className="actions">
+        <button
+          onClick={() => {
+            handleView(item);
+          }}
+        >
+          Editar
+        </button>
+        <button
+          onClick={() => {
+            handleDelete(item);
+          }}
+        >
+          Eliminar
+        </button>
+      </div>
     </div>
   );
 }
