@@ -8,18 +8,6 @@ export default new BasePageData(
       type: "datetime-local",
       render: (val) => new Date(val).toLocaleString(),
     },
-    { name: "serviceId", label: "Servicio", type: "number" },
-    {
-      name: "status",
-      label: "Estado",
-      type: "select",
-      options: [
-        { value: "PENDING", label: "Pendiente" },
-        { value: "CANCELLED", label: "Cancelada" },
-        { value: "COMPLETED", label: "Completada" },
-      ],
-      default: "PENDING",
-    },
   ],
   "appointment",
 );
