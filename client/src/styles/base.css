@@ -28,3 +28,13 @@ div#root > header button:active,
 form button:active {
   transform: scale(1.1);
 }
+
+div.links {
+  background-color: var(--color-gray-dark);
+  padding: var(--padding-container);
+  border-radius: var(--border-radius);
+}
+
+a {
+  color: var(--color-white);
+}

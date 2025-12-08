@@ -4,6 +4,7 @@ import ViewDialog from "@/components/containers/dialogs/ViewDialog";
 import DeleteDialog from "@/components/containers/dialogs/DeleteDialog";
 import requestHandlers from "@/utils/requestHandlers";
 import "./index.css";
+import { jwtDecode } from "jwt-decode";
 
 export default function CardGrid({ title, fields, endpoint }) {
   const [data, setData] = useState([]);
@@ -50,6 +51,16 @@ export default function CardGrid({ title, fields, endpoint }) {
   return (
     <>
       <h2>{title}</h2>
+      {(() => {
+        const userData = jwtDecode(localStorage.getItem("jwtToken"));
+        return (
+          userData.type === "EMPLOYEE" && (
+            <div className="links">
+              <a href={`/${endpoint}/new`}>Nuevo</a>
+            </div>
+          )
+        );
+      })()}
       <div className="card-container">
         {data.map((item) => (
           <Card

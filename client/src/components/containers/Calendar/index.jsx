@@ -16,6 +16,7 @@ import DeleteDialog from "@/components/containers/dialogs/DeleteDialog";
 import requestHandlers from "@/utils/requestHandlers";
 import EventModal from "@/components/atoms/EventModal";
 import "./index.css";
+import { jwtDecode } from "jwt-decode";
 
 export default function Calendar({ title, fields, endpoint }) {
   const [selected, setSelected] = useState(null);
@@ -138,6 +139,16 @@ export default function Calendar({ title, fields, endpoint }) {
   return (
     <>
       <h2>{title}</h2>
+      {(() => {
+        const userData = jwtDecode(localStorage.getItem("jwtToken"));
+        return (
+          userData.type === "CLIENT" && (
+            <div className="links">
+              <a href={`/${endpoint}/new`}>Nuevo</a>
+            </div>
+          )
+        );
+      })()}
       <ScheduleXCalendar
         customComponents={customComponents}
         calendarApp={calendar}
