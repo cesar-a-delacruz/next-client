@@ -1,0 +1,29 @@
+@import url("./form.css");
+
+dialog:open {
+  display: flex;
+  color: var(--color-white);
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  border-radius: var(--border-radius);
+}
+
+dialog form {
+  flex: 1;
+}
+
+dialog p {
+  font-weight: bold;
+}
+
+dialog span {
+  font-weight: normal;
+}
+
+dialog div.actions {
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  gap: var(--gap-flex);
+}

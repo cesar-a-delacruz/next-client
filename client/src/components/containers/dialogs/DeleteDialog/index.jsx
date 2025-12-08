@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import "./index.css";
 
 export default function DeleteDialog({ open, onClose, data, onDelete }) {
   const [formData, setFormData] = useState(data || {});
@@ -18,7 +19,7 @@ export default function DeleteDialog({ open, onClose, data, onDelete }) {
         <form method="dialog">
           <h3>Eliminar</h3>
           <p>Esta operación no se puede deshacer. ¿Desar continuar?</p>
-          <div className="dialog-actions">
+          <div className="actions">
             <button type="button" onClick={handleDelete}>
               Eliminar
             </button>

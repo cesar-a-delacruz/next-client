@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import FormField from "@/components/atoms/FormField";
-
+import "./index.css";
 export default function ViewDialog({
   open,
   onClose,
@@ -38,29 +38,27 @@ export default function ViewDialog({
       <dialog open={open} className="model-dialog">
         <form method="dialog">
           <h3>{editMode ? "Editar" : "Ver"}</h3>
-          <div className="dialog-content">
-            {fields.map((field) => (
-              <div key={field.name} className="dialog-field">
-                {editMode || viewMode === false ? (
-                  <FormField
-                    field={field}
-                    value={formData[field.name]}
-                    handleChange={handleChange}
-                  />
-                ) : (
-                  <p>
-                    {field.label}:
-                    <span>
-                      {field.render
-                        ? field.render(formData[field.name])
-                        : formData[field.name]}
-                    </span>
-                  </p>
-                )}
-              </div>
-            ))}
-          </div>
-          <div className="dialog-actions">
+          {fields.map((field) => (
+            <div key={field.name} className="dialog-field">
+              {editMode || viewMode === false ? (
+                <FormField
+                  field={field}
+                  value={formData[field.name]}
+                  handleChange={handleChange}
+                />
+              ) : (
+                <p>
+                  {field.label}:{" "}
+                  <span>
+                    {field.render
+                      ? field.render(formData[field.name])
+                      : formData[field.name]}
+                  </span>
+                </p>
+              )}
+            </div>
+          ))}
+          <div className="actions">
             {editMode || viewMode === false ? (
               <>
                 <button type="button" onClick={handleUpdate}>
