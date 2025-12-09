@@ -1,4 +1,5 @@
 import { Router } from "express";
+import autorizationMiddleware from "../middlewares/autorizationMiddleware.js";
 
 export default class BaseRouter {
   constructor(baseName, controller) {
@@ -7,9 +8,9 @@ export default class BaseRouter {
     this.router = Router();
 
     this.router.get("/", this.controller.findAll);
-    this.router.get("/:id", this.controller.findById);
-    this.router.post("/", this.controller.create);
-    this.router.put("/:id", this.controller.update);
-    this.router.delete("/:id", this.controller.delete);
+    this.router.get("/:id", autorizationMiddleware, this.controller.findById);
+    this.router.post("/", autorizationMiddleware, this.controller.create);
+    this.router.put("/:id", autorizationMiddleware, this.controller.update);
+    this.router.delete("/:id", autorizationMiddleware, this.controller.delete);
   }
 }
