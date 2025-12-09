@@ -7,7 +7,7 @@ export default class BaseRouter {
     this.controller = controller;
     this.router = Router();
 
-    this.router.get("/", this.controller.findAll);
+    this.router.get("/", autorizationMiddleware, this.controller.findAll);
     this.router.get("/:id", autorizationMiddleware, this.controller.findById);
     this.router.post("/", autorizationMiddleware, this.controller.create);
     this.router.put("/:id", autorizationMiddleware, this.controller.update);

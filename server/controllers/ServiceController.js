@@ -1,4 +1,3 @@
-import { hash } from "bcryptjs";
 import BaseController from "./BaseController.js";
 
 export default class ServiceController extends BaseController {
