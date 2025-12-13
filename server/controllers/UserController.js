@@ -36,7 +36,6 @@ export default class UserController extends BaseController {
   create = async (req, res) => {
     const formBody = this.formParser.run(req.body);
     formBody.password = await hash(formBody.password, 10);
-
     try {
       const newRow = await this.model.create({ data: { ...formBody } });
       res.status(201).json(newRow);
