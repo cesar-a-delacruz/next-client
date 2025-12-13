@@ -1,4 +1,4 @@
-export default function Input({ field, value, handleChange }) {
+export default function Input({ field, value, showLabel, handleChange }) {
   const label = <label htmlFor={field.name}>{field.label}:</label>;
   let input;
 
@@ -59,7 +59,7 @@ export default function Input({ field, value, handleChange }) {
 
   return (
     <>
-      {label}
+      {showLabel && label}
       {input}
     </>
   );

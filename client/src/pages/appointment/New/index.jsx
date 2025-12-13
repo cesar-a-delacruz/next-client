@@ -12,6 +12,7 @@ export default function New() {
   else userData = jwtDecode(token);
 
   if (userData.type !== "CLIENT") return <Navigate to="/auth" replace />;
+  document.title = "Next Client: Nueva Cita";
 
   const [services, setServices] = useState([]);
   useEffect(() => {

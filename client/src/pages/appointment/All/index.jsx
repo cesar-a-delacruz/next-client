@@ -6,6 +6,7 @@ export default function All() {
   const token = localStorage.getItem("jwtToken");
   if (!token) return <Navigate to="/auth" replace />;
   document.title = "Next Client: Citas";
+
   return (
     <Calendar
       title="Citas"

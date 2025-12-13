@@ -8,7 +8,6 @@ export default function All() {
   let userData;
   if (!token) return <Navigate to="/auth" replace />;
   else userData = jwtDecode(token);
-
   if (userData.type !== "EMPLOYEE") return <Navigate to="/auth" replace />;
   document.title = "Next Client: Usuarios";
 

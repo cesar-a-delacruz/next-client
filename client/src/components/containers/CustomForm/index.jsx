@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import FormField from "@/components/atoms/FormField";
 import requestHandlers from "@/utils/requestHandlers";
 import "./index.css";
@@ -10,11 +10,19 @@ export default function CustomForm({
   action,
   submitActions,
 }) {
-  const initialState = fields.reduce((acc, field) => {
-    acc[field.name] = field.default || "";
-    return acc;
-  }, {});
+  const initialState = useMemo(
+    () =>
+      fields.reduce((acc, field) => {
+        acc[field.name] = field.default || "";
+        return acc;
+      }, {}),
+    [fields],
+  );
   const [formData, setFormData] = useState(initialState);
+
+  useEffect(() => {
+    setFormData(initialState);
+  }, [initialState]);
 
   const handleChange = (e) => {
     const value = e.target.value;
@@ -33,7 +41,8 @@ export default function CustomForm({
         <div key={field.name}>
           <FormField
             field={field}
-            value={formData[field.name]}
+            value={field.value ? field.value : formData[field.name]}
+            showLabel={field.label === undefined ? false : true}
             handleChange={handleChange}
           />
         </div>

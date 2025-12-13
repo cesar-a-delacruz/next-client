@@ -15,7 +15,6 @@ export default new BasePageData(
       ],
       default: "CLIENT",
     },
-    { name: "businessId", label: "Negocio", type: "number" },
   ],
   "user",
 );
