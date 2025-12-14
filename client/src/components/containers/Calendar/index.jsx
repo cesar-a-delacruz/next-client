@@ -17,6 +17,7 @@ import requestHandlers from "@/utils/requestHandlers";
 import EventModal from "@/components/atoms/EventModal";
 import "./index.css";
 import { jwtDecode } from "jwt-decode";
+import calendarEventConverter from "@/utils/calendarEventConverter";
 
 export default function Calendar({ title, fields, endpoint }) {
   const [selected, setSelected] = useState(null);
@@ -34,6 +35,32 @@ export default function Calendar({ title, fields, endpoint }) {
     setDeleteDialog(true);
   };
 
+  const handleUpdate = async (updatedRow) => {
+    const eventHandler = () =>
+      eventsService.update({
+        id: updatedRow.id,
+        title: updatedRow.service.name,
+        description: updatedRow.service.description,
+        people: [updatedRow.client.name],
+        start: calendarEventConverter(updatedRow.dateTime),
+        end: calendarEventConverter(updatedRow.dateTime).add({ minutes: 60 }),
+        item: updatedRow,
+      });
+    const viewDialogHandler = () => setViewDialog(false);
+    await requestHandlers.update(updatedRow, endpoint, [
+      eventHandler,
+      viewDialogHandler,
+    ]);
+  };
+  const handleDelete = async (deletedRow) => {
+    const eventHandler = () => eventsService.remove(deletedRow.id);
+    const deleteDialogHandler = () => setDeleteDialog(false);
+    await requestHandlers.delete(deletedRow, endpoint, [
+      eventHandler,
+      deleteDialogHandler,
+    ]);
+  };
+
   const customComponents = {
     eventModal: ({ calendarEvent }) => (
       <EventModal
@@ -41,6 +68,7 @@ export default function Calendar({ title, fields, endpoint }) {
         plugin={eventModal}
         handleViewDialog={handleViewDialog}
         handleDeleteDialog={handleDeleteDialog}
+        handleUpdate={handleUpdate}
       />
     ),
   };
@@ -79,22 +107,7 @@ export default function Calendar({ title, fields, endpoint }) {
       const json = await result.json();
 
       const events = json.map((appointment) => {
-        let dateTime = new Date(appointment.dateTime)
-          .toISOString()
-          .replace("T", " ")
-          .replace(".000Z", "");
-        const [date, time] = dateTime.split(" ");
-        const [year, month, day] = date.split("-");
-        const [hour, minute, seconds] = time.split(":");
-
-        const startEnd = Temporal.ZonedDateTime.from({
-          year: parseInt(year),
-          month: parseInt(month),
-          day: parseInt(day),
-          hour: parseInt(hour - 5),
-          minute: parseInt(minute),
-          timeZone: "UTC",
-        });
+        const startEnd = calendarEventConverter(appointment.dateTime);
         return {
           id: appointment.id,
           title: appointment.service.name,
@@ -109,32 +122,6 @@ export default function Calendar({ title, fields, endpoint }) {
     })();
     eventsService.getAll();
   }, []);
-
-  const handleUpdate = async (updatedRow) => {
-    const eventHandler = () =>
-      eventsService.update({
-        id: updatedRow.id,
-        title: updatedRow.service.name,
-        description: updatedRow.service.description,
-        people: [updatedRow.client.name],
-        start: startEnd,
-        end: startEnd.add({ minutes: 60 }),
-        item: updatedRow,
-      });
-    const viewDialogHandler = () => setViewDialog(false);
-    await requestHandlers.update(updatedRow, endpoint, [
-      eventHandler,
-      viewDialogHandler,
-    ]);
-  };
-  const handleDelete = async (deletedRow) => {
-    const eventHandler = () => eventsService.remove(deletedRow.id);
-    const deleteDialogHandler = () => setDeleteDialog(false);
-    await requestHandlers.delete(deletedRow, endpoint, [
-      eventHandler,
-      deleteDialogHandler,
-    ]);
-  };
 
   return (
     <>
@@ -159,7 +146,7 @@ export default function Calendar({ title, fields, endpoint }) {
         onClose={() => setViewDialog(false)}
         data={selected}
         onUpdate={handleUpdate}
-        fields={fields}
+        fields={fields.filter((field) => field.name !== "status")}
         viewMode={false}
       />
       <DeleteDialog
