@@ -51,18 +51,25 @@ div.sx__event-modal > div span {
   font-weight: normal;
 }
 
+div.sx__time-grid-event.sx__event.pending {
+  background-color: rgb(113, 0, 36) !important;
+  color: rgb(255, 194, 213) !important;
+  border-inline-start: 4px solid rgb(255, 194, 213) !important;
+}
+
+div.sx__time-grid-event.sx__event.completed {
+  background-color: rgb(93, 93, 93) !important;
+  color: rgb(255, 255, 255) !important;
+  border-inline-start: 4px solid rgb(249, 249, 249) !important;
+}
+
+div.sx__time-grid-event.sx__event.irrelevant {
+  opacity: 0.25;
+}
+
 @media (orientation: portrait) {
   div#root {
     max-width: fit-content;
     width: fit-content;
   }
-
-  /* 
-  main table td.options {
-    display: table-cell;
-  }
-
-  main table td.options > *:not(:last-child) {
-    margin-bottom: var(--gap-flex);
-  } */
 }

@@ -2,7 +2,7 @@ export default {
   appointmentStatus: (text) => {
     switch (text) {
       case "PENDING":
-        return "Cancelada";
+        return "Pendiente";
       case "COMPLETED":
         return "Completada";
       case "CANCELLED":

@@ -36,7 +36,9 @@ export default function Calendar({ title, fields, endpoint }) {
   };
 
   const handleUpdate = async (updatedRow) => {
-    const eventHandler = () =>
+    const eventHandler = () => {
+      const token = localStorage.getItem("jwtToken");
+      const userData = jwtDecode(token);
       eventsService.update({
         id: updatedRow.id,
         title: updatedRow.service.name,
@@ -45,7 +47,21 @@ export default function Calendar({ title, fields, endpoint }) {
         start: calendarEventConverter(updatedRow.dateTime),
         end: calendarEventConverter(updatedRow.dateTime).add({ minutes: 60 }),
         item: updatedRow,
+        _options: {
+          additionalClasses: [
+            updatedRow.status === "COMPLETED"
+              ? "completed"
+              : updatedRow.status === "PENDING"
+                ? "pending"
+                : "irrelevant",
+            userData.userId !== updatedRow.client.id &&
+              userData.type === "CLIENT"
+              ? "irrelevant"
+              : "",
+          ],
+        },
       });
+    };
     const viewDialogHandler = () => setViewDialog(false);
     await requestHandlers.update(updatedRow, endpoint, [
       eventHandler,
@@ -106,6 +122,7 @@ export default function Calendar({ title, fields, endpoint }) {
 
       const json = await result.json();
 
+      const userData = jwtDecode(token);
       const events = json.map((appointment) => {
         const startEnd = calendarEventConverter(appointment.dateTime);
         return {
@@ -116,6 +133,19 @@ export default function Calendar({ title, fields, endpoint }) {
           start: startEnd,
           end: startEnd.add({ minutes: 60 }),
           item: appointment,
+          _options: {
+            additionalClasses: [
+              appointment.status === "COMPLETED"
+                ? "completed"
+                : appointment.status === "PENDING"
+                  ? "pending"
+                  : "",
+              userData.userId !== appointment.client.id &&
+                userData.type === "CLIENT"
+                ? "irrelevant"
+                : "",
+            ],
+          },
         };
       });
       eventsService.set(events);

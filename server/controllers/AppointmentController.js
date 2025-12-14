@@ -7,13 +7,13 @@ export default class AppointmentController extends BaseController {
   }
   findAll = async (req, res) => {
     const businessId = Number(req.user.businessId);
-    const userId = Number(req.user.userId);
-    const whereClause = { businessId: businessId };
-    if (req.user.type === "CLIENT") whereClause.clientId = userId;
     try {
       const rows = await this.model.findMany({
         include: { service: true, client: true },
-        where: whereClause,
+        where: { businessId: businessId },
+        orderBy: {
+          dateTime: "desc",
+        },
       });
       res.json(rows);
     } catch (error) {
