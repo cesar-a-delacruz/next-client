@@ -15,6 +15,9 @@ export default function New() {
   document.title = "Next Client: Nueva Cita";
 
   const [services, setServices] = useState([]);
+  pageData.fields = pageData.fields.filter(
+    (field) => field.name === "dateTime",
+  );
   useEffect(() => {
     (async () => {
       const dataHandler = (json) => setServices([...json]);
