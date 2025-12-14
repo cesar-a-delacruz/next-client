@@ -17,18 +17,18 @@ div.sx__event-modal {
   width: max-content;
 }
 
-div.sx__event-modal > div {
+div.sx__event-modal>div {
   color: var(---color-white) !important;
 }
 
-div.sx__event-modal > div > div.options {
+div.sx__event-modal>div>div.options {
   display: flex;
   justify-content: center;
   gap: var(--gap-flex);
   margin-bottom: var(--gap-flex);
 }
 
-div.sx__event-modal div.options button {
+div.sx__event-modal button {
   padding: var(--padding-button);
   font-weight: bold;
   font-size: 15px;
@@ -43,11 +43,11 @@ div.sx__event-modal div.options button:active {
   transform: scale(1.1);
 }
 
-div.sx__event-modal > div p {
+div.sx__event-modal>div p {
   font-weight: bold;
 }
 
-div.sx__event-modal > div span {
+div.sx__event-modal>div span {
   font-weight: normal;
 }
 

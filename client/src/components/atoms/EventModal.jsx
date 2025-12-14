@@ -1,8 +1,11 @@
+import { jwtDecode } from "jwt-decode";
+import enumTranslator from "@/utils/enumTranslator";
 export default function EventModal({
   calendarEvent,
   plugin,
   handleViewDialog,
   handleDeleteDialog,
+  handleUpdate,
 }) {
   return (
     <div
@@ -15,38 +18,56 @@ export default function EventModal({
         fontSize: "15px",
       }}
     >
-      <div className="options">
-        <button
-          onClick={() => {
-            handleViewDialog(calendarEvent.item);
-            plugin.close();
-          }}
-        >
-          Editar
-        </button>
-        <button
-          onClick={() => {
-            handleDeleteDialog(calendarEvent.item);
-            plugin.close();
-          }}
-        >
-          Eliminar
-        </button>
-        <button onClick={() => plugin.close()}>Cerrar</button>
-      </div>
+      {(() => {
+        const userData = jwtDecode(localStorage.getItem("jwtToken"));
+        return (
+          userData.type === "CLIENT" && (
+            <>
+              <div className="options">
+                <button
+                  onClick={() => {
+                    handleViewDialog(calendarEvent.item);
+                    plugin.close();
+                  }}
+                >
+                  Editar
+                </button>
+                <button
+                  onClick={() => {
+                    calendarEvent.item.status = "CANCELLED";
+                    handleUpdate(calendarEvent.item);
+                    plugin.close();
+                  }}
+                >
+                  Cancelar
+                </button>
+              </div>
+              <div className="info">
+                <p>
+                  Servicio: <span>{calendarEvent.title}</span>
+                </p>
+                <p>
+                  Descripción: <span>{calendarEvent.description}</span>
+                </p>
+                <p>
+                  Fecha y Hora:{" "}
+                  <span>{calendarEvent.start.toLocaleString()}</span>
+                </p>
+                <p>
+                  Estado:{" "}
+                  <span>
+                    {enumTranslator.appointmentStatus(
+                      calendarEvent.item.status,
+                    )}
+                  </span>
+                </p>
+              </div>
+            </>
+          )
+        );
+      })()}
 
-      <p>
-        Servicio: <span>{calendarEvent.title}</span>
-      </p>
-      <p>
-        Descripción: <span>{calendarEvent.description}</span>
-      </p>
-      <p>
-        Cliente: <span>{calendarEvent.people[0]}</span>
-      </p>
-      <p>
-        Fecha y Hora: <span>{calendarEvent.start.toLocaleString()}</span>
-      </p>
-    </div>
+      <button onClick={() => plugin.close()}>Cerrar</button>
+    </div >
   );
 }
