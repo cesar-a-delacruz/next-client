@@ -1,5 +1,4 @@
 import { startOfDay, endOfDay, startOfWeek, endOfWeek } from "date-fns";
-
 import BaseController from "./BaseController.js";
 
 export default class AppointmentController extends BaseController {

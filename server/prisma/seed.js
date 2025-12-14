@@ -151,49 +151,49 @@ async function main() {
     data: [
       // Existing ones (already adjusted)
       {
-        dateTime: new Date("2025-12-01T10:00:00"),
+        dateTime: new Date("2025-12-08T10:00:00"),
         serviceId: 1,
         clientId: 2,
         status: "COMPLETED",
         businessId: 1,
       },
       {
-        dateTime: new Date("2025-12-02T14:00:00"),
+        dateTime: new Date("2025-12-09T14:00:00"),
         serviceId: 2,
         clientId: 3,
         status: "PENDING",
         businessId: 1,
       },
       {
-        dateTime: new Date("2025-12-03T09:30:00"),
+        dateTime: new Date("2025-12-10T09:30:00"),
         serviceId: 5,
         clientId: 7,
         status: "CANCELLED",
         businessId: 1,
       },
       {
-        dateTime: new Date("2025-12-04T15:00:00"),
+        dateTime: new Date("2025-12-11T15:00:00"),
         serviceId: 6,
         clientId: 8,
         status: "COMPLETED",
         businessId: 1,
       },
       {
-        dateTime: new Date("2025-12-05T11:00:00"),
+        dateTime: new Date("2025-12-12T11:00:00"),
         serviceId: 7,
         clientId: 9,
         status: "PENDING",
         businessId: 1,
       },
       {
-        dateTime: new Date("2025-12-06T13:00:00"),
+        dateTime: new Date("2025-12-13T13:00:00"),
         serviceId: 1,
         clientId: 7,
         status: "COMPLETED",
         businessId: 1,
       },
       {
-        dateTime: new Date("2025-12-07T10:00:00"),
+        dateTime: new Date("2025-12-14T10:00:00"),
         serviceId: 2,
         clientId: 8,
         status: "CANCELLED",
@@ -201,49 +201,49 @@ async function main() {
       },
       // ➕ New appointments for the same week
       {
-        dateTime: new Date("2025-12-01T12:00:00"), // same day as first
+        dateTime: new Date("2025-12-08T12:00:00"), // same day as first
         serviceId: 6, // Peinado
         clientId: 9, // Valentina Cruz
         status: "PENDING",
         businessId: 1,
       },
       {
-        dateTime: new Date("2025-12-02T16:00:00"), // same day as second
+        dateTime: new Date("2025-12-09T16:00:00"), // same day as second
         serviceId: 7, // Tratamiento Capilar
         clientId: 7, // Sofía Herrera
         status: "COMPLETED",
         businessId: 1,
       },
       {
-        dateTime: new Date("2025-12-03T11:00:00"), // same day as third
+        dateTime: new Date("2025-12-10T11:00:00"), // same day as third
         serviceId: 1, // Corte de Cabello
         clientId: 8, // Diego Ramírez
         status: "PENDING",
         businessId: 1,
       },
       {
-        dateTime: new Date("2025-12-04T17:00:00"), // same day as fourth
+        dateTime: new Date("2025-12-11T17:00:00"), // same day as fourth
         serviceId: 5, // Coloración
         clientId: 2, // Carlos Gómez
         status: "CANCELLED",
         businessId: 1,
       },
       {
-        dateTime: new Date("2025-12-05T09:00:00"), // same day as fifth
+        dateTime: new Date("2025-12-12T09:00:00"), // same day as fifth
         serviceId: 2, // Afeitado
         clientId: 3, // Ana Torres
         status: "COMPLETED",
         businessId: 1,
       },
       {
-        dateTime: new Date("2025-12-06T15:30:00"), // same day as sixth
+        dateTime: new Date("2025-12-13T15:30:00"), // same day as sixth
         serviceId: 7, // Tratamiento Capilar
         clientId: 9, // Valentina Cruz
         status: "PENDING",
         businessId: 1,
       },
       {
-        dateTime: new Date("2025-12-07T12:00:00"), // same day as seventh
+        dateTime: new Date("2025-12-14T12:00:00"), // same day as seventh
         serviceId: 6, // Peinado
         clientId: 7, // Sofía Herrera
         status: "COMPLETED",
@@ -251,7 +251,7 @@ async function main() {
       },
 
       {
-        dateTime: new Date("2025-11-07T09:00:00"),
+        dateTime: new Date("2025-11-14T09:00:00"),
         serviceId: 3,
         clientId: 5,
         status: "COMPLETED",

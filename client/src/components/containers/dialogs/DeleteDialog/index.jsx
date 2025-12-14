@@ -18,7 +18,7 @@ export default function DeleteDialog({ open, onClose, data, onDelete }) {
       <dialog open={open} className="model-dialog">
         <form method="dialog">
           <h3>Eliminar</h3>
-          <p>Esta operación no se puede deshacer. ¿Desar continuar?</p>
+          <p>Esta operación no se puede deshacer. ¿Deseas continuar?</p>
           <div className="actions">
             <button type="button" onClick={handleDelete}>
               Eliminar
