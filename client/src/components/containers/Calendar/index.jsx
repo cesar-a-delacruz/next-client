@@ -154,7 +154,6 @@ export default function Calendar({ title, fields, endpoint }) {
         onClose={() => setDeleteDialog(false)}
         data={selected}
         onDelete={handleDelete}
-        fields={fields}
       />
     </>
   );

@@ -109,7 +109,6 @@ export default function CustomTable({ title, fields, endpoint }) {
         onClose={() => setDeleteDialog(false)}
         data={selected}
         onDelete={handleDelete}
-        fields={fields}
       />
     </>
   );
