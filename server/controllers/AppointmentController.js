@@ -80,6 +80,9 @@ export default class AppointmentController extends BaseController {
         include: {
           service: true,
         },
+        orderBy: {
+          dateTime: "asc",
+        },
       });
       if (!rows) return res.status(404).json({ error: "rows not founded" });
       res.json(rows);

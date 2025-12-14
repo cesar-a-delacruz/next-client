@@ -11,9 +11,9 @@ export default function Chart({ type, title }) {
   useEffect(() => {
     (async () => {
       const token = localStorage.getItem("jwtToken");
+      const date = new Date().toISOString();
       const result = await fetch(
-        // `http://localhost:3000/appointment/${type}/${new Date()}`,
-        `http://localhost:3000/appointment/${type}/${"2025-12-13"}`,
+        `http://localhost:3000/appointment/${type}/${date.substring(0, date.lastIndexOf("T"))}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

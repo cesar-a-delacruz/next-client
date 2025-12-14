@@ -7,6 +7,7 @@ import {
   BarChart,
   Bar,
 } from "recharts";
+import CustomTooltip from "./CustomToolTip";
 
 export default function CustomBarChart({ data }) {
   const dateTimes = data.map((appointment) => {
@@ -35,7 +36,7 @@ export default function CustomBarChart({ data }) {
       <CartesianGrid strokeDasharray="3 3" />
       <XAxis dataKey="name" />
       <YAxis />
-      <Tooltip />
+      <Tooltip content={CustomTooltip} />
       <Legend />
       <Bar
         dataKey="value"

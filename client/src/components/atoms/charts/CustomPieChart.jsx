@@ -37,7 +37,7 @@ export default function CustomPieChart({ data }) {
         ))}
       </Pie>
       <Legend />
-      <Tooltip></Tooltip>
+      <Tooltip />
     </PieChart>
   );
 }

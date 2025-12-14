@@ -7,11 +7,13 @@ import {
   Tooltip,
   Legend,
 } from "recharts";
+import CustomTooltip from "./CustomToolTip";
+import { format } from "date-fns";
 export default function CustomLineChart({ data }) {
   const dateTimes = data.map((appointment) => {
     let dateTime = new Date(appointment.dateTime.substring(0, 10));
     dateTime.setDate(dateTime.getDate() + 1);
-    return { name: dateTime.toDateString(), value: 1 };
+    return { name: format(dateTime, "EEEE"), value: 1 };
   });
   const appointments = dateTimes.reduce((acc, { name, value }) => {
     acc[name] = (acc[name] || 0) + value;
@@ -43,7 +45,7 @@ export default function CustomLineChart({ data }) {
       <XAxis dataKey="name" />
       <YAxis />
       <Legend />
-      <Tooltip />
+      <Tooltip content={CustomTooltip} />
       <Line
         type="monotone"
         name="Citas"
