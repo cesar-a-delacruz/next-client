@@ -13,7 +13,7 @@ export default function Chart({ type, title }) {
       const token = localStorage.getItem("jwtToken");
       const result = await fetch(
         // `http://localhost:3000/appointment/${type}/${new Date()}`,
-        `http://localhost:3000/appointment/${type}/${"2025-12-06"}`,
+        `http://localhost:3000/appointment/${type}/${"2025-12-13"}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
