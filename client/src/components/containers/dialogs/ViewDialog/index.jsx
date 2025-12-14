@@ -37,7 +37,7 @@ export default function ViewDialog({
     return (
       <dialog open={open} className="model-dialog">
         <form method="dialog">
-          <h3>{editMode ? "Editar" : "Ver"}</h3>
+          <h3>{editMode || viewMode === false ? "Editar" : "Ver"}</h3>
           {fields.map((field) => (
             <div key={field.name} className="dialog-field">
               {editMode || viewMode === false ? (
@@ -45,6 +45,7 @@ export default function ViewDialog({
                   field={field}
                   value={formData[field.name]}
                   handleChange={handleChange}
+                  showLabel={true}
                 />
               ) : (
                 <p>
