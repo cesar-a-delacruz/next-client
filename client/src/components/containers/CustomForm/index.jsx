@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import FormField from "@/components/atoms/FormField";
 import requestHandlers from "@/utils/requestHandlers";
 import "./index.css";
@@ -10,19 +10,14 @@ export default function CustomForm({
   action,
   submitActions,
 }) {
-  const initialState = useMemo(
-    () =>
-      fields.reduce((acc, field) => {
-        acc[field.name] = field.default || "";
-        return acc;
-      }, {}),
-    [fields],
-  );
-  const [formData, setFormData] = useState(initialState);
-
+  const [formData, setFormData] = useState(null);
   useEffect(() => {
+    const initialState = fields.reduce((acc, field) => {
+      acc[field.name] = field.default || "";
+      return acc;
+    }, {});
     setFormData(initialState);
-  }, [initialState]);
+  }, [fields.length]);
 
   const handleChange = (e) => {
     const value = e.target.value;
@@ -34,20 +29,21 @@ export default function CustomForm({
     requestHandlers.send(formData, endpoint, submitActions);
   };
 
-  return (
-    <form onSubmit={handleSubmit}>
-      <h2>{title}</h2>
-      {fields.map((field) => (
-        <div key={field.name}>
-          <FormField
-            field={field}
-            value={field.value ? field.value : formData[field.name]}
-            showLabel={field.label === undefined ? false : true}
-            handleChange={handleChange}
-          />
-        </div>
-      ))}
-      <button type="submit">{action}</button>
-    </form>
-  );
+  if (formData)
+    return (
+      <form onSubmit={handleSubmit}>
+        <h2>{title}</h2>
+        {fields.map((field) => (
+          <div key={field.name}>
+            <FormField
+              field={field}
+              value={field.value ? field.value : formData[field.name]}
+              showLabel={field.label === undefined ? false : true}
+              handleChange={handleChange}
+            />
+          </div>
+        ))}
+        <button type="submit">{action}</button>
+      </form>
+    );
 }

@@ -32,6 +32,7 @@ export default function New() {
       value: service.id,
       label: service.name,
     }));
+    servicesField.default = services[0].id;
     pageData.fields.push(servicesField);
   }
 

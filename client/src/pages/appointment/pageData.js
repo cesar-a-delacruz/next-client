@@ -7,6 +7,7 @@ export default new BasePageData(
       label: "Fecha y Hora",
       type: "datetime-local",
       render: (val) => new Date(val).toLocaleString(),
+      default: new Date(),
     },
   ],
   "appointment",
