@@ -139,7 +139,7 @@ export default function Calendar({ title, fields, endpoint }) {
                 ? "completed"
                 : appointment.status === "PENDING"
                   ? "pending"
-                  : "",
+                  : "irrelevant",
               userData.userId !== appointment.client.id &&
                 userData.type === "CLIENT"
                 ? "irrelevant"
