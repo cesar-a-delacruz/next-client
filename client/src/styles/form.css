@@ -12,7 +12,7 @@ form {
   gap: var(--gap-flex);
 }
 
-form>div {
+form > div {
   display: flex;
   flex-direction: column;
 }

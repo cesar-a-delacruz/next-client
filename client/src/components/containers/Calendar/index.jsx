@@ -55,7 +55,7 @@ export default function Calendar({ title, fields, endpoint }) {
                 ? "pending"
                 : "irrelevant",
             userData.userId !== updatedRow.client.id &&
-              userData.type === "CLIENT"
+            userData.type === "CLIENT"
               ? "irrelevant"
               : "",
           ],
@@ -141,7 +141,7 @@ export default function Calendar({ title, fields, endpoint }) {
                   ? "pending"
                   : "irrelevant",
               userData.userId !== appointment.client.id &&
-                userData.type === "CLIENT"
+              userData.type === "CLIENT"
                 ? "irrelevant"
                 : "",
             ],
@@ -149,6 +149,19 @@ export default function Calendar({ title, fields, endpoint }) {
         };
       });
       eventsService.set(events);
+      const resultServices = await fetch(`http://localhost:3000/service`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      console.log(resultServices);
+
+      const services = await resultServices.json();
+      fields[1].type = "select";
+      fields[1].options = services.map((service) => ({
+        value: service.id,
+        label: service.name,
+      }));
     })();
     eventsService.getAll();
   }, []);
