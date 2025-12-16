@@ -27,7 +27,7 @@ export const upload = multer({
     filename: (req, file, cb) => {
       console.log(req);
       const extension = path.extname(file.originalname);
-      const name = req.body.name;
+      const name = req.body.name.replace(" ", "_");
       req.ext = extension;
       cb(null, name + extension);
     },
