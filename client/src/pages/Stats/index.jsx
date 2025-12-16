@@ -11,17 +11,31 @@ export default function Stats() {
 
   if (userData.type !== "EMPLOYEE") return <Navigate to="/auth" replace />;
   document.title = "Next Client: Estadísticas";
-
+  const today = new Date().toISOString();
+  const date = today.substring(0, today.lastIndexOf("T"));
   return (
     <>
       <h2>Estadísticas</h2>
       <div className="chart-container">
-        <Chart type={"numberchart"} title={"Ganancia de hoy"} />
-        <Chart type={"piechart"} title={"Estados de la citas de hoy"} />
-        <Chart type={"linechart"} title={"Cantidad de citas en la semana"} />
+        <Chart
+          type={"numberchart"}
+          title={"Ganancia de hoy"}
+          initialDate={date}
+        />
+        <Chart
+          type={"piechart"}
+          title={"Estados de la citas de hoy"}
+          initialDate={date}
+        />
+        <Chart
+          type={"linechart"}
+          title={"Cantidad de citas en la semana"}
+          initialDate={date}
+        />
         <Chart
           type={"barchart"}
           title={"Servicios más solicitados en la semana"}
+          initialDate={date}
         />
       </div>
     </>
