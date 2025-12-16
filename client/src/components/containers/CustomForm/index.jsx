@@ -21,12 +21,16 @@ export default function CustomForm({
 
   const handleChange = (e) => {
     const value = e.target.value;
-    setFormData({ ...formData, [e.target.name]: value });
+    const newData = { ...formData, [e.target.name]: value };
+    if (e.target.files) newData.file = e.target.files[0];
+    setFormData(newData);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    requestHandlers.send(formData, endpoint, submitActions);
+    if (formData.file)
+      requestHandlers.sendWithFile(formData, endpoint, submitActions);
+    else requestHandlers.send(formData, endpoint, submitActions);
   };
 
   if (formData)

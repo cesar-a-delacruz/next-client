@@ -15,6 +15,7 @@ form {
 form > div {
   display: flex;
   flex-direction: column;
+  width: 80%;
 }
 
 form input,
@@ -34,7 +35,10 @@ form select {
 
 form textarea {
   height: 50px;
-  max-width: 100%;
+}
+
+form input[type="file"] {
+  height: 25px;
 }
 
 @media (orientation: landscape) {

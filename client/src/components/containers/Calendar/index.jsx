@@ -108,6 +108,7 @@ export default function Calendar({ title, fields, endpoint }) {
     showWeekNumbers: true,
     isResponsive: true,
     isDark: true,
+    selectedDate: Temporal.PlainDate.from("2025-12-14"),
   });
 
   useEffect(() => {

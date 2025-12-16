@@ -13,6 +13,25 @@ export default {
 
     handlers.forEach((handler) => handler(json));
   },
+  sendWithFile: async (formData, endpoint, handlers) => {
+    const data = new FormData();
+    for (const field in formData) {
+      data.append(field, formData[field]);
+    }
+
+    const token = localStorage.getItem("jwtToken");
+    const result = await fetch(`http://localhost:3000/${endpoint}`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      body: data,
+    });
+    const json = await result.json();
+    console.log(result);
+
+    handlers.forEach((handler) => handler(json));
+  },
   findAll: async (endpoint, stateHandlers) => {
     const token = localStorage.getItem("jwtToken");
     const result = await fetch(`http://localhost:3000/${endpoint}`, {
