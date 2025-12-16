@@ -1,4 +1,5 @@
 import BaseController from "./BaseController.js";
+import fileMiddleware from "../middlewares/fileMiddleware.js";
 
 export default class ServiceController extends BaseController {
   constructor(model, formParser) {
@@ -17,16 +18,22 @@ export default class ServiceController extends BaseController {
       res.status(500).json({ error: "Failed to find all" });
     }
   };
-  create = async (req, res) => {
-    const formBody = this.formParser.run(req.body);
-    formBody.businessId = Number(req.user.businessId);
+  create = [
+    fileMiddleware,
+    async (req, res) => {
+      const formBody = this.formParser.run(req.body);
+      formBody.businessId = Number(req.user.businessId);
+      formBody.image =
+        "https://res.cloudinary.com/dbjffqlow/image/upload/v1760113651/" +
+        req.public_id;
 
-    try {
-      const newRow = await this.model.create({ data: { ...formBody } });
-      res.status(201).json(newRow);
-    } catch (error) {
-      console.log(error);
-      res.status(500).json({ error: "Failed to create" });
-    }
-  };
+      try {
+        const newRow = await this.model.create({ data: { ...formBody } });
+        res.status(201).json(newRow);
+      } catch (error) {
+        console.log(error);
+        res.status(500).json({ error: "Failed to create" });
+      }
+    },
+  ];
 }
