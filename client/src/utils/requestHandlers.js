@@ -4,7 +4,6 @@ export default {
     const result = await fetch(`http://localhost:3000/${endpoint}`, {
       method: "POST",
       headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
         Authorization: `Bearer ${token}`,
       },
       body: new URLSearchParams(formData),
@@ -29,7 +28,6 @@ export default {
     const result = await fetch(`http://localhost:3000/${endpoint}/${row.id}`, {
       method: "PUT",
       headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
         Authorization: `Bearer ${token}`,
       },
       body: new URLSearchParams(row),
