@@ -5,15 +5,15 @@ import CustomBarChart from "@/components/atoms/charts/CustomBarChart";
 import NumberChart from "@/components/atoms/charts/NumberChart";
 import "./index.css";
 
-export default function Chart({ type, title }) {
+export default function Chart({ type, title, initialDate }) {
   const [data, setData] = useState(null);
+  const [date, setDate] = useState(initialDate);
 
   useEffect(() => {
     (async () => {
       const token = localStorage.getItem("jwtToken");
-      const date = new Date().toISOString();
       const result = await fetch(
-        `http://localhost:3000/appointment/${type}/${date.substring(0, date.lastIndexOf("T"))}`,
+        `http://localhost:3000/appointment/${type}/${date}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -24,7 +24,7 @@ export default function Chart({ type, title }) {
       setData(json);
       console.log(result);
     })();
-  }, []);
+  }, [date]);
 
   if (data === null) return;
   return (
