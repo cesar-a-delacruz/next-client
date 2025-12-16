@@ -1,6 +1,7 @@
 import { Navigate } from "react-router-dom";
 import pageData from "./pageData";
 import CustomForm from "@/components/containers/CustomForm";
+import { jwtDecode } from "jwt-decode";
 
 export default function Auth() {
   const token = localStorage.getItem("jwtToken");
@@ -11,7 +12,9 @@ export default function Auth() {
   document.title = "Next Client: Iniciar Sesión";
   const setToken = (json) => {
     if (json.token) localStorage.setItem("jwtToken", json.token);
-    location.replace("/appointment/all");
+    const userData = jwtDecode(json.token);
+    if (userData.businessId !== null) location.replace("/appointment/all");
+    else location.replace("/business/all");
   };
 
   return (
