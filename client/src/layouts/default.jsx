@@ -68,8 +68,8 @@ export default function DefaultLayout() {
         <Outlet />
       </main>
       <footer>
-        Desarrollado por César De La Cruz en la Universidad Tecnológica de
-        Panamá © {new Date().getFullYear()}
+        Desarrollado en la Universidad Tecnológica de Panamá ©{" "}
+        {new Date().getFullYear()}
       </footer>
     </>
   );
