@@ -17,12 +17,10 @@ export const upload = multer({
     destination: async (req, file, cb) => {
       console.log(req);
       await cloudinaryV2.api
-        .search_folders(
-          `name=${req.user.businessId} AND path:next-client/business`,
-        )
+        .search_folders(`name=${req.user.businessId} AND path:next-client/`)
         .catch(async (err) => {
           await cloudinaryV2.api.create_folder(
-            `next-client/business/${req.user.businessId}`,
+            `next-client/${req.user.businessId}`,
           );
         });
     },

@@ -16,7 +16,7 @@ export default async function (req, res, next) {
     const b64 = Buffer.from(req.file.buffer).toString("base64");
     const dataURI = "data:" + req.file.mimetype + ";base64," + b64;
     const file = await cloudinary.uploader.upload(dataURI, {
-      folder: `next-client/business/${req.user.businessId}/`,
+      folder: `next-client/${req.user.businessId}/service`,
       public_id: req.body.name,
     });
     req.public_id = file.public_id;

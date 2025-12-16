@@ -1,5 +1,6 @@
 import BaseController from "./BaseController.js";
 import fileMiddleware from "../middlewares/fileMiddleware.js";
+import { cloudinaryV2 as cloudinary } from "../utils/fileParser.js";
 
 export default class ServiceController extends BaseController {
   constructor(model, formParser) {
@@ -36,4 +37,16 @@ export default class ServiceController extends BaseController {
       }
     },
   ];
+  delete = async (req, res) => {
+    const { id } = req.params;
+    try {
+      const service = await this.model.delete({ where: { id: parseInt(id) } });
+      await cloudinary.uploader.destroy(
+        `next-client/business/${req.user.businessId}/${service.name}`,
+      );
+      res.status(204).end();
+    } catch (error) {
+      res.status(500).json({ error: "Failed to delete" });
+    }
+  };
 }
