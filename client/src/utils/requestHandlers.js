@@ -13,6 +13,16 @@ export default {
 
     handlers.forEach((handler) => handler(json));
   },
+  sendForAuth: async (formData, endpoint, handlers) => {
+    const result = await fetch(`http://localhost:3000/${endpoint}`, {
+      method: "POST",
+      body: new URLSearchParams(formData),
+    });
+    const json = await result.json();
+    console.log(result);
+
+    handlers.forEach((handler) => handler(json));
+  },
   sendWithFile: async (formData, endpoint, handlers) => {
     const data = new FormData();
     for (const field in formData) {

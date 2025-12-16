@@ -19,7 +19,7 @@ export default function Card({
       {(() => {
         const userData = jwtDecode(localStorage.getItem("jwtToken"));
         return (
-          userData.type === "" && (
+          userData.type === "EMPLOYEE" && (
             <div className="actions">
               <button
                 onClick={() => {

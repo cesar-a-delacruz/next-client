@@ -30,6 +30,8 @@ export default function CustomForm({
     e.preventDefault();
     if (formData.file)
       requestHandlers.sendWithFile(formData, endpoint, submitActions);
+    else if (!localStorage.getItem("jwtToken"))
+      requestHandlers.sendForAuth(formData, endpoint, submitActions);
     else requestHandlers.send(formData, endpoint, submitActions);
   };
 

@@ -24,7 +24,7 @@ export default function EventModal({
         }}
       >
         <div className="options">
-          {calendarEvent.item.status !== "COMPLETED" && (
+          {calendarEvent.item.status === "PENDING" && (
             <>
               {userData.type === "CLIENT" ? (
                 <button

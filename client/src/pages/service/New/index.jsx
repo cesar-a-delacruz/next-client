@@ -11,6 +11,7 @@ export default function New() {
 
   if (userData.type !== "EMPLOYEE") return <Navigate to="/auth" replace />;
   document.title = "Next Client: Nuevo Servicio";
+  const redirect = () => location.replace("/service/all");
 
   return (
     <CustomForm
@@ -18,7 +19,7 @@ export default function New() {
       fields={pageData.fields}
       endpoint={pageData.endpoint}
       action="Crear"
-      submitActions={[]}
+      submitActions={[redirect]}
     />
   );
 }

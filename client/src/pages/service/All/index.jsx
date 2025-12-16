@@ -11,7 +11,7 @@ export default function All() {
   return (
     <CardGrid
       title="Servicios"
-      fields={pageData.fields}
+      fields={pageData.fields.filter((field) => field.name !== "image")}
       endpoint={pageData.endpoint}
     />
   );

@@ -39,13 +39,15 @@ export default function New() {
     pageData.fields.push(servicesField);
   }
 
+  const redirect = () => location.replace("/appointment/all");
+
   return (
     <CustomForm
       title="Nueva Cita"
       fields={pageData.fields}
       endpoint={pageData.endpoint}
       action="Agendar"
-      submitActions={[]}
+      submitActions={[redirect]}
     />
   );
 }

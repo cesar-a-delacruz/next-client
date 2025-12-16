@@ -47,6 +47,7 @@ export default function New() {
   }
 
   document.title = "Next Client: Nueva Cuenta";
+  const redirect = () => location.replace("/auth");
 
   return (
     <CustomForm
@@ -54,7 +55,7 @@ export default function New() {
       fields={pageData.fields}
       endpoint={pageData.endpoint}
       action="Registrar"
-      submitActions={[]}
+      submitActions={[redirect]}
     />
   );
 }
