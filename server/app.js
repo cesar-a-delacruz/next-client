@@ -6,7 +6,7 @@ import authenticationMiddleware from "./middlewares/authenticationMiddleware.js"
 
 dotenv.config();
 const app = express();
-app.use(cors({ origin: "http://localhost:5173" }));
+app.use(cors({ origin: process.env.CLIENT }));
 app.use(express.urlencoded({ extended: true }));
 
 // other routes
