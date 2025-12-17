@@ -42,7 +42,10 @@ export default function New() {
   }
 
   document.title = "Next Client: Nueva Cuenta";
-  const redirect = () => location.replace("/auth");
+  const redirect = () =>
+    userData.businessId
+      ? location.replace("/auth")
+      : location.replace("/user/all");
 
   return (
     <CustomForm
