@@ -11,13 +11,17 @@ export default function DefaultLayout() {
         <h1>Next Client</h1>
         {token && (
           <nav>
-            <div>
-              <a href="/appointment/all">Citas</a>
-            </div>
-            <div>
-              <a href="/service/all">Servicios</a>
-            </div>
-            {userData && userData.type === "EMPLOYEE" ? (
+            {userData && userData.businessId && (
+              <>
+                <div>
+                  <a href="/appointment/all">Citas</a>
+                </div>
+                <div>
+                  <a href="/service/all">Servicios</a>
+                </div>
+              </>
+            )}
+            {userData && userData.type === "EMPLOYEE" && userData.businessId ? (
               <>
                 <div>
                   <a href="/user/all">Usuarios</a>
@@ -27,7 +31,14 @@ export default function DefaultLayout() {
                 </div>
               </>
             ) : (
-              <></>
+              <>
+                <div>
+                  <a href="/business/all">Negocios</a>
+                </div>
+                <div>
+                  <a href="/user/all">Usuarios</a>
+                </div>
+              </>
             )}
           </nav>
         )}

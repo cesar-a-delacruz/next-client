@@ -11,6 +11,8 @@ export default function CustomTable({ title, fields, endpoint }) {
   const [viewDialog, setViewDialog] = useState(false);
   const [deleteDialog, setDeleteDialog] = useState(false);
 
+  const userData = jwtDecode(localStorage.getItem("jwtToken"));
+
   useEffect(() => {
     (async () => {
       const dataHandler = (json) => setData([...json]);
@@ -51,16 +53,11 @@ export default function CustomTable({ title, fields, endpoint }) {
   return (
     <>
       <h2>{title}</h2>
-      {(() => {
-        const userData = jwtDecode(localStorage.getItem("jwtToken"));
-        return (
-          userData.type === "EMPLOYEE" && (
-            <div className="links">
-              <a href={`/${endpoint}/new`}>Nuevo</a>
-            </div>
-          )
-        );
-      })()}
+      {userData.type === "EMPLOYEE" && (
+        <div className="links">
+          <a href={`/${endpoint}/new`}>Nuevo</a>
+        </div>
+      )}
       <table>
         <thead>
           <tr>
@@ -83,9 +80,11 @@ export default function CustomTable({ title, fields, endpoint }) {
                 ))}
                 <td className="options">
                   <button onClick={() => handleViewDialog(item)}>Ver</button>
-                  <button onClick={() => handleDeleteDialog(item)}>
-                    Eliminar
-                  </button>
+                  {userData.userId !== item.id && (
+                    <button onClick={() => handleDeleteDialog(item)}>
+                      Eliminar
+                    </button>
+                  )}
                 </td>
               </tr>
             ))
@@ -102,7 +101,7 @@ export default function CustomTable({ title, fields, endpoint }) {
         onClose={() => setViewDialog(false)}
         data={selected}
         onUpdate={handleUpdate}
-        fields={fields}
+        fields={fields.filter((field) => field.name !== "type")}
       />
       <DeleteDialog
         open={deleteDialog}
