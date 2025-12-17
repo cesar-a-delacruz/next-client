@@ -22,12 +22,11 @@ export default class UserController extends BaseController {
   };
 
   findAll = async (req, res) => {
-    const businessId = Number(req.user.businessId);
-
+    let filterObject = {};
+    if (req.user.businessId)
+      filterObject = { where: { businessId: Number(req.user.businessId) } };
     try {
-      const rows = await this.model.findMany({
-        where: { businessId: businessId },
-      });
+      const rows = await this.model.findMany(filterObject);
       res.json(rows);
     } catch (error) {
       res.status(500).json({ error: "Failed to find all" });
