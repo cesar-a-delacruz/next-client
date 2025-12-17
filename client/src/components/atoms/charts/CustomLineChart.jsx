@@ -8,12 +8,16 @@ import {
   Legend,
 } from "recharts";
 import CustomTooltip from "./CustomToolTip";
-import { format } from "date-fns";
 export default function CustomLineChart({ data }) {
   const dateTimes = data.map((appointment) => {
     let dateTime = new Date(appointment.dateTime.substring(0, 10));
     dateTime.setDate(dateTime.getDate() + 1);
-    return { name: format(dateTime, "EEEE"), value: 1 };
+    return {
+      name: new Intl.DateTimeFormat("es-ES", { weekday: "long" }).format(
+        dateTime,
+      ),
+      value: 1,
+    };
   });
   const appointments = dateTimes.reduce((acc, { name, value }) => {
     acc[name] = (acc[name] || 0) + value;

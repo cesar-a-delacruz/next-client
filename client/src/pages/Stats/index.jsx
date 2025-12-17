@@ -19,12 +19,12 @@ export default function Stats() {
       <div className="chart-container">
         <Chart
           type={"numberchart"}
-          title={"Ganancia de hoy"}
+          title={"Ganancia del dia"}
           initialDate={date}
         />
         <Chart
           type={"piechart"}
-          title={"Estados de la citas de hoy"}
+          title={"Estados de la citas del dia"}
           initialDate={date}
         />
         <Chart

@@ -31,7 +31,16 @@ div.numberchart > p {
   font-weight: bold;
 }
 
-div.piechart > :nth-child(2) {
+input {
+  background-color: var(--color-gray-light);
+  border-radius: var(--border-radius);
+  border-color: var(--color-white);
+  color: var(--color-white);
+  outline-style: none;
+  height: 20px;
+}
+
+div.piechart > :nth-child(3) {
   width: 100% !important;
   height: auto !important;
 }

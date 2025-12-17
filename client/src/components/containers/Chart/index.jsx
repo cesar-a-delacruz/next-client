@@ -26,10 +26,16 @@ export default function Chart({ type, title, initialDate }) {
     })();
   }, [date]);
 
+  const handleChange = (e) => {
+    const value = e.target.value;
+    setDate(value);
+  };
+
   if (data === null) return;
   return (
     <div className={`chart ${type}`}>
       <h3>{title}</h3>
+      <input type="date" value={date} onChange={handleChange} />
       {(() => {
         switch (type) {
           case "piechart":
