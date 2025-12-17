@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import Card from "@/components/atoms/Card";
+import Card from "@/components/atoms/Card.jsx";
 import ViewDialog from "@/components/containers/dialogs/ViewDialog";
 import DeleteDialog from "@/components/containers/dialogs/DeleteDialog";
-import requestHandlers from "@/utils/requestHandlers";
+import requestHandlers from "@/utils/requestHandlers.js";
 import "./index.css";
 import { jwtDecode } from "jwt-decode";
 

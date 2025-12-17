@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import CustomPieChart from "@/components/atoms/charts/CustomPieChart";
-import CustomLineChart from "@/components/atoms/charts/CustomLineChart";
-import CustomBarChart from "@/components/atoms/charts/CustomBarChart";
-import NumberChart from "@/components/atoms/charts/NumberChart";
+import CustomPieChart from "@/components/atoms/charts/CustomPieChart.jsx";
+import CustomLineChart from "@/components/atoms/charts/CustomLineChart.jsx";
+import CustomBarChart from "@/components/atoms/charts/CustomBarChart.jsx";
+import NumberChart from "@/components/atoms/charts/NumberChart.jsx";
 import "./index.css";
 
 export default function Chart({ type, title, initialDate }) {

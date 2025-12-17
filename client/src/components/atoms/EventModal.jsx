@@ -1,5 +1,5 @@
 import { jwtDecode } from "jwt-decode";
-import enumTranslator from "@/utils/enumTranslator";
+import enumTranslator from "@/utils/enumTranslator.js";
 export default function EventModal({
   calendarEvent,
   plugin,

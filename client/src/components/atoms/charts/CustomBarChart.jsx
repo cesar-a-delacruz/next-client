@@ -7,7 +7,7 @@ import {
   BarChart,
   Bar,
 } from "recharts";
-import CustomTooltip from "@/components/atoms/charts/CustomToolTip";
+import CustomTooltip from "@/components/atoms/charts/CustomTooltip.jsx";
 
 export default function CustomBarChart({ data }) {
   const dateTimes = data.map((appointment) => {

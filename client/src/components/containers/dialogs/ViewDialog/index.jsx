@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import FormField from "@/components/atoms/FormField";
+import FormField from "@/components/atoms/FormField.jsx";
 import "./index.css";
 export default function ViewDialog({
   open,

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import FormField from "@/components/atoms/FormField";
-import requestHandlers from "@/utils/requestHandlers";
+import FormField from "@/components/atoms/FormField.jsx";
+import requestHandlers from "@/utils/requestHandlers.js";
 import "./index.css";
 
 export default function CustomForm({

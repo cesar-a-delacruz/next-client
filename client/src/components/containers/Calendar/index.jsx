@@ -13,11 +13,11 @@ import "temporal-polyfill/global";
 import "@schedule-x/theme-default/dist/index.css";
 import ViewDialog from "@/components/containers/dialogs/ViewDialog";
 import DeleteDialog from "@/components/containers/dialogs/DeleteDialog";
-import requestHandlers from "@/utils/requestHandlers";
-import EventModal from "@/components/atoms/EventModal";
+import requestHandlers from "@/utils/requestHandlers.js";
+import EventModal from "@/components/atoms/EventModal.jsx";
 import "./index.css";
 import { jwtDecode } from "jwt-decode";
-import calendarEventConverter from "@/utils/calendarEventConverter";
+import calendarEventConverter from "@/utils/calendarEventConverter.js";
 
 export default function Calendar({ title, fields, endpoint }) {
   const [selected, setSelected] = useState(null);
@@ -55,7 +55,7 @@ export default function Calendar({ title, fields, endpoint }) {
                 ? "pending"
                 : "irrelevant",
             userData.userId !== updatedRow.client.id &&
-            userData.type === "CLIENT"
+              userData.type === "CLIENT"
               ? "irrelevant"
               : "",
           ],
@@ -141,7 +141,7 @@ export default function Calendar({ title, fields, endpoint }) {
                   ? "pending"
                   : "irrelevant",
               userData.userId !== appointment.client.id &&
-              userData.type === "CLIENT"
+                userData.type === "CLIENT"
                 ? "irrelevant"
                 : "",
             ],

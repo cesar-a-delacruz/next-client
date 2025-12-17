@@ -7,7 +7,7 @@ import {
   Tooltip,
   Legend,
 } from "recharts";
-import CustomTooltip from "@/components/atoms/charts/CustomToolTip";
+import CustomTooltip from "@/components/atoms/charts/CustomTooltip.jsx";
 export default function CustomLineChart({ data }) {
   const dateTimes = data.map((appointment) => {
     let dateTime = new Date(appointment.dateTime.substring(0, 10));

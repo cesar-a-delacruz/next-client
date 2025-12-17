@@ -1,13 +1,13 @@
 import { createBrowserRouter } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 
-import user from "@/routes/user";
-import appointment from "@/routes/appointment";
-import service from "@/routes/service";
+import user from "@/routes/user.jsx";
+import appointment from "@/routes/appointment.jsx";
+import service from "@/routes/service.jsx";
 import business from "@/routes/business";
 import Auth from "@/pages/Auth";
 import Stats from "@/pages/Stats";
-import DefaultLayout from "./layouts/default";
+import DefaultLayout from "./layouts/default.jsx";
 
 const routes = [
   user,
