@@ -14,7 +14,6 @@ model Business {
   description String?
   phone       Int
   logo        String?
-  password    String
   services    Service[]
   employees   User[]
 

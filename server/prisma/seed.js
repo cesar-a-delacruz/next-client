@@ -9,11 +9,9 @@ async function main() {
     data: [
       {
         name: "Barbería Piaza",
-        description: "Cortes y estilos modernos",
+        // description: "Cortes y estilos modernos",
         phone: 62951821,
-        logo: "barberia_logo.png",
-        // password: bcrypt.hashSync("password1", 10),
-        password: "password1",
+        // logo: "barberia_logo.png",
       },
     ],
   });

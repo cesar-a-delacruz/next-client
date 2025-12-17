@@ -25,7 +25,6 @@ export const controllers = {
       description: "string",
       phone: "number",
       logo: "string",
-      password: "string",
     }),
   ),
   service: new ServiceController(

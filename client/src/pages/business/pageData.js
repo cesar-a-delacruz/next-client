@@ -6,7 +6,6 @@ export default new BasePageData(
     // { name: "description", label: "Descripción", type: "textarea" },
     { name: "phone", label: "Teléfono", type: "text" },
     // { name: "logo", label: "Logo", type: "text" },
-    { name: "password", label: "Contraseña", type: "password" },
   ],
   "business",
 );
