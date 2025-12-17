@@ -149,7 +149,7 @@ export default function Calendar({ title, fields, endpoint }) {
         };
       });
       eventsService.set(events);
-      const resultServices = await fetch(`http://localhost:3000/service`, {
+      const resultServices = await fetch(`${import.meta.env.VITE_SERVER}/service`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
