@@ -25,6 +25,7 @@ export default class AppointmentController extends BaseController {
     const formBody = this.formParser.run(req.body);
     formBody.businessId = Number(req.user.businessId);
     formBody.clientId = Number(req.user.userId);
+    formBody.dateTime.setHours(formBody.dateTime.getHours() + 5);
 
     try {
       const newRow = await this.model.create({ data: { ...formBody } });
@@ -35,9 +36,24 @@ export default class AppointmentController extends BaseController {
     }
   };
 
+  update = async (req, res) => {
+    const { id } = req.params;
+    const formBody = this.formParser.run(req.body);
+    formBody.dateTime.setHours(formBody.dateTime.getHours() + 5);
+
+    try {
+      const updatedRow = await this.model.update({
+        where: { id: parseInt(id) },
+        data: { ...formBody },
+      });
+      res.json(updatedRow);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to update" });
+    }
+  };
+
   findByDay = async (req, res) => {
     const dateTime = new Date(req.params.dateTime);
-    dateTime.setDate(dateTime.getDate() + 1);
     const dayStart = startOfDay(dateTime);
     const dayEnd = endOfDay(dateTime);
     const businessId = Number(req.user.businessId);
@@ -63,7 +79,6 @@ export default class AppointmentController extends BaseController {
   };
   findByWeek = async (req, res) => {
     const dateTime = new Date(req.params.dateTime);
-    dateTime.setDate(dateTime.getDate() + 1);
     const weekStart = startOfWeek(dateTime, { weekStartsOn: 1 });
     const weekEnd = endOfWeek(dateTime, { weekStartsOn: 1 });
     const businessId = Number(req.user.businessId);
