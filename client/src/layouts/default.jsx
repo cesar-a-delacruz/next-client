@@ -30,15 +30,17 @@ export default function DefaultLayout() {
                   <a href="/stats">Estadísticas</a>
                 </div>
               </>
-            ) : !userData.businessId && (
-              <>
-                <div>
-                  <a href="/business/all">Negocios</a>
-                </div>
-                <div>
-                  <a href="/user/all">Usuarios</a>
-                </div>
-              </>
+            ) : (
+              !userData.businessId && (
+                <>
+                  <div>
+                    <a href="/business/all">Negocios</a>
+                  </div>
+                  <div>
+                    <a href="/user/all">Usuarios</a>
+                  </div>
+                </>
+              )
             )}
           </nav>
         )}

@@ -54,25 +54,31 @@ export default {
   },
   update: async (row, endpoint, stateHandlers) => {
     const token = localStorage.getItem("jwtToken");
-    const result = await fetch(`${import.meta.env.VITE_SERVER}/${endpoint}/${row.id}`, {
-      method: "PUT",
-      headers: {
-        Authorization: `Bearer ${token}`,
+    const result = await fetch(
+      `${import.meta.env.VITE_SERVER}/${endpoint}/${row.id}`,
+      {
+        method: "PUT",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        body: new URLSearchParams(row),
       },
-      body: new URLSearchParams(row),
-    });
+    );
     console.log(result);
 
     stateHandlers.forEach((handler) => handler());
   },
   delete: async (row, endpoint, stateHandlers) => {
     const token = localStorage.getItem("jwtToken");
-    const result = await fetch(`${import.meta.env.VITE_SERVER}/${endpoint}/${row.id}`, {
-      method: "DELETE",
-      headers: {
-        Authorization: `Bearer ${token}`,
+    const result = await fetch(
+      `${import.meta.env.VITE_SERVER}/${endpoint}/${row.id}`,
+      {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       },
-    });
+    );
     console.log(result);
 
     stateHandlers.forEach((handler) => handler());

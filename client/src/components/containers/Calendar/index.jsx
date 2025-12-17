@@ -55,7 +55,7 @@ export default function Calendar({ title, fields, endpoint }) {
                 ? "pending"
                 : "irrelevant",
             userData.userId !== updatedRow.client.id &&
-              userData.type === "CLIENT"
+            userData.type === "CLIENT"
               ? "irrelevant"
               : "",
           ],
@@ -141,7 +141,7 @@ export default function Calendar({ title, fields, endpoint }) {
                   ? "pending"
                   : "irrelevant",
               userData.userId !== appointment.client.id &&
-                userData.type === "CLIENT"
+              userData.type === "CLIENT"
                 ? "irrelevant"
                 : "",
             ],
@@ -149,11 +149,14 @@ export default function Calendar({ title, fields, endpoint }) {
         };
       });
       eventsService.set(events);
-      const resultServices = await fetch(`${import.meta.env.VITE_SERVER}/service`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
+      const resultServices = await fetch(
+        `${import.meta.env.VITE_SERVER}/service`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         },
-      });
+      );
       console.log(resultServices);
 
       const services = await resultServices.json();
