@@ -13,7 +13,7 @@ export default function Chart({ type, title, initialDate }) {
     (async () => {
       const token = localStorage.getItem("jwtToken");
       const result = await fetch(
-        `http://localhost:3000/appointment/${type}/${date}`,
+        `${import.meta.env.VITE_SERVER}/appointment/${type}/${date}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

@@ -113,7 +113,7 @@ export default function Calendar({ title, fields, endpoint }) {
   useEffect(() => {
     (async () => {
       const token = localStorage.getItem("jwtToken");
-      const result = await fetch(`http://localhost:3000/${endpoint}`, {
+      const result = await fetch(`${import.meta.env.VITE_SERVER}/${endpoint}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

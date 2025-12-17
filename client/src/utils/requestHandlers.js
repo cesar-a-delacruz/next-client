@@ -1,7 +1,7 @@
 export default {
   send: async (formData, endpoint, handlers) => {
     const token = localStorage.getItem("jwtToken");
-    const result = await fetch(`http://localhost:3000/${endpoint}`, {
+    const result = await fetch(`${import.meta.env.VITE_SERVER}/${endpoint}`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -14,7 +14,7 @@ export default {
     handlers.forEach((handler) => handler(json));
   },
   sendForAuth: async (formData, endpoint, handlers) => {
-    const result = await fetch(`http://localhost:3000/${endpoint}`, {
+    const result = await fetch(`${import.meta.env.VITE_SERVER}/${endpoint}`, {
       method: "POST",
       body: new URLSearchParams(formData),
     });
@@ -30,7 +30,7 @@ export default {
     }
 
     const token = localStorage.getItem("jwtToken");
-    const result = await fetch(`http://localhost:3000/${endpoint}`, {
+    const result = await fetch(`${import.meta.env.VITE_SERVER}/${endpoint}`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -44,7 +44,7 @@ export default {
   },
   findAll: async (endpoint, stateHandlers) => {
     const token = localStorage.getItem("jwtToken");
-    const result = await fetch(`http://localhost:3000/${endpoint}`, {
+    const result = await fetch(`${import.meta.env.VITE_SERVER}/${endpoint}`, {
       headers: { Authorization: `Bearer ${token}` },
     });
     const json = await result.json();
@@ -54,7 +54,7 @@ export default {
   },
   update: async (row, endpoint, stateHandlers) => {
     const token = localStorage.getItem("jwtToken");
-    const result = await fetch(`http://localhost:3000/${endpoint}/${row.id}`, {
+    const result = await fetch(`${import.meta.env.VITE_SERVER}/${endpoint}/${row.id}`, {
       method: "PUT",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -67,7 +67,7 @@ export default {
   },
   delete: async (row, endpoint, stateHandlers) => {
     const token = localStorage.getItem("jwtToken");
-    const result = await fetch(`http://localhost:3000/${endpoint}/${row.id}`, {
+    const result = await fetch(`${import.meta.env.VITE_SERVER}/${endpoint}/${row.id}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`,
