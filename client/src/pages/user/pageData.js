@@ -1,4 +1,5 @@
 import BasePageData from "@/utils/BasePageData";
+import enumTranslator from "@/utils/enumTranslator";
 
 export default new BasePageData(
   [
@@ -14,6 +15,7 @@ export default new BasePageData(
         { value: "EMPLOYEE", label: "Empleado" },
       ],
       default: "CLIENT",
+      render: (val) => enumTranslator.userType(val),
     },
   ],
   "user",

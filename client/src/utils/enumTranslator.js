@@ -14,7 +14,7 @@ export default {
   userType: (text) => {
     switch (text) {
       case "CLIENT":
-        return "CLiente";
+        return "Cliente";
       case "EMPLOYEE":
         return "Empleado";
       default:
